@@ -16,7 +16,7 @@ pm_start_text: |
 grp_start_text: "Hi, I'm Caelum."
 
 pm_help_text: |
-   Hello there! My name is *Caelum*. A part of *Eagle Union*.
+   Hello there! My name is *Caelum*.
    I'm a modular group management bot with a few fun extras! Have a look at the following for an idea of some of
    the things I can help you with.
    *Main* commands available:
@@ -400,11 +400,11 @@ stickers_help: |
        If you don't want users to send specific stickers then this module will be useful.
        
        *Admin only*
-       • `/banpack`*:* blacklists the replied sticker
-       • `/unbanpack`*:* removes the blacklist of replied sticker
+       • `/bansticker`*:* blacklists the replied sticker
+       • `/unbansticker`*:* removes the blacklist of replied sticker
        • `/banpmode`*:* Decide what Caelum will do when a blacklisted sticker sent
        Available modes are ban, tban, mute, tmute, delete and nothing
-       You can (un)blacklist a pack by /(un)banpack <packlink> too.
+       You can (un)ban a pack by /(un)bansticker <packlink> too.
 
 lydia_help: |
        Lydia is an artificial intelligence can talk with you like a human.

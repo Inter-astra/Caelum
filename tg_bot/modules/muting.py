@@ -80,7 +80,7 @@ def mute(update: Update, context: CallbackContext) -> str:
         bot.restrict_chat_member(chat.id, user_id, chat_permissions)
         bot.sendMessage(
             chat.id,
-            f"Muted <b>{html.escape(member.user.first_name)}</b> with no expiration date!",
+            f"Wrapped <b>{html.escape(member.user.first_name)}</b>'s keyboard with rope 'till you decide to untie!",
             parse_mode=ParseMode.HTML,
         )
         return log
@@ -117,7 +117,7 @@ def unmute(update: Update, context: CallbackContext) -> str:
             and member.can_send_other_messages
             and member.can_add_web_page_previews
         ):
-            message.reply_text("This user already has the right to speak.")
+            message.reply_text("This user's keyboard is not wrapped.")
         else:
             chat_permissions = ChatPermissions(
                 can_send_messages=True,
@@ -135,7 +135,7 @@ def unmute(update: Update, context: CallbackContext) -> str:
                 pass
             bot.sendMessage(
                 chat.id,
-                f"I shall allow <b>{html.escape(member.user.first_name)}</b> to text!",
+                f"I've unwrapped <b>{html.escape(member.user.first_name)}</b>'s keyboard!",
                 parse_mode=ParseMode.HTML,
             )
             return (
@@ -146,8 +146,8 @@ def unmute(update: Update, context: CallbackContext) -> str:
             )
     else:
         message.reply_text(
-            "This user isn't even in the chat, unmuting them won't make them talk more than they "
-            "already do!"
+            "This user isn't even in the chat, unwrapping their rope "
+            "won't do anything "
         )
 
     return ""
@@ -174,7 +174,7 @@ def temp_mute(update: Update, context: CallbackContext) -> str:
     member = chat.get_member(user_id)
 
     if not reason:
-        message.reply_text("You haven't specified a time to mute this user for!")
+        message.reply_text("You haven't specified a time to wrap their keybord for!")
         return ""
 
     split_reason = reason.split(None, 1)
@@ -208,12 +208,12 @@ def temp_mute(update: Update, context: CallbackContext) -> str:
             )
             bot.sendMessage(
                 chat.id,
-                f"Muted <b>{html.escape(member.user.first_name)}</b> for {time_val}!",
+                f"Wrapped the keyboard of <b>{html.escape(member.user.first_name)}</b> for {time_val}!",
                 parse_mode=ParseMode.HTML,
             )
             return log
         else:
-            message.reply_text("This user is already muted.")
+            message.reply_text("This user's keyboard is already wrapped.")
 
     except BadRequest as excp:
         if excp.message == "Reply message not found":
@@ -229,7 +229,7 @@ def temp_mute(update: Update, context: CallbackContext) -> str:
                 chat.id,
                 excp.message,
             )
-            message.reply_text("Well damn, I can't mute that user.")
+            message.reply_text("Well damn, I can't wrap this keyboard.")
 
     return ""
 
