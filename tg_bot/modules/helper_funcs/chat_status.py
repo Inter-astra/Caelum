@@ -8,6 +8,7 @@ from tg_bot import (
     WHITELIST_USERS,
     SUPER_ADMINS,
     dispatcher,
+    SCHAT,
 )
 from cachetools import TTLCache
 from telegram import Chat, ChatMember, ParseMode, Update
@@ -183,7 +184,7 @@ def whitelist_plus(func):
             return func(update, context, *args, **kwargs)
         else:
             update.effective_message.reply_text(
-                f"You don't have access to use this.\nVisit @YorkTownEagleUnion"
+                f"You don't have access to use this.\nVisit @{SCHAT}"
             )
 
     return is_whitelist_plus_func

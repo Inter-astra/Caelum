@@ -1,7 +1,7 @@
 future
 emoji
 beautifulsoup4
-requests
+requests==2.20
 sqlalchemy
 python-telegram-bot==13.1
 psycopg2-binary

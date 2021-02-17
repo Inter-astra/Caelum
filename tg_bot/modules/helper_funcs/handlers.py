@@ -1,6 +1,6 @@
 import telegram.ext as tg
 from telegram import Update
-from tg_bot import SUDO_USERS, WHITELIST_USERS, SUPPORT_USERS, SARDEGNA_USERS
+from tg_bot import SUDO_USERS, SUPER_ADMINS, WHITELIST_USERS, SUPPORT_USERS, SARDEGNA_USERS
 from pyrate_limiter import (
     BucketFullException,
     Duration,
@@ -24,6 +24,7 @@ class AntiSpam:
     def __init__(self):
         self.whitelist = (
             (SUDO_USERS or [])
+            + (SUPER_ADMINS or [])
             + (WHITELIST_USERS or [])
             + (SUPPORT_USERS or [])
             + (SARDEGNA_USERS or [])
