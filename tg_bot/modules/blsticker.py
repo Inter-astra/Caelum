@@ -1,7 +1,7 @@
 import html
 from typing import Optional
 
-import tg_bot.modules.sql.blpack_sql as sql
+import tg_bot.modules.sql.blsticker_sql as sql
 from tg_bot import dispatcher
 from tg_bot.modules.connection import connected
 from tg_bot.modules.disable import DisableAbleCommandHandler
