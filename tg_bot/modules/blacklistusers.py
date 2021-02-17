@@ -4,6 +4,7 @@ import tg_bot.modules.sql.blacklistusers_sql as sql
 from tg_bot import (
     OWNER_ID,
     SUDO_USERS,
+    SUPER_ADMINS,
     SUPPORT_USERS,
     SARDEGNA_USERS,
     WHITELIST_USERS,
@@ -18,7 +19,7 @@ from telegram.ext import CallbackContext, CommandHandler, run_async
 from telegram.utils.helpers import mention_html
 
 BLACKLISTWHITELIST = (
-    [OWNER_ID] + SUDO_USERS + WHITELIST_USERS + SUPPORT_USERS
+    [OWNER_ID] + SUDO_USERS + WHITELIST_USERS + SUPPORT_USERS + SUPER_ADMINS
 )
 BLABLEUSERS = [OWNER_ID] + SUDO_USERS
 
@@ -143,6 +144,7 @@ def __user_info__(user_id):
         + SUDO_USERS
         + SARDEGNA_USERS
         + WHITELIST_USERS
+        + SUPER_ADMINS
     ):
         return ""
     if is_blacklisted:
