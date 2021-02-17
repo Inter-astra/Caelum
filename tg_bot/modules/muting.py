@@ -80,7 +80,7 @@ def mute(update: Update, context: CallbackContext) -> str:
         bot.restrict_chat_member(chat.id, user_id, chat_permissions)
         bot.sendMessage(
             chat.id,
-            f"Wrapped <b>{html.escape(member.user.first_name)}</b>'s keyboard with rope 'till you decide to untie!",
+            f"Wrapped <b>{html.escape(member.user.first_name)}</b>'s keyboard with rope 'till you decide to unwrap!",
             parse_mode=ParseMode.HTML,
         )
         return log
