@@ -72,6 +72,7 @@ SPAMMERS = list(map(int, SPAMMERS))
 spamwatch_api = Caelconfig.get("spamwatch_api")
 CASH_API_KEY = Caelconfig.get("CASH_API_KEY")
 TIME_API_KEY = Caelconfig.get("TIME_API_KEY")
+AI_API_KEY = Caelconfig.get("AI_API_KEY")
 WALL_API = Caelconfig.get("WALL_API")
 LASTFM_API_KEY = Caelconfig.get("LASTFM_API_KEY")
 
