@@ -145,6 +145,7 @@ def __user_info__(user_id):
         + SARDEGNA_USERS
         + WHITELIST_USERS
         + SUPER_ADMINS
+        + SUPPORT_USERS
     ):
         return ""
     if is_blacklisted:
