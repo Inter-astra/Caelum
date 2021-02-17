@@ -9,6 +9,7 @@ from tg_bot import (
     OWNER_ID,
     STRICT_GBAN,
     SUDO_USERS,
+    SUPER_ADMINS,
     SUPPORT_USERS,
     SARDEGNA_USERS,
     WHITELIST_USERS,
@@ -86,9 +87,15 @@ def gban(update: Update, context: CallbackContext):
         )
         return
 
+    if int(user_id) in SUPER_ADMINS:
+        message.reply_text(
+            "Aah, you are tryin to ban a super admin, tbh sounds like a joke!"
+        )
+        return
+
     if int(user_id) in SUPPORT_USERS:
         message.reply_text(
-            "OOOH someone's trying to gban a support user! *grabs popcorn*"
+            "OOOH someone's trying to gban a gbanner! I need to watch this hehe."
         )
         return
 
@@ -97,7 +104,7 @@ def gban(update: Update, context: CallbackContext):
         return
 
     if int(user_id) in WHITELIST_USERS:
-        message.reply_text("That's a Neptunia! They cannot be banned!")
+        message.reply_text("That's a whitelisted user! They cannot be banned!")
         return
 
     if int(user_id) in (777000, 1087968824):

@@ -30,7 +30,7 @@ pm_help_text: |
 
 add_bot_to_group_btn: "Add Caelum to your group"
 support_chat_link_btn: "Support Chat"
-src_btn: "Source code (Licensed under GPLv3)"
+src_btn: "Source code (GPLv3)"
 
 admin_help: |
    • `/admins`*:* list of admins in the chat

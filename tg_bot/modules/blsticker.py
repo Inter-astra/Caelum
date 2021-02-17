@@ -494,7 +494,7 @@ def __stats__():
     )
 
 
-__mod_name__ = "Sticker Blacklist"
+__mod_name__ = "Sticker Blacklists"
 
 from tg_bot.modules.language import gs
 
@@ -502,7 +502,7 @@ def get_help(chat):
     return gs(chat, "stickers_help")
 
 BLACKLIST_STICKER_HANDLER = DisableAbleCommandHandler([
-    "stickers", "blsticker"], blackliststicker, admin_ok=True
+    "bstickers", "blsticker"], blackliststicker, admin_ok=True
 )
 ADDBLACKLIST_STICKER_HANDLER = DisableAbleCommandHandler([
     "bansticker", "addblsticker"], add_blackliststicker
