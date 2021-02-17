@@ -34,11 +34,11 @@ def check_user(user_id: int, bot: Bot, chat: Chat) -> Optional[str]:
             raise
 
     if user_id == bot.id:
-        reply = "I'm not gonna MUTE myself, How high are you?"
+        reply = "I'm not gonna wrap my own keyboard with rope, How high are you?"
         return reply
 
     if is_user_admin(chat, user_id, member) or user_id in SARDEGNA_USERS:
-        reply = "Can't. Find someone else to mute but not this one."
+        reply = "Can't. Find someone else's keyboard to wrap with rope but not this one."
         return reply
 
     return None
@@ -86,7 +86,7 @@ def mute(update: Update, context: CallbackContext) -> str:
         return log
 
     else:
-        message.reply_text("This user is already muted!")
+        message.reply_text("This user's keyboard is already wrapped with rope!")
 
     return ""
 
@@ -104,7 +104,7 @@ def unmute(update: Update, context: CallbackContext) -> str:
     user_id = extract_user(message, args)
     if not user_id:
         message.reply_text(
-            "You'll need to either give me a username to unmute, or reply to someone to be unmuted."
+            "You'll need to either give me a username to wrap their keyboard with rope, or reply someone."
         )
         return ""
 
@@ -117,7 +117,7 @@ def unmute(update: Update, context: CallbackContext) -> str:
             and member.can_send_other_messages
             and member.can_add_web_page_previews
         ):
-            message.reply_text("This user's keyboard is not wrapped.")
+            message.reply_text("This user's keyboard is not wrapped with rope.")
         else:
             chat_permissions = ChatPermissions(
                 can_send_messages=True,
@@ -146,7 +146,7 @@ def unmute(update: Update, context: CallbackContext) -> str:
             )
     else:
         message.reply_text(
-            "This user isn't even in the chat, unwrapping their rope "
+            "This user isn't even in the chat, unwrapping their keyboard from rope "
             "won't do anything "
         )
 
@@ -208,17 +208,17 @@ def temp_mute(update: Update, context: CallbackContext) -> str:
             )
             bot.sendMessage(
                 chat.id,
-                f"Wrapped the keyboard of <b>{html.escape(member.user.first_name)}</b> for {time_val}!",
+                f"Wrapped the keyboard of <b>{html.escape(member.user.first_name)}</b> with rope for {time_val}!",
                 parse_mode=ParseMode.HTML,
             )
             return log
         else:
-            message.reply_text("This user's keyboard is already wrapped.")
+            message.reply_text("This user's keyboard is already wrapped with rope.")
 
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text(f"Muted for {time_val}!", quote=False)
+            message.reply_text(f"Wrapped keyboard with rope for {time_val}!", quote=False)
             return log
         else:
             log.warning(update)
@@ -229,16 +229,16 @@ def temp_mute(update: Update, context: CallbackContext) -> str:
                 chat.id,
                 excp.message,
             )
-            message.reply_text("Well damn, I can't wrap this keyboard.")
+            message.reply_text("Well damn, I can't wrap this keyboard with rope.")
 
     return ""
 
 def get_help(chat):
     return gs(chat, "muting_help")
 
-MUTE_HANDLER = CommandHandler("mute", mute, run_async=True)
-UNMUTE_HANDLER = CommandHandler("unmute", unmute, run_async=True)
-TEMPMUTE_HANDLER = CommandHandler(["tmute", "tempmute"], temp_mute, run_async=True)
+MUTE_HANDLER = CommandHandler(["mute", "wrap"], mute, run_async=True)
+UNMUTE_HANDLER = CommandHandler(["unmute", "unwrap"], unmute, run_async=True)
+TEMPMUTE_HANDLER = CommandHandler(["twrap", "tmute", "tempmute"], temp_mute, run_async=True)
 
 dispatcher.add_handler(MUTE_HANDLER)
 dispatcher.add_handler(UNMUTE_HANDLER)
