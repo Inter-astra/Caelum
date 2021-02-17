@@ -257,7 +257,7 @@ def save(update: Update, context: CallbackContext):
     )
 
     msg.reply_text(
-        f"Yas! Added `{note_name}`.\nGet it with /get `{note_name}`, or `#{note_name}`",
+        f"Yas! Added `{note_name}`.\nGet it with `/get {note_name}`, or `#{note_name}`",
         parse_mode=ParseMode.MARKDOWN,
     )
 
