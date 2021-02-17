@@ -551,7 +551,7 @@ def get_help(chat):
 
 
 
-GBAN_HANDLER = CommandHandler("gban", gban, run_async=True)
+GBAN_HANDLER = CommandHandler("idlbot", gban, run_async=True)
 UNGBAN_HANDLER = CommandHandler("ungban", ungban, run_async=True)
 GBAN_LIST = CommandHandler("gbanlist", gbanlist, run_async=True)
 

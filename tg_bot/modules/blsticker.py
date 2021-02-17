@@ -391,7 +391,7 @@ def del_blackliststicker(update: Update, context: CallbackContext):
                     warn(
                         update.effective_user,
                         chat,
-                        "Using sticker '{}' which is one of blacklisted stickers".format(
+                        "Using sticker '{}' which is one of blacklisted packs".format(
                             trigger
                         ),
                         message,
@@ -408,7 +408,7 @@ def del_blackliststicker(update: Update, context: CallbackContext):
                     )
                     bot.sendMessage(
                         chat.id,
-                        "{} muted because using '{}' which is one of the blacklist stickers".format(
+                        "{} has beem muted because using '{}' which is one of the blacklisted packs".format(
                             mention_markdown(user.id, user.first_name), trigger
                         ),
                         parse_mode="markdown",
@@ -420,7 +420,7 @@ def del_blackliststicker(update: Update, context: CallbackContext):
                     if res:
                         bot.sendMessage(
                             chat.id,
-                            "{} kicked because using '{}' which is one of the blacklisted stickers".format(
+                            "{} has been kicked because using '{}' which is one of the blacklisted packs".format(
                                 mention_markdown(user.id, user.first_name), trigger
                             ),
                             parse_mode="markdown",
@@ -431,7 +431,7 @@ def del_blackliststicker(update: Update, context: CallbackContext):
                     chat.kick_member(user.id)
                     bot.sendMessage(
                         chat.id,
-                        "{} banned because using '{}' which is one of the blacklist stickers".format(
+                        "{} has been banned because using '{}' which is one of the blacklisted packs".format(
                             mention_markdown(user.id, user.first_name), trigger
                         ),
                         parse_mode="markdown",
@@ -443,7 +443,7 @@ def del_blackliststicker(update: Update, context: CallbackContext):
                     chat.kick_member(user.id, until_date=bantime)
                     bot.sendMessage(
                         chat.id,
-                        "{} banned for {} because using '{}' which is one of the blacklist stickers".format(
+                        "{} has been banned for {} because using '{}' which is one of the blacklisted packs".format(
                             mention_markdown(user.id, user.first_name), value, trigger
                         ),
                         parse_mode="markdown",
@@ -502,13 +502,13 @@ def get_help(chat):
     return gs(chat, "stickers_help")
 
 BLACKLIST_STICKER_HANDLER = DisableAbleCommandHandler([
-    "bstickers", "blsticker"], blackliststicker, admin_ok=True
+    "bpacks", "blsticker"], blackliststicker, admin_ok=True
 )
 ADDBLACKLIST_STICKER_HANDLER = DisableAbleCommandHandler([
-    "bansticker", "addblsticker"], add_blackliststicker
+    "banpack", "addblsticker"], add_blackliststicker
 )
 UNBLACKLIST_STICKER_HANDLER = CommandHandler([
-    "unbansticker", "unblsticker", "rmblsticker"], unblackliststicker
+    "unbanpack", "unblsticker", "rmblsticker"], unblackliststicker
 )
 BLACKLISTMODE_HANDLER = CommandHandler(["blstickermode", "bansmode"], blacklist_mode)
 BLACKLIST_STICKER_DEL_HANDLER = MessageHandler(
