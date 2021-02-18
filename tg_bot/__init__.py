@@ -21,7 +21,7 @@ log = logging.getLogger("rich")
 log.info("Calum is now ON. | Licensed under GPLv3.")
 
 log.info("Project maintained by;")
-log.info("github.com/Dank-del (t.me/dank_as_fuck) and github.com/Stacia-Sama (t.me/Inter_Astra)")
+log.info("github.com/Dank-del (t.me/dank_as_fuck) and github.com/Inter-Astra (t.me/Inter_Astra)")
 log.info("Read README.md please!")
 # if version < 3.6, stop bot.
 if sys.version_info[0] < 3 or sys.version_info[1] < 6:
