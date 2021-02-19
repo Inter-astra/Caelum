@@ -26,7 +26,6 @@ from tg_bot import (
     SCHAT,
     SUDO_USERS,
     WHITELIST_USERS,
-    GBAN_LOGS,
     log,
 )
 from tg_bot.modules.helper_funcs.chat_status import is_user_admin
@@ -125,16 +124,6 @@ def new_fed(update, context):
             "\n`/joinfed {}`".format(fed_name, fed_id, fed_id),
             parse_mode=ParseMode.MARKDOWN,
         )
-        try:
-            context.bot.send_message(
-                GBAN_LOGS,
-                "Federation <b>{}</b> has been created with ID: <pre>{}</pre>".format(
-                    fed_name, fed_id
-                ),
-                parse_mode=ParseMode.HTML,
-            )
-        except Exception:
-            log.warning("Cannot send a message to GBAN_LOGS")
     else:
         update.effective_message.reply_text(
             "Please write down the name of the federation"
