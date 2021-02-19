@@ -18,7 +18,7 @@ pm_start_text: |
 grp_start_text: 「こんにちは、キギョです。」
 
 pm_help_text: |
-   Hello there! My name is *Caelum*. A part of *Eagle Union*.
+   Hello there! My name is *Caelum*.
    I'm a modular group management bot with a few fun extras! Have a look at the following for an idea of some of
    the things I can help you with.
    *Main* commands available:
@@ -394,3 +394,32 @@ greetings_help: |
 
       *Welcome markdown:*
        • `/welcomehelp`*:* view more formatting information for custom welcome/goodbye messages.
+
+stickers_help: |
+       If you don't want users to send specific stickers then this module will be useful.
+       
+       *Admin only*
+       • `/banpack`*:* blacklists the replied sticker
+       • `/unbanpack`*:* removes the blacklist of replied sticker
+       • `/banpmode`*:* Decide what Caelum will do when a blacklisted sticker sent
+       Available modes are ban, tban, mute, tmute, delete and nothing
+       You can (un)ban a pack by /(un)bansticker <packlink> too.
+
+lydia_help: |
+       Lydia is an artificial intelligence can talk with you like a human.
+       You can have fun with Lydia 😃
+       
+       *Commands are (admin only):*
+       • `/addchat`*:* enables Lydia in your chat
+       • `/rmchat`*:* disables Lydia in your chat
+
+       Powered by [Coffeehouse](https://coffeehouse.intellivoid.net), from @Intellivoid
+
+nlp_help: |
+      *Chatroom Spam Prediction*
+       This feature uses @Intellivoid's Coffeehouse AI to
+       process chat messages and detect spam.
+       This comes under Coffehouse' NLP. Learn more about
+       it [here](https://docs.intellivoid.net/coffeehouse/v1/nlp/spam_prediction/chatroom)
+       *Command:*
+        • `/nlpstat <on/off/yes/no>`*:* toggle NLP in your chat.
