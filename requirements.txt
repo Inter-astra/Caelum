@@ -31,3 +31,4 @@ PyYAML>=5.1.2
 Intellivoid-SPB
 coffeehouse
 rich
+python-rapidjson
