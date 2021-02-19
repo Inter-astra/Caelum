@@ -403,7 +403,7 @@ stickers_help: |
        • `/unbanpack`*:* removes the blacklist of replied sticker
        • `/banpmode`*:* Decide what Caelum will do when a blacklisted sticker sent
        Available modes are ban, tban, mute, tmute, delete and nothing
-       You can (un)ban a pack by /(un)bansticker <packlink> too.
+       You can (un)ban using <packlink> too.
 
 lydia_help: |
        Lydia is an artificial intelligence can talk with you like a human.
