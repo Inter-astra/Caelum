@@ -45,12 +45,7 @@ def add_chat(update: Update, context: CallbackContext):
         expires = str(ses.expires)
         sql.set_ses(chat.id, ses_id, expires)
         msg.reply_text("AI successfully enabled for this chat!")
-        message = (
-            f"<b>{html.escape(chat.title)}:</b>\n"
-            f"#AI_ENABLED\n"
-            f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-        )
-        return message
+        return ""
     else:
         msg.reply_text("AI is already enabled for this chat!")
         return ""
@@ -70,12 +65,7 @@ def remove_chat(update: Update, context: CallbackContext):
     else:
         sql.rem_chat(chat.id)
         msg.reply_text("AI disabled successfully!")
-        message = (
-            f"<b>{html.escape(chat.title)}:</b>\n"
-            f"#AI_DISABLED\n"
-            f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-        )
-        return message
+    return ""
 
 
 def check_message(context: CallbackContext, message):
@@ -141,8 +131,6 @@ def list_chatbot_chats(update: Update, context: CallbackContext):
     update.effective_message.reply_text(text, parse_mode="HTML")
 
 
-__mod_name__ = "Lydia"
-
 from tg_bot.modules.language import gs
 
 def get_help(chat):
@@ -165,7 +153,7 @@ dispatcher.add_handler(REMOVE_CHAT_HANDLER)
 dispatcher.add_handler(CHATBOT_HANDLER)
 dispatcher.add_handler(LIST_CB_CHATS_HANDLER)
 
-__mod_name__ = "Chatbot"
+__mod_name__ = "Lydia"
 __command_list__ = ["addchat", "rmchat", "listaichats"]
 __handlers__ = [
     ADD_CHAT_HANDLER,
