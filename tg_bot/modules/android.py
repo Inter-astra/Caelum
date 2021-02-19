@@ -1,6 +1,7 @@
 import rapidjson as json
 from tg_bot import kp
 from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Update
 
 
 @kp.on_message(filters.command(["magisk"], prefixes=["/", "!", ","]))
