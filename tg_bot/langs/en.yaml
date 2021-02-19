@@ -212,7 +212,7 @@ antispam_help: |
      SpamWatch maintains a large constantly updated ban-list of spambots, trolls, bitcoin spammers and unsavoury characters.
      Constantly help banning spammers off from your group automatically So, you wont have to worry about spammers storming your group.
      *Note:* Users can appeal spamwatch bans at @SpamwatchSupport
-     
+
      *What is Spam protection?*
      SpamProtection is the new AI antispam service which makes sure that your chat is free of spambots, scammers, and pedophiles.
      Uses @Intellivoid's Coffeehouse Artificial Engine. Every ban is checked by real trusty people before being finalized.
@@ -413,3 +413,14 @@ lydia_help: |
        *Commands are (admin only):*
        • `/addchat`*:* enables Lydia in your chat
        • `/rmchat`*:* disables Lydia in your chat
+
+       Powered by Coffeehouse, from @Intellivoid
+
+nlp_help: |
+      *Chatroom Spam Prediction*
+       This feature uses @Intellivoid's Coffeehouse AI to
+       process chat messages and detect spam.
+       This comes under Coffehouse' NLP. Learn more about
+       it [here](https://docs.intellivoid.net/coffeehouse/v1/nlp/spam_prediction/chatroom)
+       *Command:*
+        • `/nlpstat <on/off/yes/no>`*:* toggle NLP in your chat.
