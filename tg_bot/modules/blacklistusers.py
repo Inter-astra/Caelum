@@ -19,7 +19,7 @@ from telegram.ext import CallbackContext, CommandHandler, run_async
 from telegram.utils.helpers import mention_html
 
 BLACKLISTWHITELIST = (
-    [OWNER_ID] + SUDO_USERS + WHITELIST_USERS + SUPPORT_USERS + SUPER_ADMINS
+    [OWNER_ID] + SUDO_USERS + WHITELIST_USERS + SUPPORT_USERS + SUPER_ADMINS + SARDEGNA_USERS
 )
 BLABLEUSERS = [OWNER_ID] + SUDO_USERS
 
@@ -41,7 +41,7 @@ def bl_user(update: Update, context: CallbackContext) -> str:
         return ""
 
     if user_id in BLACKLISTWHITELIST:
-        message.reply_text("No!\nNoticing Nations is my job.")
+        message.reply_text("No!\nNoticing them is my job.")
         return ""
 
     try:
