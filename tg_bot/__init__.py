@@ -36,6 +36,7 @@ Caelconfig = parser["Caelconfig"]
 
 OWNER_ID = Caelconfig.getint("OWNER_ID")
 OWNER_USERNAME = Caelconfig.get("OWNER_USERNAME")
+SCHAT = Caelconfig.get("SUPPORT_CHAT")
 APP_ID = Caelconfig.getint("APP_ID")
 API_HASH = Caelconfig.get("API_HASH")
 WEBHOOK = Caelconfig.getboolean("WEBHOOK", False)
