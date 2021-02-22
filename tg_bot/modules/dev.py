@@ -7,7 +7,7 @@ from threading import Thread
 from tg_bot import dispatcher, updater, kp
 from tg_bot.modules.helper_funcs.chat_status import dev_plus
 from telegram import TelegramError, Update
-from telegram.ext import CallbackContext, CommandHandler
+from telegram.ext import CallbackContext, Filters, CommandHandler
 
 
 @dev_plus
