@@ -58,8 +58,8 @@ def restart(update: Update, context: CallbackContext):
     elif plt == "Linux":
         os.execv("start.sh", sys.argv)
 
-LEAVE_HANDLER = CommandHandler("leave", leave, run_async=True)
-GITPULL_HANDLER = CommandHandler(["gitpull", "update"], gitpull, run_async=True)
+LEAVE_HANDLER = CommandHandler("leave", leave, filters=Filters.user(OWNER_ID))
+GITPULL_HANDLER = CommandHandler(["gitpull", "update"], gitpull, filters=Filters.user(OWNER_ID))
 RESTART_HANDLER = CommandHandler(["reboot", "restart"], restart, run_async=True)
 
 dispatcher.add_handler(LEAVE_HANDLER)
