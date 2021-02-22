@@ -13,12 +13,15 @@ from subprocess import Popen, PIPE
 from tg_bot import (
     dispatcher,
     OWNER_ID,
+    OWNER_USERNAME,
+    OWNERNM,
     SUDO_USERS,
     SUPER_ADMINS,
     SUPPORT_USERS,
     SARDEGNA_USERS,
     WHITELIST_USERS,
     INFOPIC,
+    SRCL
     sw,
 )
 from tg_bot.__main__ import STATS, USER_INFO, TOKEN
@@ -303,21 +306,21 @@ def stats(update, context):
         update.effective_message.reply_text(
 
             f"*Caelum (@{context.bot.username}), *\n" +
-            "built by [Dank-del](t.me/dank_as_fuck) and [Stella](t.me/inter_astra)\n" +
+            "built by [Dank-del](t.me/dank_as_fuck) and [{OWNERNM}](t.me/{OWNER_USERNAME})\n" +
             "Built with ❤️ using python-telegram-bot\n\n" + status +
             "\n*Bot statistics*:\n"
             + "\n".join([mod.__stats__() for mod in STATS]) +
-            "\n\n*SRC*: [GitHub](https://github.com/inter-astra/Caelum)",
+            "\n\n*SRC*: [GitHub](https://github.com/{SRCL})",
         parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
     except BaseException:
         update.effective_message.reply_text(
 
             f"*Caelum (@{context.bot.username}), *\n" +
-            "built by [Dank-del](t.me/dank_as_fuck) and [Stella](t.me/inter_astra)\n" +
+            "built by [Dank-del](t.me/dank_as_fuck) and [{OWNERNM}](t.me/{OWNER_USERNAME})\n" +
             "Built with ❤️ using python-telegram-bot\n" +
             "\n*Bot statistics*:\n"
             + "\n".join([mod.__stats__() for mod in STATS]) +
-            "\n\n*SRC*: [GitHub](https://github.com/inter-astra/Caelum)",
+            "\n\n*SRC*: [GitHub](https://github.com/{SRCL})",
         parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
 

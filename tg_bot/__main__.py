@@ -32,6 +32,9 @@ from tg_bot import (
     TOKEN,
     WEBHOOK,
     OWNER_ID,
+    OWNERNM,
+    OWNER_USERNAME,
+    SRCL,
     CERT_PATH,
     PORT,
     URL,
@@ -54,6 +57,8 @@ Hi {}, my name is {}!
 I am an Anime themed group management bot with some fun extras [;)](https://telegra.ph/file/095d7e696096e21b06447.jpg)
 
 You can find the list of available commands with /help.
+
+[{OWNERNM}](t.me/{OWNER_USERNAME}) is my special owner :3
 """
 
 HELP_STRINGS = f"""
@@ -67,8 +72,7 @@ the things I can help you with.
    - in PM: will send you your settings for all supported modules.
    - in a group: will redirect you to pm, with all that chat's settings.
  \nClick on the buttons below to get documentation about specific modules!
- \nClosed source until gets ready (won't take long)."""
-
+"""
 
 CAELUM_IMG = "https://telegra.ph/file/0d71e6aac5368db1a0c0b.png"
 
@@ -206,7 +210,7 @@ def start(update: Update, context: CallbackContext):
                             ),
                             InlineKeyboardButton(
                                 text=gs(chat.id, "src_btn"),
-                                url="https://github.com/Inter-Astra/Caelum",
+                                url="https://github.com/{SRCL}",
                             )
                         ],
                     ]
