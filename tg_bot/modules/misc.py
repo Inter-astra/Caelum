@@ -21,7 +21,7 @@ from tg_bot import (
     SARDEGNA_USERS,
     WHITELIST_USERS,
     INFOPIC,
-    SRCL,
+    SRCL
     sw,
 )
 from tg_bot.__main__ import STATS, USER_INFO, TOKEN
