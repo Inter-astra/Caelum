@@ -51,9 +51,11 @@ from tg_bot.modules.language import gs
 
 PM_START_TEXT = """
 Hi {}, my name is {}!
-I am an Anime themed group management bot with some fun extras [;)](https://telegra.ph/file/095d7e696096e21b06447.jpg)
+I am an Anime themed group management bot with some fun extras ;)
 
 You can find the list of available commands with /help.
+
+I've been owned by [this user](https://tg://user?id={OWNER_ID}).
 """
 
 HELP_STRINGS = f"""
@@ -67,7 +69,7 @@ the things I can help you with.
    - in PM: will send you your settings for all supported modules.
    - in a group: will redirect you to pm, with all that chat's settings.
  \nClick on the buttons below to get documentation about specific modules!
- \nClosed source until gets ready (won't take long)."""
+ """
 
 
 CAELUM_IMG = "https://telegra.ph/file/0d71e6aac5368db1a0c0b.png"

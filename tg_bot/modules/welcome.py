@@ -185,7 +185,7 @@ def new_member(update: Update, context: CallbackContext):
             # Give the owner a special welcome
             if new_mem.id == OWNER_ID:
                 update.effective_message.reply_text(
-                    "Oh wow, stand before my creater!", reply_to_message_id=reply
+                    "Be proud for, stand before my owner and cower!", reply_to_message_id=reply
                 )
                 welcome_log = (
                     f"{html.escape(chat.title)}\n"
@@ -197,7 +197,7 @@ def new_member(update: Update, context: CallbackContext):
             # Welcome Sudos
             elif new_mem.id in SUDO_USERS:
                 update.effective_message.reply_text(
-                    "Huh! A sudo just joined, a pice of creator...",
+                    "Huh! A sudo just joined, a piece of my owner...",
                     reply_to_message_id=reply,
                 )
                 continue
@@ -205,7 +205,7 @@ def new_member(update: Update, context: CallbackContext):
             # Welcome Support
             elif new_mem.id in SUPPORT_USERS:
                 update.effective_message.reply_text(
-                    "Huh! Support user just joined, if I were you I'd behave nicer!",
+                    "Wew! Support user just joined, if I were you I'd behave better!",
                     reply_to_message_id=reply,
                 )
                 continue
@@ -213,7 +213,7 @@ def new_member(update: Update, context: CallbackContext):
             # Welcome Whitelisted
             elif new_mem.id in SARDEGNA_USERS:
                 update.effective_message.reply_text(
-                    "Oof! A Sadegna Nation just joined!", reply_to_message_id=reply
+                    "Unstoppable! A Sardegna user just joined!", reply_to_message_id=reply
                 )
                 continue
 
