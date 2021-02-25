@@ -15,5 +15,6 @@ Credits:
 - [Kiygo](https://github.com/Dank-del/EnterpriseALRobot) - for Caelum's base.
 - [Saitama](https://github.com/AnimeKaizoku/SaitamaRobot) - for common chats, Lydia and blstickers.
 - [Natalie](https://gitlab.com/maver_ck/tgbot) - for Super Admins.
+- [Frost](https://github.com/frostid/Frost-Bot) - for deleted account remover.
 
 You can check modules if you couldn't find yourself here too.
