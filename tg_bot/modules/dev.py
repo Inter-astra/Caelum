@@ -50,7 +50,7 @@ def gitpull(update: Update, context: CallbackContext):
 @dev_plus
 def restart(update: Update, context: CallbackContext):
     plt = platform.system()
-    update.message.reply_text('Bot is restarting...')
+    update.message.reply_text('Starting a new instance and shutting down this one..')
 
     if plt == "Windows":
         os.system("restart.bat")

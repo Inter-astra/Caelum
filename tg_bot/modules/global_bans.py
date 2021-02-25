@@ -33,6 +33,7 @@ from telegram.utils.helpers import mention_html
 from tg_bot.modules.helper_funcs.chat_status import dev_plus
 from spamprotection.sync import SPBClient
 from spamprotection.errors import HostDownError
+from spamwatch.errors import SpamWatchError, Error, UnauthorizedError, NotFoundError, Forbidden, TooManyRequests
 
 GBAN_ENFORCE_GROUP = 6
 
@@ -445,6 +446,9 @@ def check_and_ban(update, user_id, should_message=True):
     try:
         sw_ban = sw.get_ban(int(user_id))
     except AttributeError:
+        sw_ban = None
+    except (SpamWatchError, Error, UnauthorizedError, NotFoundError, Forbidden, TooManyRequests) as e:
+        log.warning(f" SpamWatch Error: {e}")
         sw_ban = None
 
     if sw_ban:

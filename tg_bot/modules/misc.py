@@ -303,7 +303,7 @@ def stats(update, context):
         update.effective_message.reply_text(
 
             f"*Caelum (@{context.bot.username}), *\n" +
-            "built by [Dank-del](t.me/dank_as_fuck) and [Stella](t.me/inter_astra)\n" +
+            "Maintained by [Dank-del](t.me/dank_as_fuck) and [Stella](t.me/inter_astra)\n" +
             "Built with ❤️ using python-telegram-bot\n\n" + status +
             "\n*Bot statistics*:\n"
             + "\n".join([mod.__stats__() for mod in STATS]) +
@@ -313,7 +313,7 @@ def stats(update, context):
         update.effective_message.reply_text(
 
             f"*Caelum (@{context.bot.username}), *\n" +
-            "built by [Dank-del](t.me/dank_as_fuck) and [Stella](t.me/inter_astra)\n" +
+            "Maintained by [Dank-del](t.me/dank_as_fuck) and [Stella](t.me/inter_astra)\n" +
             "Built with ❤️ using python-telegram-bot\n" +
             "\n*Bot statistics*:\n"
             + "\n".join([mod.__stats__() for mod in STATS]) +
