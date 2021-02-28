@@ -58,7 +58,7 @@ fail_prom: "An error occured while promoting."
 succ_prom: "Sucessfully promoted {}!"
 succ_demo: "Sucessfully demoted {}!"
 prom_owner: "This person CREATED the chat, how would I demote them?"
-not_admin: "Can't demote what wasn't promoted!"
+not_admin: "Can't demote what wasn't promoted!")
 else_promo: "Could not demote. I might not be admin, or the admin status was appointed by another user, so I can't act upon them!"
 cache_ref: "Admins cache refreshed!"
 
