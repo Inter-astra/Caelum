@@ -32,6 +32,10 @@ add_bot_to_group_btn: "Add Caelum"
 support_chat_link_btn: "Support Chat"
 src_btn: "Source code"
 
+# General things
+not_user: "I doubt that's a user."
+cant_find: "Can't seem to find this person."
+
 admin_help: |
    • `/admins`*:* list of admins in the chat
 
@@ -98,6 +102,11 @@ bans_help: |
     - /tban <userhandle> x(m/h/d): bans a user for x time. (via handle, or reply). m = minutes, h = hours, d = days.
     - /unban <userhandle>: unbans a user. (via handle, or reply)
     - /kick <userhandle>: kick a user out of the group, (via handle, or reply)
+
+ban_myself: "Oh yeah, ban myself, noob!"
+ban_owner: "I'd never ban my owner."
+ban_sudo: "I can't ban a sudo user, try another one"
+succ_banned: "I've cut the rope of {} 'till you decide to tie!"
 
 blacklist_help: |
     Blacklists are used to stop certain triggers from being said in a group. Any time the trigger is mentioned, the message will immediately be deleted. A good combo is sometimes to pair this up with warn filters!

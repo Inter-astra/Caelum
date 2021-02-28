@@ -29,6 +29,7 @@ from tg_bot.modules.helper_funcs.chat_status import (
 from tg_bot.modules.helper_funcs.extraction import extract_user_and_text
 from tg_bot.modules.helper_funcs.string_handling import extract_time
 from tg_bot.modules.log_channel import loggable, gloggable
+from tg_bot.modules.language import gs
 
 
 @connection_status
@@ -45,28 +46,28 @@ def ban(update, context):
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text("I doubt that's a user.")
+        message.reply_text(gs(chat, "not_user"))
         return log_message
 
     try:
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text("Can't seem to find this person.")
+            message.reply_text(gs(chat, "cant_find"))
             return log_message
         else:
             raise
 
     if user_id == context.bot.id:
-        message.reply_text("Oh yeah, ban myself, noob!")
+        message.reply_text(gs(chat, "ban_myself"))
         return log_message
 
     if is_user_ban_protected(chat, user_id, member):
         if user_id == OWNER_ID:
-            message.reply_text("I'd never ban my owner.")
+            message.reply_text(gs(chat, "ban_owner"))
             return log_message
         elif user_id in SUDO_USERS:
-            message.reply_text("I can't ban a sudo user, try another one")
+            message.reply_text(gs(chat, "ban_sudo"))
             return log_message
         elif user_id in SUPPORT_USERS:
             message.reply_text("Whaa tryna ban a gbanner? That won't happen!")
@@ -94,8 +95,7 @@ def ban(update, context):
         chat.kick_member(user_id)
         # context.bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
         context.bot.sendMessage(
-            chat.id,
-            "I've cut the rope of {} 'till you decide to tie!.".format(
+            chat.id, gs(chat, "succ_banned").format(
                 mention_html(member.user.id, member.user.first_name)
             ),
             parse_mode=ParseMode.HTML,
@@ -135,14 +135,14 @@ def temp_ban(update: Update, context: CallbackContext) -> str:
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text("I doubt that's a user.")
+        message.reply_text(gs(chat, "not_user")
         return log_message
 
     try:
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text("I can't seem to find this user.")
+            message.reply_text(gs(chat, "cant_find"))
             return log_message
         else:
             raise
@@ -380,7 +380,6 @@ def selfunban(context: CallbackContext, update: Update) -> str:
 
     return log
 
-from tg_bot.modules.language import gs
 
 def get_help(chat):
     return gs(chat, "bans_help")

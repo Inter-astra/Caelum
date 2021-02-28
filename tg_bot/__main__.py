@@ -54,8 +54,6 @@ Hi {}, my name is {}!
 I am an Anime themed group management bot with some fun extras ;)
 
 You can find the list of available commands with /help.
-
-I've been owned by [this user](https://tg://user?id={OWNER_ID}).
 """
 
 HELP_STRINGS = f"""
