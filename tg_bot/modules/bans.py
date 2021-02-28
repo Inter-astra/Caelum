@@ -135,7 +135,7 @@ def temp_ban(update: Update, context: CallbackContext) -> str:
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text(gs(chat, "not_user")
+        message.reply_text(gs(chat, "not_user"))
         return log_message
 
     try:
