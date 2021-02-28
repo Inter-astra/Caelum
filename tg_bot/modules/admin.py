@@ -45,14 +45,14 @@ def promote(update: Update, context: CallbackContext) -> str:
         and not user.id in SUDO_USERS
         and not user.id in SUPER_ADMINS
     ):
-        message.reply_text("You don't have the necessary rights to do that!")
+        message.reply_text(gs(chat, "not_admin"))
         return
 
     user_id = extract_user(message, args)
 
     if not user_id:
         message.reply_text(
-            "You don't seem to be referring to a user or the ID specified is incorrect.."
+            gs(chat, "incorrect_id")
         )
         return
 
@@ -62,11 +62,11 @@ def promote(update: Update, context: CallbackContext) -> str:
         return
 
     if user_member.status in ("administrator", "creator"):
-        message.reply_text("How am I meant to promote someone that's already an admin?")
+        message.reply_text(gs(chat, "admin_already"))
         return
 
     if user_id == bot.id:
-        message.reply_text("I can't promote myself! Get an admin to do it for me.")
+        message.reply_text(gs(chat, "prom_myself"))
         return
 
     # set same perms as bot - bot can't assign higher perms than itself!
@@ -87,15 +87,14 @@ def promote(update: Update, context: CallbackContext) -> str:
         )
     except BadRequest as err:
         if err.message == "User_not_mutual_contact":
-            message.reply_text("I can't promote someone who isn't in the group.")
+            message.reply_text(gs(chat, "not_here"))
         else:
-            message.reply_text("An error occured while promoting.")
+            message.reply_text(gs(chat, "fail_prom"))
         return
 
     bot.sendMessage(
-        chat.id,
-        f"Sucessfully promoted <b>{user_member.user.first_name or user_id}</b>!",
-        parse_mode=ParseMode.HTML,
+        chat.id, gs(chat, "succ_prom").format
+        (mention_html(member.user.id, member.user.first_name))
     )
 
     log_message = (
@@ -124,7 +123,7 @@ def demote(update: Update, context: CallbackContext) -> str:
     user_id = extract_user(message, args)
     if not user_id:
         message.reply_text(
-            "You don't seem to be referring to a user or the ID specified is incorrect.."
+            gs(chat, "incorrect_id")
         )
         return
 
@@ -134,15 +133,15 @@ def demote(update: Update, context: CallbackContext) -> str:
         return
 
     if user_member.status == "creator":
-        message.reply_text("This person CREATED the chat, how would I demote them?")
+        message.reply_text(gs(chat, "prom_owner"))
         return
 
     if user_member.status != "administrator":
-        message.reply_text("Can't demote what wasn't promoted!")
+        message.reply_text(gs(chat, "not_admin")
         return
 
     if user_id == bot.id:
-        message.reply_text("I can't demote myself! Get an admin to do it for me.")
+        message.reply_text(gs(chat, "demo_myself"))
         return
 
     try:
@@ -160,9 +159,8 @@ def demote(update: Update, context: CallbackContext) -> str:
         )
 
         bot.sendMessage(
-            chat.id,
-            f"Sucessfully demoted <b>{user_member.user.first_name or user_id}</b>!",
-            parse_mode=ParseMode.HTML,
+            chat.id, gs(chat, "succ_demo").format
+            (mention_html(member.user.id, member.user.first_name))
         )
 
         log_message = (
@@ -174,9 +172,7 @@ def demote(update: Update, context: CallbackContext) -> str:
 
         return log_message
     except BadRequest:
-        message.reply_text(
-            "Could not demote. I might not be admin, or the admin status was appointed by another"
-            " user, so I can't act upon them!"
+        message.reply_text(gs(chat, "else_promo")
         )
         return
 
@@ -188,7 +184,7 @@ def refresh_admin(update, _):
     except KeyError:
         pass
 
-    update.effective_message.reply_text("Admins cache refreshed!")
+    update.effective_message.reply_text(gs(chat, "cache_ref"))
 
 
 @connection_status

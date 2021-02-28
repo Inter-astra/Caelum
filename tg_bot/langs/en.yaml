@@ -35,6 +35,7 @@ src_btn: "Source code"
 # General things
 not_user: "I doubt that's a user."
 cant_find: "Can't seem to find this person."
+no_punish: "Looks like this user is not punishable, so sad :(."
 
 admin_help: |
    • `/admins`*:* list of admins in the chat
@@ -46,6 +47,20 @@ admin_help: |
    • `/promote`*:* promotes the user replied to
    • `/demote`*:* demotes the user replied to
    • `/title <title here>`*:* sets a custom title for an admin that the bot promoted
+
+not_admin: "You don't have the necessary rights to do that!"
+incorrect_id: "You don't seem to be referring to a user or the ID specified is incorrect.."
+admin_already: "How am I meant to promote someone that's already an admin?"
+prom_myself: "I can't promote myself! Get an admin to do it for me."
+demo_myself: "I can't demote myself! Get an admin to do it for me."
+not_here: "I can't promote someone who isn't in the group."
+fail_prom: "An error occured while promoting."
+succ_prom: "Sucessfully promoted {}!"
+succ_demo: "Sucessfully demoted {}!"
+prom_owner: "This person CREATED the chat, how would I demote them?"
+not_admin: "Can't demote what wasn't promoted!")
+else_promo: "Could not demote. I might not be admin, or the admin status was appointed by another user, so I can't act upon them!"
+cache_ref: "Admins cache refreshed!"
 
 afk_help: |
    - /afk <reason>: mark yourself as AFK(away from keyboard).
@@ -103,10 +118,32 @@ bans_help: |
     - /unban <userhandle>: unbans a user. (via handle, or reply)
     - /kick <userhandle>: kick a user out of the group, (via handle, or reply)
 
-ban_myself: "Oh yeah, ban myself, noob!"
+ban_myself: "I'm not gonna cut my own rope, are you crazy?"
 ban_owner: "I'd never ban my owner."
 ban_sudo: "I can't ban a sudo user, try another one"
 succ_banned: "I've cut the rope of {} 'till you decide to tie!"
+succ_tbanned: "I've cut the rope of {}"
+tban_time: "I've cut this user's rope for {}"
+ban_support: "Whaa tryna ban a gbanner? That won't happen!"
+ban_sardegna: "Hmm tryna ban a unbanner, nice try haha"
+ban_wt: "You can't ban a whitelisted user, that's their purpose!"
+not_bannable: "Well damn, I can't ban that user."
+ban_protect: "I don't feel like it."
+tban_timeless: "You haven't specified a time to cut the rope!"
+cant_ban: "Well damn, I can't ban that user."
+
+kick_myself: "Yeahhh I'm not gonna do that."
+not_kickable: "I really wish I could quickly cut and tie back this user's rope...."
+succ_kick: "Quickly cut the rope of {} and tied back."
+cant_kick: "Well damn, I can't kick that user."
+you_admin: "I wish I could... but you're an admin."
+succ_kickme: "*Your rope is cut and tied back in seconds*"
+fail_kickme: "Huh? I can't :/"
+
+unban_myself: "How would I tie my own rope myself if I wasn't here...?"
+user_here: "Isn't this person already here??"
+succ_unban: "Lemme tie this rope for you!"
+
 
 blacklist_help: |
     Blacklists are used to stop certain triggers from being said in a group. Any time the trigger is mentioned, the message will immediately be deleted. A good combo is sometimes to pair this up with warn filters!
