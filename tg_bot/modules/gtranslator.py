@@ -1,10 +1,10 @@
 from gpytranslate import Translator
 import asyncio
-from tg_bot import kp
+from tg_bot import kp, CUSTOM_CMD
 from pyrogram import filters
 
 
-@kp.on_message(filters.command(["tr", "tl"], prefixes=["/", "!", ","]))
+@kp.on_message(filters.command(["tr", "tl"], CUSTOM_CMD))
 async def translate(_client, message):
     trl = Translator()
     if message.reply_to_message and (

@@ -19,7 +19,7 @@ from tg_bot.modules.helper_funcs.chat_status import (
 from tg_bot.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from tg_bot.modules.log_channel import loggable
 from tg_bot.modules.helper_funcs.alternate import send_message
-from tg_bot import kp, get_entity
+from tg_bot import kp, get_entity, CUSTOM_CMD
 from pyrogram import Client, filters
 from pyrogram.types import Chat, User
 from tg_bot.modules.language import gs
@@ -376,7 +376,7 @@ def _generate_sexy(entity, ping):
     return sexy_text
 
 
-@kp.on_message(filters.command(["admin", "admins"], prefixes=["/", "!", ","]))
+@kp.on_message(filters.command(["admin", "admins"], CUSTOM_CMD))
 async def admins(client, message):
     chat, entity_client = message.chat, client
     command = message.command
