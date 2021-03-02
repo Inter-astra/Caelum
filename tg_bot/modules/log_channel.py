@@ -126,7 +126,9 @@ if is_module_loaded(FILENAME):
             try:
                 message.delete()
             except BadRequest as excp:
-                if excp.message != "Message to delete not found":
+                if excp.message == "Message to delete not found":
+                    pass
+                else:
                     log.exception(
                         "Error deleting message in log channel. Should work anyway though."
                     )

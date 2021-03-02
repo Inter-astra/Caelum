@@ -160,6 +160,7 @@ def export_data(update, context):
 
     note_list = sql.get_all_chat_notes(chat_id)
     backup = {}
+    notes = {}
     # button = ""
     buttonlist = []
     namacat = ""
@@ -217,9 +218,10 @@ def export_data(update, context):
             )
         else:
             isicat += "{}<###splitter###>".format(note.value)
-    notes = {"#{}".format(namacat.split("<###splitter###>")[x]): "{}".format(
+    for x in range(count):
+        notes["#{}".format(namacat.split("<###splitter###>")[x])] = "{}".format(
             isicat.split("<###splitter###>")[x]
-        ) for x in range(count)}
+        )
     # Rules
     rules = rulessql.get_rules(chat_id)
     # Blacklist
@@ -318,8 +320,9 @@ def export_data(update, context):
         },
     }
     baccinfo = json.dumps(backup, indent=4)
-    with open("tg_bot{}.backup".format(chat_id), "w") as f:
-        f.write(str(baccinfo))
+    f = open("tg_bot{}.backup".format(chat_id), "w")
+    f.write(str(baccinfo))
+    f.close()
     context.bot.sendChatAction(current_chat_id, "upload_document")
     tgl = time.strftime("%H:%M:%S - %d/%m/%Y", time.localtime(time.time()))
     context.bot.sendDocument(

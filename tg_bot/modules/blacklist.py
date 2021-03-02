@@ -35,8 +35,9 @@ def blacklist(update, context):
     else:
         if chat.type == "private":
             return
-        chat_id = update.effective_chat.id
-        chat_name = chat.title
+        else:
+            chat_id = update.effective_chat.id
+            chat_name = chat.title
     chat_name = html.escape(chat_name)
 
     filter_list = "Current blacklisted words in <b>{}</b>:\n".format(chat_name)
@@ -88,13 +89,8 @@ def add_blacklist(update, context):
     if len(words) > 1:
         text = words[1]
         to_blacklist = list(
-            {
-                trigger.strip()
-                for trigger in text.split("\n")
-                if trigger.strip()
-            }
+            set(trigger.strip() for trigger in text.split("\n") if trigger.strip())
         )
-
         for trigger in to_blacklist:
             sql.add_to_blacklist(chat_id, trigger.lower())
 
@@ -146,13 +142,8 @@ def unblacklist(update, context):
     if len(words) > 1:
         text = words[1]
         to_unblacklist = list(
-            {
-                trigger.strip()
-                for trigger in text.split("\n")
-                if trigger.strip()
-            }
+            set(trigger.strip() for trigger in text.split("\n") if trigger.strip())
         )
-
         successful = 0
         for trigger in to_unblacklist:
             success = sql.rm_from_blacklist(chat_id, trigger.lower())
@@ -234,10 +225,14 @@ def blacklist_mode(update, context):
     chat_name = html.escape(chat_name)
 
     if args:
-        if args[0].lower() in ["off", "nothing", "no"]:
+        if (
+            args[0].lower() == "off"
+            or args[0].lower() == "nothing"
+            or args[0].lower() == "no"
+        ):
             settypeblacklist = "do nothing"
             sql.set_blacklist_strength(chat_id, 0, "0")
-        elif args[0].lower() in ["del", "delete"]:
+        elif args[0].lower() == "del" or args[0].lower() == "delete":
             settypeblacklist = "will delete blacklisted message"
             sql.set_blacklist_strength(chat_id, 1, "0")
         elif args[0].lower() == "warn":
@@ -424,7 +419,9 @@ def del_blacklist(update, context):
                     )
                     return
             except BadRequest as excp:
-                if excp.message != "Message to delete not found":
+                if excp.message == "Message to delete not found":
+                    pass
+                else:
                     log.exception("Error while deleting blacklist message.")
             break
 

@@ -47,11 +47,12 @@ def bl_user(update: Update, context: CallbackContext) -> str:
     try:
         target_user = bot.get_chat(user_id)
     except BadRequest as excp:
-        if excp.message != "User not found":
+        if excp.message == "User not found":
+            message.reply_text("I can't seem to find this user.")
+            return ""
+        else:
             raise
 
-        message.reply_text("I can't seem to find this user.")
-        return ""
     sql.blacklist_user(user_id, reason)
     message.reply_text("I shall ignore the existence of this user!")
     log_message = (
@@ -121,7 +122,11 @@ def bl_users(update: Update, context: CallbackContext):
             users.append(f"• {mention_html(user.id, user.first_name)}")
 
     message = "<b>Blacklisted Users</b>\n"
-    message += "\n".join(users) if users else "Noone is being ignored as of yet."
+    if not users:
+        message += "Noone is being ignored as of yet."
+    else:
+        message += "\n".join(users)
+
     update.effective_message.reply_text(message, parse_mode=ParseMode.HTML)
 
 

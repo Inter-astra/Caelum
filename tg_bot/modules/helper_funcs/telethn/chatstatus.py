@@ -99,6 +99,7 @@ async def can_delete_messages(message):
     if message.is_private:
         return True
     elif message.chat.admin_rights:
-        return message.chat.admin_rights.delete_messages
+        status = message.chat.admin_rights.delete_messages
+        return status
     else:
         return False

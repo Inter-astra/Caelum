@@ -26,13 +26,14 @@ ELEVATED_USERS_FILE = os.path.join(os.getcwd(), "tg_bot/elevated_users.json")
 def check_user_id(user_id: int, context: CallbackContext) -> Optional[str]:
     bot = context.bot
     if not user_id:
-        return "That...is a chat! baka ka omae?"
+        reply = "That...is a chat! baka ka omae?"
 
     elif user_id == bot.id:
-        return "This does not work that way."
+        reply = "This does not work that way."
 
     else:
-        return None
+        reply = None
+    return reply
 
 
 def send_nations(update):

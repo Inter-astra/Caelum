@@ -20,7 +20,7 @@ def paginate(
             itertools.islice(i1, page_size, None),
             list(itertools.islice(i2, page_size)),
         )
-        if not page:
+        if len(page) == 0:
             break
         yield page
 
@@ -39,10 +39,15 @@ def set_lang(update: Update, _) -> None:
         get_language(sql.get_chat_lang(chat.id))[:-3]
     )
 
-    keyb = [InlineKeyboardButton(
+    keyb = []
+    for code, name in get_languages().items():
+        keyb.append(
+            InlineKeyboardButton(
                 text=name,
                 callback_data=f"setLang_{code}",
-            ) for code, name in get_languages().items()]
+            )
+        )
+
     keyb = list(paginate(keyb, 2))
     keyb.append(
         [

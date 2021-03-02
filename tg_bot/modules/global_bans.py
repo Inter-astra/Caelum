@@ -143,11 +143,12 @@ def gban(update: Update, context: CallbackContext):
     try:
         user_chat = bot.get_chat(user_id)
     except BadRequest as excp:
-        if excp.message != "User not found":
+        if excp.message == "User not found":
+            message.reply_text("I can't seem to find this user.")
+            return ""
+        else:
             return
 
-        message.reply_text("I can't seem to find this user.")
-        return ""
     if user_chat.type != "private":
         message.reply_text("That's not a user!")
         return
@@ -231,7 +232,9 @@ def gban(update: Update, context: CallbackContext):
             gbanned_chats += 1
 
         except BadRequest as excp:
-            if excp.message not in GBAN_ERRORS:
+            if excp.message in GBAN_ERRORS:
+                pass
+            else:
                 message.reply_text(f"Could not gban due to: {excp.message}")
                 if GBAN_LOGS:
                     bot.send_message(
@@ -268,7 +271,10 @@ def gban(update: Update, context: CallbackContext):
 
     if gban_time > 60:
         gban_time = round((gban_time / 60), 2)
-    message.reply_text("Done! Comet Tiamat killed them.", parse_mode=ParseMode.HTML)
+        message.reply_text("Done! Comet Tiamat killed them.", parse_mode=ParseMode.HTML)
+    else:
+        message.reply_text("Done! Comet Tiamat killed them.", parse_mode=ParseMode.HTML)
+
     try:
         bot.send_message(
             user_id,
@@ -351,7 +357,9 @@ def ungban(update: Update, context: CallbackContext):
                 ungbanned_chats += 1
 
         except BadRequest as excp:
-            if excp.message not in UNGBAN_ERRORS:
+            if excp.message in UNGBAN_ERRORS:
+                pass
+            else:
                 message.reply_text(f"Could not un-gban due to: {excp.message}")
                 if GBAN_LOGS:
                     bot.send_message(
@@ -382,7 +390,9 @@ def ungban(update: Update, context: CallbackContext):
 
     if ungban_time > 60:
         ungban_time = round((ungban_time / 60), 2)
-    message.reply_text(f"Switched to 2nd timeline and this took {ungban_time} sec(s).")
+        message.reply_text(f"Switched to 2nd timeline and this took {ungban_time} sec(s).")
+    else:
+        message.reply_text(f"Switched to 2nd timeline and this took {ungban_time} sec(s).")
 
 
 @support_plus
@@ -422,7 +432,7 @@ def check_and_ban(update, user_id, should_message=True):
             except:
                 bl_check = False
 
-            if bl_check:
+            if bl_check is True:
                 bl_res = (status["results"]["attributes"]["blacklist_reason"])
                 update.effective_chat.kick_member(user_id)
                 if should_message:
