@@ -1,7 +1,7 @@
 # Language name in their native
 language: "English 🇺🇲"
 # name of people(s) who worked on this translation
-authors: "@dank_as_fuck @Stella_Lucem"
+authors: "@dank_as_fuck and @Stella_Lucem"
 
 # languages
 curr_chat_lang: "Hey. Your current language is {}, select the one you want from the buttons below :)"
@@ -35,6 +35,7 @@ src_btn: "Source code"
 # General things
 not_user: "I doubt that's a user."
 cant_find: "Can't seem to find this person."
+incorr_id: "You don't seem to be referring to a user or the ID specified is incorrect.."
 
 admin_help: |
    • `/admins`*:* list of admins in the chat
@@ -46,6 +47,37 @@ admin_help: |
    • `/promote`*:* promotes the user replied to
    • `/demote`*:* demotes the user replied to
    • `/title <title here>`*:* sets a custom title for an admin that the bot promoted
+
+# admin stuff
+unsuff_right: "You don't have the necessary rights to do that!"
+admin_already: "How am I meant to promote someone that's already an admin?"
+prom_myself: "I can't promote myself! Get an admin to do it for me."
+not_here: "I can't promote someone who isn't in the group."
+prom_fail: "An error occured while promoting."
+prom_succ: "Sucessfully promoted <b>{}</b>!"
+demo_creator: "This person CREATED the chat, how would I demote them?"
+wasnt_admin: "Can't demote what wasn't promoted!"
+demo_myself: "I can't demote myself! Get an admin to do it for me."
+demo_succ: "Sucessfully demoted <b>{}</b>!"
+else_prom: "Could not demote. I might not be admin, or the admin status was appointed by another user, so I can't act upon them!"
+cache_ref: "Admins cache refreshed!"
+title_creator: "This person CREATED the chat, how can i set custom title for him?"
+
+title_member: |
+    Can't set title for non-admins!
+    Promote them first to set custom title!
+
+title_myself: "I can't set my own title myself! Get the one who made me admin to do it for me."
+title_blank: "Setting blank title doesn't do anything!"
+
+title_char: |
+  The title length is longer than 16 characters.
+  Truncating it to 16 characters.
+
+title_else: "I can't set custom title for admins that I didn't promote!"
+inv_unsuff: "I don't have access to the invite link, try changing my permissions!"
+inv_chat: "I can only give you invite links for supergroups and channels, sorry!"
+
 
 afk_help: |
    - /afk <reason>: mark yourself as AFK(away from keyboard).
