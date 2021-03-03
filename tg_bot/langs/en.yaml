@@ -20,10 +20,10 @@ pm_help_text: |
    I'm a modular group management bot with a few fun extras! Have a look at the following for an idea of some of
    the things I can help you with.
    *Main* commands available:
-    • /start: Starts me, can be used to check I'm alive or not.
-    • /help: PM's you this message.
-    • /language: Change bot language.
-    • /settings:
+    • `/start`*:* Starts me, can be used to check I'm alive or not.
+    • `/help`*:* PM's you this message.
+    • `/language`*:* Change bot language.
+    • `/settings`*:*
       - in PM: will send you your settings for all supported modules.
       - in a group: will redirect you to pm, with all that chat's settings.
     Click on the buttons below to get documentation about specific modules!
@@ -48,7 +48,7 @@ admin_help: |
    • `/title <title here>`*:* sets a custom title for an admin that the bot promoted
 
 afk_help: |
-   - /afk <reason>: mark yourself as AFK(away from keyboard).
+   - `/afk <reason>`*:* mark yourself as AFK(away from keyboard).
    - brb <reason>: same as the afk command - but not a command.
    When marked as AFK, any mentions will be replied to with a message to say you're not available!
 
@@ -56,9 +56,9 @@ anilist_help: |
     *AniList*
     Get information about anime, manga or characters with the help of this module! All data is fetched from [AniList](anilist.co).
     *Available commands:*
-     - /anime <anime>: returns information about the anime.
-     - /character <character>: returns information about the character.
-     - /manga <manga>: returns information about the manga.
+     - `/anime <anime>`*:* returns information about the anime.
+     - `/character <character>`*:* returns information about the character.
+     - `/manga <manga>`*:* returns information about the manga.
 
 antiflood_help: |
     Antiflood allows you to take action on users that send more than x messages in a row. Exceeding the set flood
@@ -90,12 +90,12 @@ approve_help: |
 
 backup_help: |
     *Admin only:*
-     - /import: reply to a group butler backup file to import as much as possible, making the transfer super simple! Note \
+     - `/import`*:* reply to a group butler backup file to import as much as possible, making the transfer super simple! Note \
        that files/photos can't be imported due to telegram restrictions.
-     - /export: !!! This isn't a command yet, but should be coming soon!
+     - `/export`*:* !!! This isn't a command yet, but should be coming soon!
 
 bans_help: |
-    - /kickme: kicks the user who issued the command
+    - `/kickme`*:* kicks the user who issued the command
 
      *Admin only:*
     - /ban <userhandle>: bans a user. (via handle, or reply)
@@ -121,10 +121,10 @@ blacklist_help: |
      • `/blacklistmode <off/del/warn/ban/kick/mute/tban/tmute>`*:* Action to perform when someone sends blacklisted words.
 
 cleaner_help: |
-    - /cleanbluetext <on/off/yes/no> - clean commands after sending
-    - /ignorecleanbluetext <word> - prevent auto cleaning of the command
-    - /unignorecleanbluetext <word> - remove prevent auto cleaning of the command
-    - /listcleanbluetext - list currently whitelisted commands
+    - `/cleanbluetext <on/off/yes/no>`*:* clean commands after sending
+    - `/ignorecleanbluetext <word>`*:* prevent auto cleaning of the command
+    - `/unignorecleanbluetext <word>`*:* remove prevent auto cleaning of the command
+    - `/listcleanbluetext`*:* list currently whitelisted commands
 
 connections_help: |
     - /connect: connect a chat (Can be done in a group by /connect or /connect <chat id> in PM)
@@ -158,12 +158,18 @@ disable_help: |
     This allows you to disable some commonly used commands, so noone can use them.
     It'll also allow you to autodelete them, stopping people from bluetexting.
 
-     • /cmds: Check the current status of disabled commands
+     • `/cmds`*:* Check the current status of disabled commands
 
      *Admin only:*
-     • /enable <cmd name>: Enable that command
-     • /disable <cmd name>: Disable that command
-     • /listcmds: List all possible disablable commands
+     • `/enable <cmd name>`*:* Enable that command
+     • `/disable <cmd name>`*:* Disable that command
+     • `/listcmds`*:* List all possible disablable commands
+
+delacc_help: |
+    • `/delacc`*:* Checks the group if has deleted accounts.
+    • `/delacc clean`*:* If found, kicks them out of the group.
+    
+    
 
 feds_help: |
     Ah, group management. Everything is fun, until the spammer starts entering your group, and you have to block it. Then you need to start banning more, and more, and it hurts.
@@ -174,39 +180,40 @@ feds_help: |
 
     *Commands Available*:
 
-     • /newfed <fedname>: Create a new Federation with the name given. Users are only allowed to have one Federation. This method can also be used to rename the Federation. (max. 64 characters)
-     • /delfed: Delete your Federation, and any information related to it. Will not cancel blocked users.
-     • /fedinfo <FedID>: Information about the specified Federation.
-     • /joinfed <FedID>: Join the current chat to the Federation. Only chat owners can do this. Every chat can only be in one Federation.
-     • /leavefed <FedID>: Leave the Federation given. Only chat owners can do this.
-     • /fpromote <user>: Promote Users to give fed admin. Fed owner only.
-     • /fdemote <user>: Drops the User from the admin Federation to a normal User. Fed owner only.
-     • /fban <user>: Prohibits users from all federations where this chat takes place, and executors have control over.
-     • /unfban <user>: Cancel User from all federations where this chat takes place, and that the executor has control over.
-     • /setfrules: Arrange Federation rules.
-     • /frules: See Federation regulations.
-     • /chatfed: See the Federation in the current chat.
-     • /fedadmins: Show Federation admin.
-     • /fbanlist: Displays all users who are victimized at the Federation at this time.
-     • /fednotif <on / off>: Federation settings not in PM when there are users who are fban / unfban.
-     • /fedchats: Get all the chats that are connected in the Federation.
-     • /importfbans: Reply to the Federation backup message file to import the banned list to the Federation now. (disabled for now.)
+     • `/newfed <fedname>`*:* Create a new Federation with the name given. Users are only allowed to have one Federation. This method can also be used to rename the Federation. (max. 64 characters)
+     • `/delfed: Delete your Federation, and any information related to it. Will not cancel blocked users.
+     • `/fedinfo <FedID>`*:* Information about the specified Federation.
+     • `/joinfed <FedID>`*:* Join the current chat to the Federation. Only chat owners can do this. Every chat can only be in one Federation.
+     • `/leavefed <FedID>`*:* Leave the Federation given. Only chat owners can do this.
+     • `/fpromote <user>`*:* Promote Users to give fed admin. Fed owner only.
+     • `/fdemote <user>`*:* Drops the User from the admin Federation to a normal User. Fed owner only.
+     • `/fban <user>: Prohibits users from all federations where this chat takes place, and executors have control over.
+     • `/unfban <user>: Cancel User from all federations where this chat takes place, and that the executor has control over.
+     • `/setfrules`*:* Arrange Federation rules.
+     • `/frules`*:* See Federation regulations.
+     • `/chatfed`*:* See the Federation in the current chat.
+     • `/fedadmins`*:* Show Federation admin.
+     • `/fbanlist`*:* Displays all users who are victimized at the Federation at this time.
+     • `/fednotif` <on / off>: Federation settings not in PM when there are users who are fban / unfban.
+     • `/fedchats`*:* Get all the chats that are connected in the Federation.
+     • `/importfbans`*:* Reply to the Federation backup message file to import the banned list to the Federation now. (disabled for now.)
 
 fun_help: |
-     • /runs: reply a random string from an array of replies.
-     • /pat: pat a person, cool thing to have for cute ones :3
-     • /slap: slap a user, or get slapped if not a reply.
-     • /shrug : get shrug XD.
-     • /table : get flip/unflip :v.
-     • /decide : Randomly answers yes/no/maybe
-     • /toss : Tosses A coin
-     • /roll : Roll a dice.
-     • /rlg : Join ears,nose,mouth and create an emo ;-;
-     • /shout <keyword>: write anything you want to give loud shout.
-     • /stickerid: reply to a sticker to get its ID.
-     • /getsticker: reply to a sticker to get the raw PNG image.
-     • /steal: reply to a sticker or image to add it to your pack.
-     • /stickers: search stickers in combot sticker finder.
+     • `/runs`*:* reply a random string from an array of replies.
+     • `/pat`*:* pat a person, cool thing to have for cute ones :3
+     • `/slap`*:* slap a user, or get slapped if not a reply.
+     • `/shrug` : get shrug XD.
+     • `/table` : get flip/unflip :v.
+     • `/decide` : Randomly answers yes/no/maybe
+     • `/toss` : Tosses A coin
+     • `/roll` : Roll a dice.
+     • `/rlg` : Join ears,nose,mouth and create an emo ;-;
+     • `/shout <keyword>`*:* write anything you want to give loud shout.
+     • `/stickerid`*:* reply to a sticker to get its ID.
+     • `/getsticker`*:* reply to a sticker to get the raw PNG image.
+     • `/steal`*:* reply to a sticker or image to add it to your pack.
+     • `/kang`*:* same as /steal.
+     • `/stickers`*:* search stickers in combot sticker finder.
 
 antispam_help: |
      *Admins only:*
@@ -298,22 +305,22 @@ markdown_help_text: |
       Keep in mind that your message <b>MUST</b> contain some text other than just a button!
 
 misc_help: |
-      • /id: get the current group id. If used by replying to a message, gets that user's id.
-      • /gifid: reply to a gif to me to tell you its file ID.
-      • /info: get information about a user.
-      • /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
-      • /ud <word>: Type the word or expression you want to search use.
-      • /urban <word>: Same as /ud
-      • /paste - Do a paste at `nekobin.com`
-      • /react: Reacts with a random reaction
-      • /weebify <text>: returns a weebified text
-      • /tr (language code) as reply to a long message.
-      • /time <query> : Gives information about a timezone.
-      • /cash : currency converter
+      • `/id`*:* get the current group id. If used by replying to a message, gets that user's id.
+      • `/gifid`*:* reply to a gif to me to tell you its file ID.
+      • `/info`*:* get information about a user.
+      • `/markdownhelp`*:* quick summary of how markdown works in telegram - can only be called in private chats.
+      • `/ud <word>`*:* Type the word or expression you want to search use.
+      • `/urban <word>`*:* Same as /ud
+      • `/paste`*:* Do a paste at `nekobin.com`
+      • `/react: Reacts with a random reaction
+      • `/weebify <text>: returns a weebified text
+      • `/tr (language code) as reply to a long message.
+      • `/time` <query> : Gives information about a timezone.
+      • `/cash`*:* currency converter
         example syntax: /cash 1 USD INR
-      • /cinfo : get info about a user or a chat (uses @Pyrogram methods)
-      • /getid : get IDs of chat, user and chat message.
-      • /spbinfo : get info about a user from @Intellivoid's SpamProtection API
+      • `/cinfo`*:* get info about a user or a chat (uses @Pyrogram methods)
+      • `/getid`*:* get IDs of chat, user and chat message.
+      • `/spbinfo`*:* get info about a user from @Intellivoid's SpamProtection API
       ───────────────────────────────
       *Last.FM*
       Share what you're what listening to with the help of this module!
@@ -423,7 +430,7 @@ lydia_help: |
        • `/addchat`*:* enables Lydia in your chat
        • `/rmchat`*:* disables Lydia in your chat
 
-       Powered by [Coffeehouse](https://coffeehouse.intellivoid.net), from @Intellivoid
+       Powered by [Coffeehouse](https://coffeehouse.intellivoid.net), @Intellivoid
 
 nlp_help: |
       *Chatroom Spam Prediction*
