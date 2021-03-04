@@ -46,7 +46,7 @@ async def purge_messages(event):
     except:
         pass
     time_ = time.perf_counter() - start
-    text = gs(chat, "purge_succ").format(time_:0.2f)
+    text = gs(chat, "purge_succ")
     done = await event.respond(text, parse_mode='markdown')
 
     await sleep(3)

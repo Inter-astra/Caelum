@@ -403,8 +403,8 @@ purge_where: "Reply to a message to select where to start purging from."
 purge_cant: "Can't seem to delete this?"
 purge_no_msg: "Whadya want to delete?"
 purge_succ: |
-        Purged Successfully in {} sec(s)
-        This message will delete itself in 3 secs
+        Purged messages successfully
+        This message will delete itself in 3 secs.
 
 reports_help: |
         • `/report <reason>`*:* reply to a message to report it to admins.
