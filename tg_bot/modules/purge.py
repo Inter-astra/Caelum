@@ -6,6 +6,7 @@ from telethon import events
 from tg_bot import telethn
 from tg_bot.modules.helper_funcs.telethn.chatstatus import (
     can_delete_messages, user_is_admin)
+from tg_bot.modules.language import gs
 
 
 async def purge_messages(event):
@@ -17,17 +18,17 @@ async def purge_messages(event):
             user_id=event.sender_id, message=event) and event.from_id not in SUPER_ADMINS and event.from_id not in [
                 1087968824
             ]:
-        await event.reply("Only Admins are allowed to use this command")
+        await event.reply(gs(chat, "only_admin"))
         return
 
     if not await can_delete_messages(message=event):
-        await event.reply("Can't seem to purge the message")
+        await event.reply(gs(chat, "purge_fail"))
         return
 
     reply_msg = await event.get_reply_message()
     if not reply_msg:
         await event.reply(
-            "Reply to a message to select where to start purging from.")
+            gs(chat, "purge_where"))
         return
     messages = []
     message_id = reply_msg.id
@@ -45,7 +46,7 @@ async def purge_messages(event):
     except:
         pass
     time_ = time.perf_counter() - start
-    text = f"Purged Successfully in {time_:0.2f} sec(s)\nThis message will delete itself in 3 secs"
+    text = gs(chat, "purge_succ").format(time_:0.2f)
     done = await event.respond(text, parse_mode='markdown')
 
     await sleep(3)
@@ -60,16 +61,16 @@ async def delete_messages(event):
             user_id=event.sender_id, message=event) and event.from_id not in SUPER_ADMINS and event.from_id not in [
                 1087968824
             ]:
-        await event.reply("Only Admins are allowed to use this command")
+        await event.reply(gs(chat, "admin_only"))
         return
 
     if not await can_delete_messages(message=event):
-        await event.reply("Can't seem to delete this?")
+        await event.reply(gs(chat, "purge_cant"))
         return
 
     message = await event.get_reply_message()
     if not message:
-        await event.reply("Whadya want to delete?")
+        await event.reply(gs(chat, "purge_no_msg"))
         return
     chat = await event.get_input_chat()
     del_message = [message, event.message]
