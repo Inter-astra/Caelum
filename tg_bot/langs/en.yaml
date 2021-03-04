@@ -486,4 +486,8 @@ nlp_help: |
        *Command:*
         • `/nlpstat <on/off/yes/no>`*:* toggle NLP in your chat.
 
+delacc_help: |
+      • `/delacc`*:* Check chat if has deleted accounts.
+      • `/delacc clean`*:* Kick deleted accounts out!
+
 neko_paste: "What am I supposed to do with this?"
