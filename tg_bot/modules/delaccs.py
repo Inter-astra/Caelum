@@ -7,6 +7,7 @@ from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights, ChannelParticipantsAdmins
 
 from tg_bot import telethn, OWNER_ID, SUDO_USERS, SUPER_ADMINS
+from tg_bot.modules.language import gs
 
 # =================== CONSTANT ===================
 
