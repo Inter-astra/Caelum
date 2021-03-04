@@ -36,6 +36,8 @@ src_btn: "Source code"
 not_user: "I doubt that's a user."
 cant_find: "Can't seem to find this person."
 incorr_id: "You don't seem to be referring to a user or the ID specified is incorrect.."
+owner_only: "Only owner of the chat can do this."
+need_admin: "You need to be admin to do this."
 
 admin_help: |
    • `/admins`*:* list of admins in the chat
@@ -54,11 +56,11 @@ admin_already: "How am I meant to promote someone that's already an admin?"
 prom_myself: "I can't promote myself! Get an admin to do it for me."
 not_here: "I can't promote someone who isn't in the group."
 prom_fail: "An error occured while promoting."
-prom_succ: "Sucessfully promoted <b>{}</b>!"
+prom_succ: "Sucessfully promoted!"
 demo_creator: "This person CREATED the chat, how would I demote them?"
 wasnt_admin: "Can't demote what wasn't promoted!"
 demo_myself: "I can't demote myself! Get an admin to do it for me."
-demo_succ: "Sucessfully demoted <b>{}</b>!"
+demo_succ: "Sucessfully demoted!"
 else_prom: "Could not demote. I might not be admin, or the admin status was appointed by another user, so I can't act upon them!"
 cache_ref: "Admins cache refreshed!"
 title_creator: "This person CREATED the chat, how can i set custom title for him?"
@@ -377,11 +379,29 @@ notes_help: |
        • `/removeallnotes`*:* removes all notes from the group
        *Note:* Note names are case-insensitive, and they are automatically converted to lowercase before getting saved.
 
+notelist: |
+       Get note by `/notenumber` or `#notename`
+
+          *ID*    *Note* 
+
+nonote: "No notes in this chat!"
+delalldone: "Deleted all notes."
+delallcan: "Clearing of all notes has been cancelled."
+       
 purge_help: |
        *Admin only:*
         • /del: deletes the message you replied to
         • /purge: deletes all messages between this and the replied to message.
         • /purge <integer X>: deletes the replied message, and X messages following it if replied to a message.
+
+only_admin: "Only Admins are allowed to use this command"
+purge_fail: "Can't seem to purge the message"
+purge_where: "Reply to a message to select where to start purging from."
+purge_cant: "Can't seem to delete this?"
+purge_no_msg: "Whadya want to delete?"
+purge_succ: |
+        Purged Successfully in {} sec(s)
+        This message will delete itself in 3 secs
 
 reports_help: |
         • `/report <reason>`*:* reply to a message to report it to admins.
@@ -465,3 +485,5 @@ nlp_help: |
        it [here](https://docs.intellivoid.net/coffeehouse/v1/nlp/spam_prediction/chatroom)
        *Command:*
         • `/nlpstat <on/off/yes/no>`*:* toggle NLP in your chat.
+
+neko_paste: "What am I supposed to do with this?"

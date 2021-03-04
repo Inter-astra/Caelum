@@ -27,6 +27,7 @@ from telegram.ext import (
     MessageHandler,
 )
 from telegram.ext.dispatcher import run_async
+from tg_bot.modules.language import gs
 
 JOIN_LOGGER = None
 FILE_MATCHER = re.compile(r"^###file_id(!photo)?###:(.*?)(?:\s|$)")
@@ -256,9 +257,7 @@ def save(update: Update, context: CallbackContext):
         chat_id, note_name, text, data_type, buttons=buttons, file=content
     )
 
-    msg.reply_text(
-        f"Yas! Added `{note_name}`.\nGet it with `/get {note_name}`, or `#{note_name}`",
-        parse_mode=ParseMode.MARKDOWN,
+    msg.reply_text(gs(chat, "Yas! Added `{note_name}`.\nGet it with `/get {note_name}`, or `#{note_name}`").format(note_name, note_name, note_name)
     )
 
     if msg.reply_to_message and msg.reply_to_message.from_user.is_bot:
@@ -331,23 +330,23 @@ def clearall_btn(update: Update, context: CallbackContext):
                 for notename in note_list:
                     note = notename.name.lower()
                     sql.rm_note(chat.id, note)
-                message.edit_text("Deleted all notes.")
+                message.edit_text(gs(chat, "delalldone"))
             except BadRequest:
                 return
 
         if member.status == "administrator":
-            query.answer("Only owner of the chat can do this.")
+            query.answer(gs(chat, "owner_only"))
 
         if member.status == "member":
-            query.answer("You need to be admin to do this.")
+            query.answer(gs(chat, "need_admin"))
     elif query.data == "notes_cancel":
         if member.status == "creator" or query.from_user.id in SUDO_USERS:
-            message.edit_text("Clearing of all notes has been cancelled.")
+            message.edit_text(gs(chat, "delallcan"))
             return
         if member.status == "administrator":
-            query.answer("Only owner of the chat can do this.")
+            query.answer(gs(chat, "owner_only"))
         if member.status == "member":
-            query.answer("You need to be admin to do this.")
+            query.answer(gs(chat, "need_admin"))
 
 
 @connection_status
@@ -355,19 +354,19 @@ def list_notes(update: Update, context: CallbackContext):
     chat_id = update.effective_chat.id
     note_list = sql.get_all_chat_notes(chat_id)
     notes = len(note_list) + 1
-    msg = "Get note by `/notenumber` or `#notename` \n\n  *ID*    *Note* \n"
+    msg = gs(chat, "notelist")
     for note_id, note in zip(range(1, notes), note_list):
         if note_id < 10:
-            note_name = f"`{note_id:2}.`  `#{(note.name.lower())}`\n"
+            note_name = f"\n`{note_id:2}.`  `#{(note.name.lower())}`\n"
         else:
-            note_name = f"`{note_id}.`  `#{(note.name.lower())}`\n"
+            note_name = f"\n`{note_id}.`  `#{(note.name.lower())}`\n"
         if len(msg) + len(note_name) > MAX_MESSAGE_LENGTH:
             update.effective_message.reply_text(msg, parse_mode=ParseMode.MARKDOWN)
             msg = ""
         msg += note_name
 
     if not note_list:
-        update.effective_message.reply_text("No notes in this chat!")
+        update.effective_message.reply_text(gs(chat, "nonote"))
 
     elif len(msg) != 0:
         update.effective_message.reply_text(msg, parse_mode=ParseMode.MARKDOWN)
@@ -492,7 +491,6 @@ def __chat_settings__(chat_id, user_id):
     notes = sql.get_all_chat_notes(chat_id)
     return f"There are `{len(notes)}` notes in this chat."
 
-from tg_bot.modules.language import gs
 
 def get_help(chat):
     return gs(chat, "notes_help")

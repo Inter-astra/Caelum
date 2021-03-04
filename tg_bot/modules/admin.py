@@ -91,8 +91,7 @@ def promote(update: Update, context: CallbackContext) -> str:
         return
 
     bot.sendMessage(
-        chat.id, gs(chat, "prom_succ").format(
-            user_member.user.first_name or user_id),
+        chat.id, gs(chat, "prom_succ")
     )
 
     log_message = (
@@ -155,9 +154,7 @@ def demote(update: Update, context: CallbackContext) -> str:
         )
 
         bot.sendMessage(
-            chat.id, gs(chat, "demo_succ").format(
-                user_member.user.first_name or user_id
-            )
+            chat.id, gs(chat, "demo_succ")
         )
 
         log_message = (

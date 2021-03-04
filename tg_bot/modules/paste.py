@@ -3,6 +3,7 @@ from tg_bot import dispatcher
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from telegram import ParseMode, Update
 from telegram.ext import CallbackContext
+from tg_bot.modules.language import gs
 
 
 def paste(update: Update, context: CallbackContext):
@@ -16,7 +17,7 @@ def paste(update: Update, context: CallbackContext):
         data = message.text.split(None, 1)[1]
 
     else:
-        message.reply_text("What am I supposed to do with this?")
+        message.reply_text(gs(chat, "neko_paste"))
         return
 
     key = (
