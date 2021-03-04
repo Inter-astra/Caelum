@@ -110,3 +110,8 @@ async def zombies(event):
         \n`{del_a}` Zombie admin accounts are not removed!"
 
     await cleaning_zombies.edit(del_status)
+
+def get_help(chat):
+    return gs(chat, "delacc_help")
+
+__mod_name__ = "Deleted Accounts"

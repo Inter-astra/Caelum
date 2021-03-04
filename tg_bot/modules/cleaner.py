@@ -226,28 +226,28 @@ def get_help(chat):
     return gs(chat, "cleaner_help")
 
 SET_CLEAN_BLUE_TEXT_HANDLER = CommandHandler(
-    "cleanbluetext", set_blue_text_must_click, pass_args=True, run_async=True
+    "cleanblue", set_blue_text_must_click, pass_args=True, run_async=True
 )
 ADD_CLEAN_BLUE_TEXT_HANDLER = CommandHandler(
-    "ignorecleanbluetext", add_bluetext_ignore, pass_args=True, run_async=True
+    "ignoreblue", add_bluetext_ignore, pass_args=True, run_async=True
 )
 REMOVE_CLEAN_BLUE_TEXT_HANDLER = CommandHandler(
-    "unignorecleanbluetext", remove_bluetext_ignore, pass_args=True, run_async=True
+    "unignoregblue", remove_bluetext_ignore, pass_args=True, run_async=True
 )
 ADD_CLEAN_BLUE_TEXT_GLOBAL_HANDLER = CommandHandler(
-    "ignoreglobalcleanbluetext",
+    "ignoregblue",
     add_bluetext_ignore_global,
     pass_args=True,
     run_async=True,
 )
 REMOVE_CLEAN_BLUE_TEXT_GLOBAL_HANDLER = CommandHandler(
-    "unignoreglobalcleanbluetext",
+    "unignoregblue",
     remove_bluetext_ignore_global,
     pass_args=True,
     run_async=True,
 )
 LIST_CLEAN_BLUE_TEXT_HANDLER = CommandHandler(
-    "listcleanbluetext", bluetext_ignore_list, run_async=True
+    "listblue", bluetext_ignore_list, run_async=True
 )
 CLEAN_BLUE_TEXT_HANDLER = MessageHandler(
     Filters.command & Filters.chat_type.groups,

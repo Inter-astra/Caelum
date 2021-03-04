@@ -121,10 +121,12 @@ blacklist_help: |
      • `/blacklistmode <off/del/warn/ban/kick/mute/tban/tmute>`*:* Action to perform when someone sends blacklisted words.
 
 cleaner_help: |
-    - `/cleanbluetext <on/off/yes/no>`*:* clean commands after sending
-    - `/ignorecleanbluetext <word>`*:* prevent auto cleaning of the command
-    - `/unignorecleanbluetext <word>`*:* remove prevent auto cleaning of the command
-    - `/listcleanbluetext`*:* list currently whitelisted commands
+    - `/cleanblue <on/off/yes/no>`*:* clean commands after sending
+    - `/ignoreblue <word>`*:* prevent auto cleaning of the command
+    - `/unignoreblue <word>`*:* remove prevent auto cleaning of the command
+    - `/listblue`*:* list currently whitelisted commands
+
+    For example: `/(un)ignoreblue hello` to ignore `/hello`
 
 connections_help: |
     - /connect: connect a chat (Can be done in a group by /connect or /connect <chat id> in PM)
@@ -164,12 +166,6 @@ disable_help: |
      • `/enable <cmd name>`*:* Enable that command
      • `/disable <cmd name>`*:* Disable that command
      • `/listcmds`*:* List all possible disablable commands
-
-delacc_help: |
-    • `/delacc`*:* Checks the group if has deleted accounts.
-    • `/delacc clean`*:* If found, kicks them out of the group.
-    
-    
 
 feds_help: |
     Ah, group management. Everything is fun, until the spammer starts entering your group, and you have to block it. Then you need to start banning more, and more, and it hurts.
@@ -325,9 +321,9 @@ misc_help: |
       *Last.FM*
       Share what you're what listening to with the help of this module!
       *Available commands:*
-      • /setuser <username>: sets your last.fm username.
-      • /clearuser: removes your last.fm username from the bot's database.
-      • /lastfm: returns what you're scrobbling on last.fm.
+      • `/setuser <username>`*:* sets your last.fm username.
+      • `/clearuser`*:* removes your last.fm username from the bot's database.
+      • `/lastfm`*:* returns what you're scrobbling on last.fm.
 
 muting_help: |
       *Admins only:*
@@ -417,7 +413,7 @@ stickers_help: |
        
        *Admin only*
        • `/banpack`*:* blacklists the replied sticker
-       • `/unbanpack`*:* removes the blacklist of replied sticker
+       • `/unbanpack`*:* Removes the blacklist of replied sticker
        • `/banpmode`*:* Decide what Caelum will do when a blacklisted sticker sent
        Available modes are ban, tban, mute, tmute, delete and nothing
        You can (un)ban using <packlink> too.
@@ -427,8 +423,8 @@ lydia_help: |
        You can have fun with Lydia 😃
        
        *Commands are (admin only):*
-       • `/addchat`*:* enables Lydia in your chat
-       • `/rmchat`*:* disables Lydia in your chat
+       • `/addchat`*:* Enables Lydia in your chat
+       • `/rmchat`*:* Disables Lydia in your chat
 
        Powered by [Coffeehouse](https://coffeehouse.intellivoid.net), @Intellivoid
 
@@ -440,3 +436,7 @@ nlp_help: |
        it [here](https://docs.intellivoid.net/coffeehouse/v1/nlp/spam_prediction/chatroom)
        *Command:*
         • `/nlpstat <on/off/yes/no>`*:* toggle NLP in your chat.
+
+delacc_help: |
+      • `/delacc`*:* Check chat if has deleted accounts.
+      • `/delacc clean`*:* Kick deleted accounts out!
