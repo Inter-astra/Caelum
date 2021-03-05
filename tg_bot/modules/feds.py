@@ -2327,7 +2327,7 @@ def fuser(update, context):
 
 FED_USERH_HANDLER = CommandHandler("fuser", fuser)
 FED_ADMINH_HANDLER = CommandHandler("fadmin", fadmin)
-FED_OWNERH_HANDLER= CommandHandler("fowner", fowner)
+FED_OWNERH_HELP = CommandHandler("fowner", fowner)
 NEW_FED_HANDLER = CommandHandler("newfed", new_fed)
 DEL_FED_HANDLER = CommandHandler("delfed", del_fed, pass_args=True)
 JOIN_FED_HANDLER = CommandHandler("joinfed", join_fed, pass_args=True)
