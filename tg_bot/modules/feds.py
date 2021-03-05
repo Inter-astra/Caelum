@@ -2311,23 +2311,8 @@ __mod_name__ = "Federations"
 from tg_bot.modules.language import gs
 
 def get_help(chat):
-    return gs(chat, "feds_menu_help")
+    return gs(chat, "feds_help")
 
-def fowner(update, context):
-    update.effective_message.reply_text(
-        gs(chat, "feds_owner_help"))
-
-def fadmin(update, context):
-    update.effective_message.reply_text(
-        gs(chat, "feds_admin_help"))
-
-def fuser(update, context):
-    update.effective_message.reply_text(
-        gs(chat, "feds_user_help"))
-
-FED_USERH_HANDLER = CommandHandler("fuser", fuser)
-FED_ADMINH_HANDLER = CommandHandler("fadmin", fadmin)
-FED_OWNERH_HELP = CommandHandler("fowner", fowner)
 NEW_FED_HANDLER = CommandHandler("newfed", new_fed)
 DEL_FED_HANDLER = CommandHandler("delfed", del_fed, pass_args=True)
 JOIN_FED_HANDLER = CommandHandler("joinfed", join_fed, pass_args=True)
@@ -2341,7 +2326,7 @@ FED_BROADCAST_HANDLER = CommandHandler(["fbroadcast", "fcast"], fed_broadcast, p
 FED_SET_RULES_HANDLER = CommandHandler("setfrules", set_frules, pass_args=True)
 FED_GET_RULES_HANDLER = CommandHandler("frules", get_frules, pass_args=True)
 FED_CHAT_HANDLER = CommandHandler("chatfed", fed_chat, pass_args=True)
-FED_ADMIN_HANDLER = CommandHandler(["fedadmins"], fed_admin, pass_args=True)
+FED_ADMIN_HANDLER = CommandHandler(["fedadmins", "fadmins"], fed_admin, pass_args=True)
 FED_USERBAN_HANDLER = CommandHandler(
     "fbanlist", fed_ban_list, pass_args=True, pass_chat_data=True
 )
@@ -2362,9 +2347,6 @@ DELETEBTN_FED_HANDLER = CallbackQueryHandler(
     del_fed_button, pattern=r"rmfed_", run_async=True
 )
 
-dispatcher.add_handler(FED_USERH_HANDLER)
-dispatcher.add_handler(FED_ADMINH_HANDLER)
-dispatcher.add_handler(FED_OWNERH_HANDLER)
 dispatcher.add_handler(NEW_FED_HANDLER)
 dispatcher.add_handler(DEL_FED_HANDLER)
 dispatcher.add_handler(JOIN_FED_HANDLER)

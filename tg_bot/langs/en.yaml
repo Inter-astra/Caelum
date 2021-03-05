@@ -201,40 +201,33 @@ disable_help: |
      • `/disable <cmd name>`*:* Disable that command
      • `/listcmds`*:* List all possible disablable commands
 
-feds_menu_help: |
+feds_help: |
     Ah, group management. Everything is fun, until the spammer starts entering your group, and you have to block it. Then you need to start banning more, and more, and it hurts.
     But then you have many groups, and you don't want this spammer to be in one of your groups - how can you deal? Do you have to manually block it, in all your groups?
 
     No longer! With Federation, you can make a ban in one chat overlap with all other chats.
     You can even designate admin federations, so your trusted admin can ban all the chats you want to protect.
 
-    *Commands*:
-    For better and cleaner menu, feds are divided into 3 sections.
-    • `/fowner`
-    • `/fadmin`
-    • `/fuser`
+    *Commands Available*:
 
-feds_owner_help: |
      • `/newfed <fedname>`*:* Create a new Federation with the name given. Users are only allowed to have one Federation. This method can also be used to rename the Federation. (max. 64 characters)
      • `/delfed: Delete your Federation, and any information related to it. Will not cancel blocked users.
+     • `/fedinfo <FedID>`*:* Information about the specified Federation.
+     • `/joinfed <FedID>`*:* Join the current chat to the Federation. Only chat owners can do this. Every chat can only be in one Federation.
+     • `/leavefed <FedID>`*:* Leave the Federation given. Only chat owners can do this.
      • `/fpromote <user>`*:* Promote Users to give fed admin. Fed owner only.
      • `/fdemote <user>`*:* Drops the User from the admin Federation to a normal User. Fed owner only.
-     • `/importfbans`*:* Reply to the Federation backup message file to import the banned list to the Federation now. (disabled for now.)
-     
-feds_admin_help: |
-     • `/fbanlist`*:* Displays all users who are victimized at the Federation at this time.
      • `/fban <user>: Prohibits users from all federations where this chat takes place, and executors have control over.
      • `/unfban <user>: Cancel User from all federations where this chat takes place, and that the executor has control over.
      • `/setfrules`*:* Arrange Federation rules.
-
-fed_user_help: |
      • `/frules`*:* See Federation regulations.
-     • `/joinfed <FedID>`*:* Join the current chat to the Federation. Only chat owners can do this. Every chat can only be in one Federation.
-     • `/fedstat`*:* See your own fbans.
-     • `/fstat`*:* Same as fedstat.
-     • `/fedinfo <FedID>`*:* See infos about specified fed.
-     • `/fedadmins`*:* Lists the fedadmins
-     
+     • `/chatfed`*:* See the Federation in the current chat.
+     • `/fedadmins`*:* Show Federation admin.
+     • `/fbanlist`*:* Displays all users who are victimized at the Federation at this time.
+     • `/fednotif` <on / off>: Federation settings not in PM when there are users who are fban / unfban.
+     • `/fedchats`*:* Get all the chats that are connected in the Federation.
+     • `/importfbans`*:* Reply to the Federation backup message file to import the banned list to the Federation now. (disabled for now.)
+
 fun_help: |
      • `/runs`*:* reply a random string from an array of replies.
      • `/pat`*:* pat a person, cool thing to have for cute ones :3
