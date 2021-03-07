@@ -1,7 +1,7 @@
 # Language name in their native
 language: "English 🇺🇲"
 # name of people(s) who worked on this translation
-authors: "@dank_as_fuck and @Stella_Lucem"
+authors: "@dank_as_fuck @Stella_Lucem"
 
 # languages
 curr_chat_lang: "Hey. Your current language is {}, select the one you want from the buttons below :)"
@@ -35,9 +35,12 @@ src_btn: "Source code"
 # General things
 not_user: "I doubt that's a user."
 cant_find: "Can't seem to find this person."
+<<<<<<< HEAD
 incorr_id: "You don't seem to be referring to a user or the ID specified is incorrect.."
 owner_only: "Only owner of the chat can do this."
 need_admin: "You need to be admin to do this."
+=======
+>>>>>>> parent of 58e6785 (translation support)
 
 admin_help: |
    • `/admins`*:* list of admins in the chat
@@ -50,6 +53,7 @@ admin_help: |
    • `/demote`*:* demotes the user replied to
    • `/title <title here>`*:* sets a custom title for an admin that the bot promoted
 
+<<<<<<< HEAD
 # admin stuff
 unsuff_right: "You don't have the necessary rights to do that!"
 admin_already: "How am I meant to promote someone that's already an admin?"
@@ -81,6 +85,8 @@ inv_unsuff: "I don't have access to the invite link, try changing my permissions
 inv_chat: "I can only give you invite links for supergroups and channels, sorry!"
 
 
+=======
+>>>>>>> parent of 58e6785 (translation support)
 afk_help: |
    - `/afk <reason>`*:* mark yourself as AFK(away from keyboard).
    - brb <reason>: same as the afk command - but not a command.
