@@ -32,20 +32,6 @@ add_bot_to_group_btn: "Add Caelum"
 support_chat_link_btn: "Support Chat"
 src_btn: "Source code"
 
-# General things
-not_user: "I doubt that's a user."
-cant_find: "Can't seem to find this person."
-<<<<<<< HEAD
-<<<<<<< HEAD
-incorr_id: "You don't seem to be referring to a user or the ID specified is incorrect.."
-owner_only: "Only owner of the chat can do this."
-need_admin: "You need to be admin to do this."
-=======
->>>>>>> parent of 58e6785 (translation support)
-=======
-no_punish: "Looks like this user is not punishable, so sad :(."
->>>>>>> parent of 17dfbe0 (Revert "more translation support")
-
 admin_help: |
    • `/admins`*:* list of admins in the chat
 
@@ -57,57 +43,6 @@ admin_help: |
    • `/demote`*:* demotes the user replied to
    • `/title <title here>`*:* sets a custom title for an admin that the bot promoted
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-# admin stuff
-unsuff_right: "You don't have the necessary rights to do that!"
-admin_already: "How am I meant to promote someone that's already an admin?"
-prom_myself: "I can't promote myself! Get an admin to do it for me."
-not_here: "I can't promote someone who isn't in the group."
-prom_fail: "An error occured while promoting."
-prom_succ: "Sucessfully promoted!"
-demo_creator: "This person CREATED the chat, how would I demote them?"
-wasnt_admin: "Can't demote what wasn't promoted!"
-demo_myself: "I can't demote myself! Get an admin to do it for me."
-demo_succ: "Sucessfully demoted!"
-else_prom: "Could not demote. I might not be admin, or the admin status was appointed by another user, so I can't act upon them!"
-cache_ref: "Admins cache refreshed!"
-title_creator: "This person CREATED the chat, how can i set custom title for him?"
-
-title_member: |
-    Can't set title for non-admins!
-    Promote them first to set custom title!
-
-title_myself: "I can't set my own title myself! Get the one who made me admin to do it for me."
-title_blank: "Setting blank title doesn't do anything!"
-
-title_char: |
-  The title length is longer than 16 characters.
-  Truncating it to 16 characters.
-
-title_else: "I can't set custom title for admins that I didn't promote!"
-inv_unsuff: "I don't have access to the invite link, try changing my permissions!"
-inv_chat: "I can only give you invite links for supergroups and channels, sorry!"
-
-
-=======
->>>>>>> parent of 58e6785 (translation support)
-=======
-not_admin: "You don't have the necessary rights to do that!"
-incorrect_id: "You don't seem to be referring to a user or the ID specified is incorrect.."
-admin_already: "How am I meant to promote someone that's already an admin?"
-prom_myself: "I can't promote myself! Get an admin to do it for me."
-demo_myself: "I can't demote myself! Get an admin to do it for me."
-not_here: "I can't promote someone who isn't in the group."
-fail_prom: "An error occured while promoting."
-succ_prom: "Sucessfully promoted {}!"
-succ_demo: "Sucessfully demoted {}!"
-prom_owner: "This person CREATED the chat, how would I demote them?"
-not_admin: "Can't demote what wasn't promoted!")
-else_promo: "Could not demote. I might not be admin, or the admin status was appointed by another user, so I can't act upon them!"
-cache_ref: "Admins cache refreshed!"
-
->>>>>>> parent of 17dfbe0 (Revert "more translation support")
 afk_help: |
    - `/afk <reason>`*:* mark yourself as AFK(away from keyboard).
    - brb <reason>: same as the afk command - but not a command.
@@ -164,34 +99,7 @@ bans_help: |
     - /unban <userhandle>: unbans a user. (via handle, or reply)
     - /kick <userhandle>: kick a user out of the group, (via handle, or reply)
 
-ban_myself: "I'm not gonna cut my own rope, are you crazy?"
-ban_owner: "I'd never ban my owner."
-ban_sudo: "I can't ban a sudo user, try another one"
-succ_banned: "I've cut the rope of {} 'till you decide to tie!"
-succ_tbanned: "I've cut the rope of {}"
-tban_time: "I've cut this user's rope for {}"
-ban_support: "Whaa tryna ban a gbanner? That won't happen!"
-ban_sardegna: "Hmm tryna ban a unbanner, nice try haha"
-ban_wt: "You can't ban a whitelisted user, that's their purpose!"
-not_bannable: "Well damn, I can't ban that user."
-ban_protect: "I don't feel like it."
-tban_timeless: "You haven't specified a time to cut the rope!"
-cant_ban: "Well damn, I can't ban that user."
-
-kick_myself: "Yeahhh I'm not gonna do that."
-not_kickable: "I really wish I could quickly cut and tie back this user's rope...."
-succ_kick: "Quickly cut the rope of {} and tied back."
-cant_kick: "Well damn, I can't kick that user."
-you_admin: "I wish I could... but you're an admin."
-succ_kickme: "*Your rope is cut and tied back in seconds*"
-fail_kickme: "Huh? I can't :/"
-
-unban_myself: "How would I tie my own rope myself if I wasn't here...?"
-user_here: "Isn't this person already here??"
-succ_unban: "Lemme tie this rope for you!"
-
-
-blacklist_help: |
+    blacklist_help: |
     Blacklists are used to stop certain triggers from being said in a group. Any time the trigger is mentioned, the message will immediately be deleted. A good combo is sometimes to pair this up with warn filters!
 
     *NOTE*: Blacklists do not affect group admins.
@@ -431,29 +339,11 @@ notes_help: |
        • `/removeallnotes`*:* removes all notes from the group
        *Note:* Note names are case-insensitive, and they are automatically converted to lowercase before getting saved.
 
-notelist: |
-       Get note by `/notenumber` or `#notename`
-
-          *ID*    *Note* 
-
-nonote: "No notes in this chat!"
-delalldone: "Deleted all notes."
-delallcan: "Clearing of all notes has been cancelled."
-       
-purge_help: |
+       purge_help: |
        *Admin only:*
         • /del: deletes the message you replied to
         • /purge: deletes all messages between this and the replied to message.
         • /purge <integer X>: deletes the replied message, and X messages following it if replied to a message.
-
-only_admin: "Only Admins are allowed to use this command"
-purge_fail: "Can't seem to purge the message"
-purge_where: "Reply to a message to select where to start purging from."
-purge_cant: "Can't seem to delete this?"
-purge_no_msg: "Whadya want to delete?"
-purge_succ: |
-        Purged messages successfully
-        This message will delete itself in 3 secs.
 
 reports_help: |
         • `/report <reason>`*:* reply to a message to report it to admins.
@@ -541,5 +431,3 @@ nlp_help: |
 delacc_help: |
       • `/delacc`*:* Check chat if has deleted accounts.
       • `/delacc clean`*:* Kick deleted accounts out!
-
-neko_paste: "What am I supposed to do with this?"

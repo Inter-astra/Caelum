@@ -5,7 +5,7 @@ from telegram.error import BadRequest
 from telegram.ext import CallbackContext, CommandHandler, Filters
 from telegram.utils.helpers import mention_html, mention_markdown
 
-from tg_bot import SUDO_USERS, SUPER_ADMINS, dispatcher
+from tg_bot import SUDO_USERS, SUPER_ADMINS dispatcher
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from tg_bot.modules.helper_funcs.chat_status import (
     bot_admin,
@@ -45,14 +45,14 @@ def promote(update: Update, context: CallbackContext) -> str:
         and not user.id in SUDO_USERS
         and not user.id in SUPER_ADMINS
     ):
-        message.reply_text(gs(chat, "not_admin"))
+        message.reply_text("You don't have the necessary rights to do that!")
         return
 
     user_id = extract_user(message, args)
 
     if not user_id:
         message.reply_text(
-            gs(chat, "incorrect_id")
+            "You don't seem to be referring to a user or the ID specified is incorrect.."
         )
         return
 
@@ -62,11 +62,11 @@ def promote(update: Update, context: CallbackContext) -> str:
         return
 
     if user_member.status in ("administrator", "creator"):
-        message.reply_text(gs(chat, "admin_already"))
+        message.reply_text("How am I meant to promote someone that's already an admin?")
         return
 
     if user_id == bot.id:
-        message.reply_text(gs(chat, "prom_myself"))
+        message.reply_text("I can't promote myself! Get an admin to do it for me.")
         return
 
     # set same perms as bot - bot can't assign higher perms than itself!
@@ -87,24 +87,15 @@ def promote(update: Update, context: CallbackContext) -> str:
         )
     except BadRequest as err:
         if err.message == "User_not_mutual_contact":
-            message.reply_text(gs(chat, "not_here"))
+            message.reply_text("I can't promote someone who isn't in the group.")
         else:
-            message.reply_text(gs(chat, "fail_prom"))
+            message.reply_text("An error occured while promoting.")
         return
 
     bot.sendMessage(
-<<<<<<< HEAD
-<<<<<<< HEAD
-        chat.id, gs(chat, "prom_succ")
-=======
         chat.id,
         f"Sucessfully promoted <b>{user_member.user.first_name or user_id}</b>!",
         parse_mode=ParseMode.HTML,
->>>>>>> parent of 58e6785 (translation support)
-=======
-        chat.id, gs(chat, "succ_prom").format
-        (mention_html(member.user.id, member.user.first_name))
->>>>>>> parent of 17dfbe0 (Revert "more translation support")
     )
 
     log_message = (
@@ -133,7 +124,7 @@ def demote(update: Update, context: CallbackContext) -> str:
     user_id = extract_user(message, args)
     if not user_id:
         message.reply_text(
-            gs(chat, "incorrect_id")
+            "You don't seem to be referring to a user or the ID specified is incorrect.."
         )
         return
 
@@ -143,15 +134,15 @@ def demote(update: Update, context: CallbackContext) -> str:
         return
 
     if user_member.status == "creator":
-        message.reply_text(gs(chat, "prom_owner"))
+        message.reply_text("This person CREATED the chat, how would I demote them?")
         return
 
     if user_member.status != "administrator":
-        message.reply_text(gs(chat, "not_admin")
+        message.reply_text("Can't demote what wasn't promoted!")
         return
 
     if user_id == bot.id:
-        message.reply_text(gs(chat, "demo_myself"))
+        message.reply_text("I can't demote myself! Get an admin to do it for me.")
         return
 
     try:
@@ -169,18 +160,9 @@ def demote(update: Update, context: CallbackContext) -> str:
         )
 
         bot.sendMessage(
-<<<<<<< HEAD
-<<<<<<< HEAD
-            chat.id, gs(chat, "demo_succ")
-=======
             chat.id,
             f"Sucessfully demoted <b>{user_member.user.first_name or user_id}</b>!",
             parse_mode=ParseMode.HTML,
->>>>>>> parent of 58e6785 (translation support)
-=======
-            chat.id, gs(chat, "succ_demo").format
-            (mention_html(member.user.id, member.user.first_name))
->>>>>>> parent of 17dfbe0 (Revert "more translation support")
         )
 
         log_message = (
@@ -192,7 +174,9 @@ def demote(update: Update, context: CallbackContext) -> str:
 
         return log_message
     except BadRequest:
-        message.reply_text(gs(chat, "else_promo")
+        message.reply_text(
+            "Could not demote. I might not be admin, or the admin status was appointed by another"
+            " user, so I can't act upon them!"
         )
         return
 
@@ -204,7 +188,7 @@ def refresh_admin(update, _):
     except KeyError:
         pass
 
-    update.effective_message.reply_text(gs(chat, "cache_ref"))
+    update.effective_message.reply_text("Admins cache refreshed!")
 
 
 @connection_status
