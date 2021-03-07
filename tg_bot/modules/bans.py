@@ -194,7 +194,7 @@ def temp_ban(update: Update, context: CallbackContext) -> str:
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text("I've cut this user's rope for {}").format(time_val))
+            message.reply_text("I've cut this user's rope for {}").format(time_val)
             return log
         else:
             log.warning(update)
