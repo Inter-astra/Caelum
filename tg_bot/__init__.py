@@ -1,6 +1,6 @@
 import logging
 import os
-import sys
+import sys, json
 import time
 import spamwatch
 import telegram.ext as tg
@@ -12,6 +12,10 @@ from configparser import ConfigParser
 from rich.logging import RichHandler
 StartTime = time.time()
 
+def get_user_list(__init__, key):
+    with open("{}/tg_bot/{}".format(os.getcwd(), __init__), "r") as json_file:
+        return json.load(json_file)[key]
+
 # enable logging
 FORMAT = "%(message)s"
 logging.basicConfig(handlers=[RichHandler()], level=logging.INFO, format=FORMAT, datefmt="[%X]")
@@ -19,14 +23,14 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 log = logging.getLogger("rich")
 
 
-log.info("Calum is now ON. | Licensed under GPLv3.")
+log.info("[Caelum] Calum is now ON. | Licensed under GPLv3.")
 
-log.info("Project maintained by;")
-log.info("github.com/Dank-del (t.me/dank_as_fuck) and github.com/Inter-Astra (t.me/Inter_Astra)")
-log.info("Read README.md please!")
+log.info("[Caelum] Project maintained by;")
+log.info("[Caelum] github.com/Dank-del (t.me/dank_as_fuck) and github.com/Stella-Lucem (t.me/Stella-Lucem)")
+log.info("[Caelum] Read README.md please!")
 # if version < 3.6, stop bot.
 if sys.version_info[0] < 3 or sys.version_info[1] < 6:
-    log.error("You MUST have a python version of at least 3.6! Multiple features depend on this. Bot quitting.")
+    log.error("[Caelum] You MUST have a python version of at least 3.6! Multiple features depend on this. Bot quitting.")
     quit(1)
 
 parser = ConfigParser()
@@ -57,18 +61,12 @@ MESSAGE_DUMP = Caelconfig.getfloat("MESSAGE_DUMP")
 GBAN_LOGS = Caelconfig.getfloat("GBAN_LOGS")
 NO_LOAD = Caelconfig.get("NO_LOAD").split()
 NO_LOAD = list(map(str, NO_LOAD))
-SUDO_USERS = Caelconfig.get("SUDO_USERS").split()
-SUDO_USERS = list(map(int, SUDO_USERS))
-SUPER_ADMINS = Caelconfig.get("SUPER_ADMINS").split()
-SUPER_ADMINS = list(map(int, SUPER_ADMINS))
-SUPPORT_USERS = Caelconfig.get("SUPPORT_USERS").split()
-SUPPORT_USERS = list(map(int, SUPPORT_USERS))
-SARDEGNA_USERS = Caelconfig.get("SARDEGNA_USERS").split()
-SARDEGNA_USERS = list(map(int, SARDEGNA_USERS))
-WHITELIST_USERS = Caelconfig.get("WHITELIST_USERS").split()
-WHITELIST_USERS = list(map(int, WHITELIST_USERS))
-SPAMMERS = Caelconfig.get("SPAMMERS").split()
-SPAMMERS = list(map(int, SPAMMERS))
+SUDO_USERS = get_user_list("elevated_users.json", "sudos")
+SUPER_ADMINS = get_user_list("elevated_users.json", "supers")
+SUPPORT_USERS = get_user_list("elevated_users.json", "supports")
+SARDEGNA_USERS = get_user_list("elevated_users.json", "sardegnas")
+WHITELIST_USERS = get_user_list("elevated_users.json", "whitelists")
+SPAMMERS = get_user_list("elevated_users.json", "spammers")
 spamwatch_api = Caelconfig.get("spamwatch_api")
 CASH_API_KEY = Caelconfig.get("CASH_API_KEY")
 TIME_API_KEY = Caelconfig.get("TIME_API_KEY")
