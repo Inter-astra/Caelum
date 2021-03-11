@@ -232,12 +232,12 @@ def addwhitelist(update: Update, context: CallbackContext) -> str:
         data = json.load(infile)
 
     if user_id in SUDO_USERS:
-        rt += "This member is a Sudo user, Demoting to Whitelisted user."
+        rt += "This member is a Sudo user, demoting to Whitelisted user."
         data["sudos"].remove(user_id)
         SUDO_USERS.remove(user_id)
 
     if user_id in SUPPORT_USERS:
-        rt += "This user is already a Support user, Demoting to Whitelisted user."
+        rt += "This user is already a Support user, demoting to Whitelisted user."
         data["supports"].remove(user_id)
         SUPPORT_USERS.remove(user_id)
 
@@ -314,18 +314,6 @@ def addsardegna(update: Update, context: CallbackContext) -> str:
 
     update.effective_message.reply_text(
         rt + f"\nSuccessfully promoted {user_member.first_name} to a Sardegna Nation!"
-    )
-
-    log_message = (
-        f"#SARDEGNA\n"
-        f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))} \n"
-        f"<b>User:</b> {mention_html(user_member.id, html.escape(user_member.first_name))}"
-    )
-
-    if chat.type != "private":
-        log_message = f"<b>{html.escape(chat.title)}:</b>\n" + log_message
-
-    return log_message
 
 
 
@@ -354,17 +342,6 @@ def removesudo(update: Update, context: CallbackContext) -> str:
 
         with open(ELEVATED_USERS_FILE, "w") as outfile:
             json.dump(data, outfile, indent=4)
-
-        log_message = (
-            f"#UNSUDO\n"
-            f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-            f"<b>User:</b> {mention_html(user_member.id, html.escape(user_member.first_name))}"
-        )
-
-        if chat.type != "private":
-            log_message = "<b>{}:</b>\n".format(html.escape(chat.title)) + log_message
-
-        return log_message
 
     else:
         message.reply_text("This user is not a Sudo user!")
@@ -397,17 +374,6 @@ def removesuper(update: Update, context: CallbackContext) -> str:
 
         with open(ELEVATED_USERS_FILE, "w") as outfile:
             json.dump(data, outfile, indent=4)
-
-        log_message = (
-            f"#UNSUPER\n"
-            f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-            f"<b>User:</b> {mention_html(user_member.id, html.escape(user_member.first_name))}"
-        )
-
-        if chat.type != "private":
-            log_message = "<b>{}:</b>\n".format(html.escape(chat.title)) + log_message
-
-        return log_message
 
     else:
         message.reply_text("This user is not a Super Amin!")
@@ -442,17 +408,6 @@ def removesupport(update: Update, context: CallbackContext) -> str:
         with open(ELEVATED_USERS_FILE, "w") as outfile:
             json.dump(data, outfile, indent=4)
 
-        log_message = (
-            f"#UNSUPPORT\n"
-            f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-            f"<b>User:</b> {mention_html(user_member.id, html.escape(user_member.first_name))}"
-        )
-
-        if chat.type != "private":
-            log_message = f"<b>{html.escape(chat.title)}:</b>\n" + log_message
-
-        return log_message
-
     else:
         message.reply_text("This user is not a Support user!")
         return ""
@@ -485,16 +440,6 @@ def removewhitelist(update: Update, context: CallbackContext) -> str:
         with open(ELEVATED_USERS_FILE, "w") as outfile:
             json.dump(data, outfile, indent=4)
 
-        log_message = (
-            f"#UNWHITELIST\n"
-            f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-            f"<b>User:</b> {mention_html(user_member.id, html.escape(user_member.first_name))}"
-        )
-
-        if chat.type != "private":
-            log_message = f"<b>{html.escape(chat.title)}:</b>\n" + log_message
-
-        return log_message
     else:
         message.reply_text("This user is not a Whitelist user!")
         return ""
@@ -527,18 +472,8 @@ def removesardegna(update: Update, context: CallbackContext) -> str:
         with open(ELEVATED_USERS_FILE, "w") as outfile:
             json.dump(data, outfile, indent=4)
 
-        log_message = (
-            f"#UNSARDEGNA\n"
-            f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-            f"<b>User:</b> {mention_html(user_member.id, html.escape(user_member.first_name))}"
-        )
-
-        if chat.type != "private":
-            log_message = f"<b>{html.escape(chat.title)}:</b>\n" + log_message
-
-        return log_message
     else:
-        message.reply_text("This user is not a Sardegna Nation!")
+        message.reply_text("This user is not a Sardegna user!")
         return ""
 
 
@@ -546,6 +481,7 @@ def send_nations(update):
     message.reply_text(
         nations, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True
     )
+
 
 
 @whitelist_plus
@@ -600,14 +536,12 @@ def rlist(update: Update, context: CallbackContext):
     update.effective_message.reply_text(reply1 + reply2 + reply3 + reply4 + reply5, parse_mode=ParseMode.HTML)
 
 
-from tg_bot.modules.language import gs
-
 RLIST_HANDLER = CommandHandler(["rlist", "rightlist"], rlist)
 
 SUDO_HANDLER = CommandHandler("addsudo", addsudo)
 SA_HANDLER = CommandHandler("addsa", addsuper)
 SUPPORT_HANDLER = CommandHandler("addsupport", addsupport)
-SD_HANDLER = CommandHandler(("addsar"), addsardegna)
+SD_HANDLER = CommandHandler("addsar", addsardegna)
 WHITELIST_HANDLER = CommandHandler("addwt", addwhitelist)
 UNSUDO_HANDLER = CommandHandler("removesudo", removesudo)
 UNSA_HANDLER = CommandHandler("removesa", removesuper)
@@ -628,7 +562,6 @@ dispatcher.add_handler(UNSUPPORT_HANDLER)
 dispatcher.add_handler(UNSD_HANDLER)
 dispatcher.add_handler(UNWHITELIST_HANDLER)
 
-__mod_name__ = "Nations"
 __handlers__ = [
     RLIST_HANDLER,
     SUDO_HANDLER,
