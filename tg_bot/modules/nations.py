@@ -313,7 +313,7 @@ def addsardegna(update: Update, context: CallbackContext) -> str:
         json.dump(data, outfile, indent=4)
 
     update.effective_message.reply_text(
-        rt + f"\nSuccessfully promoted {user_member.first_name} to a Sardegna Nation!"
+        rt + f"\nSuccessfully promoted {user_member.first_name} to a Sardegna Nation!")
 
 
 
