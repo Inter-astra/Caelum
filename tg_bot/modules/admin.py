@@ -73,7 +73,22 @@ def promote(update: Update, context: CallbackContext) -> str:
     bot_member = chat.get_member(bot.id)
 
     try:
-        bot.promoteChatMember(
+        if user_id in SUDO_USERS:
+            bot.promoteChatMember(
+            chat.id,
+            user_id,
+            can_change_info=bot_member.can_change_info,
+            can_post_messages=bot_member.can_post_messages,
+            can_edit_messages=bot_member.can_edit_messages,
+            can_delete_messages=bot_member.can_delete_messages,
+            can_invite_users=bot_member.can_invite_users,
+            can_promote_members=bot_member.can_promote_members,
+            can_restrict_members=bot_member.can_restrict_members,
+            can_pin_messages=bot_member.can_pin_messages,
+        )
+
+        else:
+            bot.promoteChatMember(
             chat.id,
             user_id,
             can_change_info=bot_member.can_change_info,
@@ -85,6 +100,7 @@ def promote(update: Update, context: CallbackContext) -> str:
             can_restrict_members=bot_member.can_restrict_members,
             can_pin_messages=bot_member.can_pin_messages,
         )
+
     except BadRequest as err:
         if err.message == "User_not_mutual_contact":
             message.reply_text("I can't promote someone who isn't in the group.")
