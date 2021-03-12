@@ -1,7 +1,7 @@
 # Language name in their native
 language: "English 🇺🇲"
 # name of people(s) who worked on this translation
-authors: "@dank_as_fuck @Stella_Lucem"
+authors: "@dank_as_fuck and @StellaLight"
 
 # languages
 curr_chat_lang: "Hey. Your current language is {}, select the one you want from the buttons below :)"
@@ -99,7 +99,7 @@ bans_help: |
     - /unban <userhandle>: unbans a user. (via handle, or reply)
     - /kick <userhandle>: kick a user out of the group, (via handle, or reply)
 
-    blacklist_help: |
+blacklist_help: |
     Blacklists are used to stop certain triggers from being said in a group. Any time the trigger is mentioned, the message will immediately be deleted. A good combo is sometimes to pair this up with warn filters!
 
     *NOTE*: Blacklists do not affect group admins.
