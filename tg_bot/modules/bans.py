@@ -64,19 +64,19 @@ def ban(update, context):
 
     if is_user_ban_protected(chat, user_id, member):
         if user_id == OWNER_ID:
-            message.reply_text("I'd never ban my owner.")
+            message.reply_text("I'd never cut my owner's rope.")
             return log_message
         elif user_id in SUDO_USERS:
-            message.reply_text("I can't ban a sudo user, try another one")
+            message.reply_text("I can't cut a sudo's rope, try another one")
             return log_message
         elif user_id in SUPPORT_USERS:
-            message.reply_text("Whaa tryna ban a gbanner? That won't happen!")
+            message.reply_text("Whaa tryna cut a gbanner's rope? That won't happen!")
             return log_message
         elif user_id in SARDEGNA_USERS:
-            message.reply_text("Hmm tryna ban a unbanner, nice try haha")
+            message.reply_text("Hmm tryna cut a unbanner's rope, nice try haha")
             return log_message
         elif user_id in WHITELIST_USERS:
-            message.reply_text("You can't ban a whitelisted user, that's their purpose!")
+            message.reply_text("You can't cut a whitelisted user's rope, that's their purpose!")
             return log_message
         else:
             message.reply_text("Looks like this user is not punishable, so sad :(.")
@@ -116,7 +116,7 @@ def ban(update, context):
                 chat.id,
                 excp.message,
             )
-            message.reply_text(gs(chat, "not_bannable"))
+            message.reply_text("Well damn, I can't ban that user.")
 
     return ""
 
@@ -186,7 +186,7 @@ def temp_ban(update: Update, context: CallbackContext) -> str:
         chat.kick_member(user_id, until_date=bantime)
         # bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
         bot.sendMessage(
-            chat.id, gs(chat, "succ_tbanned").format(
+            chat.id, "I've cut the rope of {}".format(
                 mention_html(member.user.id, member.user.first_name)
             ))
         return log
@@ -231,24 +231,24 @@ def kick(update: Update, context: CallbackContext) -> str:
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text(gs(chat, "cant_find"))
+            message.reply_text("Can't seem to find this person.")
             return log_message
         else:
             raise
 
     if user_id == bot.id:
-        message.reply_text(gs(chat, "kick_myself"))
+        message.reply_text("Yeahhh I'm not gonna do that.")
         return log_message
 
     if is_user_ban_protected(chat, user_id):
-        message.reply_text(gs(chat, "not_bannable"))
+        message.reply_text("Well damn, I can't cut the rope of that user.")
         return log_message
 
     res = chat.unban_member(user_id)  # unban on current user = kick
     if res:
         # bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
         bot.sendMessage(
-            chat.id, gs(chat, "succ_kick").format(
+            chat.id, "Quickly cut the rope of {} and tied back.".format(
                 mention_html(member.user.id, member.user.first_name))
         )
         log = (
@@ -264,7 +264,7 @@ def kick(update: Update, context: CallbackContext) -> str:
 
 
     else:
-        message.reply_text(gs(chat, "cant_kick"))
+        message.reply_text("I can't quickly cut and tie back this user's rope.")
 
     return log_message
 
@@ -274,14 +274,14 @@ def kick(update: Update, context: CallbackContext) -> str:
 def kickme(update: Update, context: CallbackContext):
     user_id = update.effective_message.from_user.id
     if is_user_admin(update.effective_chat, user_id):
-        update.effective_message.reply_text(gs(chat, "you_admin"))
+        update.effective_message.reply_text("I wish I could... but you're an admin.")
         return
 
     res = update.effective_chat.unban_member(user_id)  # unban on current user = kick
     if res:
-        update.effective_message.reply_text(gs(chat, "succ_kickme"))
+        update.effective_message.reply_text("*Your rope is cut and tied back in seconds*")
     else:
-        update.effective_message.reply_text(gs(chat, "fail_kickme"))
+        update.effective_message.reply_text("Huh? I can't :/")
 
 
 @connection_status
