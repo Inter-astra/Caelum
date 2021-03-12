@@ -32,7 +32,7 @@ def is_whitelist_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bo
 
 
 def is_support_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
-    return user_id in SUPPORT_USERS or user_id in SUDO_USERS or user_id in SUPER_ADMINS
+    return user_id in SUPPORT_USERS or user_id in SUDO_USERS
 
 
 def is_sudo_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
@@ -110,7 +110,6 @@ def dev_plus(func):
         user = update.effective_user
 
         if (user.id in SUDO_USERS
-            or user.id in SUPER_ADMINS
         ):
             return func(update, context, *args, **kwargs)
         elif not user:
