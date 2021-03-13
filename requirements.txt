@@ -4,6 +4,7 @@ beautifulsoup4
 requests==2.20
 sqlalchemy
 python-telegram-bot==13.1
+python-rapidjson
 psycopg2-binary
 feedparser
 markdown2
@@ -32,3 +33,4 @@ Intellivoid-SPB
 coffeehouse
 rich
 psutil
+hurry.filesize
