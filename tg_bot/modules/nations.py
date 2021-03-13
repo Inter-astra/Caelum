@@ -128,10 +128,7 @@ def addsuper(update: Update, context: CallbackContext) -> str:
 
 
 @sudo_plus
-def addsupport(
-    update: Update,
-    context: CallbackContext,
-) -> str:
+def addsupport(update: Update, context: CallbackContext) -> str:
     message = update.effective_message
     user = update.effective_user
     chat = update.effective_chat
@@ -175,7 +172,6 @@ def addsupport(
 
 
 @sudo_plus
-@gloggable
 def addwhitelist(update: Update, context: CallbackContext) -> str:
     message = update.effective_message
     user = update.effective_user
@@ -220,7 +216,6 @@ def addwhitelist(update: Update, context: CallbackContext) -> str:
 
 
 @sudo_plus
-@gloggable
 def addsardegna(update: Update, context: CallbackContext) -> str:
     message = update.effective_message
     user = update.effective_user
@@ -269,7 +264,6 @@ def addsardegna(update: Update, context: CallbackContext) -> str:
 
 
 @dev_plus
-@gloggable
 def removesudo(update: Update, context: CallbackContext) -> str:
     message = update.effective_message
     user = update.effective_user
@@ -301,7 +295,6 @@ def removesudo(update: Update, context: CallbackContext) -> str:
 
 
 @dev_plus
-@gloggable
 def removesuper(update: Update, context: CallbackContext) -> str:
     message = update.effective_message
     user = update.effective_user
@@ -334,7 +327,6 @@ def removesuper(update: Update, context: CallbackContext) -> str:
 
 
 @sudo_plus
-@gloggable
 def removesupport(update: Update, context: CallbackContext) -> str:
     message = update.effective_message
     user = update.effective_user
@@ -366,7 +358,6 @@ def removesupport(update: Update, context: CallbackContext) -> str:
 
 
 @sudo_plus
-@gloggable
 def removewhitelist(update: Update, context: CallbackContext) -> str:
     message = update.effective_message
     user = update.effective_user
@@ -398,7 +389,6 @@ def removewhitelist(update: Update, context: CallbackContext) -> str:
 
 
 @sudo_plus
-@gloggable
 def removesardegna(update: Update, context: CallbackContext) -> str:
     message = update.effective_message
     user = update.effective_user
