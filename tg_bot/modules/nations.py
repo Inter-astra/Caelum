@@ -56,6 +56,9 @@ def addsudo(update: Update, context: CallbackContext) -> str:
         message.reply_text("This member is already a Sudo user")
         return ""
 
+    if user_id == OWNER_ID:
+        message.reply_text("You are my owner, adding or removing you is nonsense!")
+
     if user_id in SUPPORT_USERS:
         rt += "Requested Starlight to promote a Support user to Sudo."
         data["supports"].remove(user_id)
@@ -102,6 +105,9 @@ def addsuper(update: Update, context: CallbackContext) -> str:
         message.reply_text("This member is already a super admin")
         return ""
 
+    if user_id == OWNER_ID:
+        message.reply_text("You are my owner, adding or removing you is nonsense!")
+
     if user_id in SUPPORT_USERS:
         rt += "Requested Starlight to promote a Support user to Sudo."
         data["supports"].remove(user_id)
@@ -144,6 +150,9 @@ def addsupport(update: Update, context: CallbackContext) -> str:
 
     with open(ELEVATED_USERS_FILE, "r") as infile:
         data = json.load(infile)
+
+    if user_id == OWNER_ID:
+        message.reply_text("You are my owner, adding or removing you is nonsense!")
 
     if user_id in SUDO_USERS:
         rt += "Requested Starlight to demote this Sudo to support"
@@ -189,6 +198,9 @@ def addwhitelist(update: Update, context: CallbackContext) -> str:
     with open(ELEVATED_USERS_FILE, "r") as infile:
         data = json.load(infile)
 
+    if user_id == OWNER_ID:
+        message.reply_text("You are my owner, adding or removing you is nonsense!")
+
     if user_id in SUDO_USERS:
         rt += "This member is a Sudo user, demoting to Whitelisted user."
         data["sudos"].remove(user_id)
@@ -232,6 +244,9 @@ def addsardegna(update: Update, context: CallbackContext) -> str:
 
     with open(ELEVATED_USERS_FILE, "r") as infile:
         data = json.load(infile)
+
+    if user_id == OWNER_ID:
+        message.reply_text("You are my owner, adding or removing you is nonsense!")
 
     if user_id in SUDO_USERS:
         rt += "This member is a Sudo user, Demoting to Sardegna."
@@ -280,6 +295,9 @@ def removesudo(update: Update, context: CallbackContext) -> str:
     with open(ELEVATED_USERS_FILE, "r") as infile:
         data = json.load(infile)
 
+    if user_id == OWNER_ID:
+        message.reply_text("You are my owner, adding or removing you is nonsense!")
+
     if user_id in SUDO_USERS:
         message.reply_text("Requested Starlight to demote this user to Civilian")
         SUDO_USERS.remove(user_id)
@@ -311,9 +329,12 @@ def removesuper(update: Update, context: CallbackContext) -> str:
     with open(ELEVATED_USERS_FILE, "r") as infile:
         data = json.load(infile)
 
+    if user_id == OWNER_ID:
+        message.reply_text("You are my owner, adding or removing you is nonsense!")
+
     if user_id in SUDO_USERS:
         message.reply_text("Requested Starlight to demote this user to Civilian")
-        S.remove(user_id)
+        SUPER_ADMINS.remove(user_id)
         data["supers"].remove(user_id)
 
         with open(ELEVATED_USERS_FILE, "w") as outfile:
@@ -342,6 +363,9 @@ def removesupport(update: Update, context: CallbackContext) -> str:
 
     with open(ELEVATED_USERS_FILE, "r") as infile:
         data = json.load(infile)
+
+    if user_id == OWNER_ID:
+        message.reply_text("You are my owner, adding or removing you is nonsense!")
 
     if user_id in SUPPORT_USERS:
         message.reply_text("Requested Starlight to demote this user to Civilian")
@@ -374,6 +398,9 @@ def removewhitelist(update: Update, context: CallbackContext) -> str:
     with open(ELEVATED_USERS_FILE, "r") as infile:
         data = json.load(infile)
 
+    if user_id == OWNER_ID:
+        message.reply_text("You are my owner, adding or removing you is nonsense!")
+
     if user_id in WHITELIST_USERS:
         message.reply_text("Demoting to normal user")
         WHITELIST_USERS.remove(user_id)
@@ -404,6 +431,9 @@ def removesardegna(update: Update, context: CallbackContext) -> str:
 
     with open(ELEVATED_USERS_FILE, "r") as infile:
         data = json.load(infile)
+
+    if user_id == OWNER_ID:
+        message.reply_text("You are my owner, adding or removing you is nonsense!")
 
     if user_id in SARDEGNA_USERS:
         message.reply_text("Demoting to normal user")
