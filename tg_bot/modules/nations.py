@@ -18,7 +18,6 @@ from tg_bot import (
 )
 from tg_bot.modules.helper_funcs.chat_status import whitelist_plus, dev_plus, sudo_plus
 from tg_bot.modules.helper_funcs.extraction import extract_user
-from tg_bot.modules.log_channel import gloggable
 
 ELEVATED_USERS_FILE = os.path.join(os.getcwd(), "tg_bot/elevated_users.json")
 
@@ -36,7 +35,6 @@ def check_user_id(user_id: int, context: CallbackContext) -> Optional[str]:
     return reply
 
 @dev_plus
-@gloggable
 def addsudo(update: Update, context: CallbackContext) -> str:
     message = update.effective_message
     user = update.effective_user
@@ -81,21 +79,8 @@ def addsudo(update: Update, context: CallbackContext) -> str:
         )
     )
 
-    log_message = (
-        f"#SUDO\n"
-        f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-        f"<b>User:</b> {mention_html(user_member.id, html.escape(user_member.first_name))}"
-    )
-
-    if chat.type != "private":
-        log_message = f"<b>{html.escape(chat.title)}:</b>\n" + log_message
-
-    return log_message
-
-
 
 @dev_plus
-@gloggable
 def addsuper(update: Update, context: CallbackContext) -> str:
     message = update.effective_message
     user = update.effective_user
@@ -140,21 +125,9 @@ def addsuper(update: Update, context: CallbackContext) -> str:
         )
     )
 
-    log_message = (
-        f"#SUPER\n"
-        f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-        f"<b>User:</b> {mention_html(user_member.id, html.escape(user_member.first_name))}"
-    )
-
-    if chat.type != "private":
-        log_message = f"<b>{html.escape(chat.title)}:</b>\n" + log_message
-
-    return log_message
-
 
 
 @sudo_plus
-@gloggable
 def addsupport(
     update: Update,
     context: CallbackContext,
@@ -198,17 +171,6 @@ def addsupport(
     update.effective_message.reply_text(
         rt + f"\n{user_member.first_name} was added as a Support user!"
     )
-
-    log_message = (
-        f"#SUPPORT\n"
-        f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-        f"<b>User:</b> {mention_html(user_member.id, html.escape(user_member.first_name))}"
-    )
-
-    if chat.type != "private":
-        log_message = f"<b>{html.escape(chat.title)}:</b>\n" + log_message
-
-    return log_message
 
 
 
@@ -254,17 +216,6 @@ def addwhitelist(update: Update, context: CallbackContext) -> str:
     update.effective_message.reply_text(
         rt + f"\nSuccessfully promoted {user_member.first_name} to a Whitelist user!"
     )
-
-    log_message = (
-        f"#WHITELIST\n"
-        f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))} \n"
-        f"<b>User:</b> {mention_html(user_member.id, html.escape(user_member.first_name))}"
-    )
-
-    if chat.type != "private":
-        log_message = f"<b>{html.escape(chat.title)}:</b>\n" + log_message
-
-    return log_message
 
 
 
