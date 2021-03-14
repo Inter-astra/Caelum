@@ -10,6 +10,7 @@ from tg_bot import (
     dispatcher,
     log,
     SUDO_USERS,
+    SUPER_ADMINS,
     SARDEGNA_USERS,
     SUPPORT_USERS,
     OWNER_ID,
@@ -65,22 +66,19 @@ def ban(update, context):
     if is_user_ban_protected(chat, user_id, member):
         if user_id == OWNER_ID:
             message.reply_text("I'd never cut my owner's rope.")
-            return log_message
         elif user_id in SUDO_USERS:
             message.reply_text("I can't cut a sudo's rope, try another one")
-            return log_message
         elif user_id in SUPPORT_USERS:
             message.reply_text("Whaa tryna cut a gbanner's rope? That won't happen!")
-            return log_message
         elif user_id in SARDEGNA_USERS:
             message.reply_text("Hmm tryna cut a unbanner's rope, nice try haha")
-            return log_message
         elif user_id in WHITELIST_USERS:
             message.reply_text("You can't cut a whitelisted user's rope, that's their purpose!")
-            return log_message
+        elif user_id in SUPER_ADMINS:
+            message.reply_text("That's your hidden twin, I'm givin you a big NO."
         else:
-            message.reply_text("Looks like this user is not punishable, so sad :(.")
-            return log_message
+            message.reply_text("Looks like this user is not punishable, so sad :(")
+        return log_message
 
     log = (
         f"<b>{html.escape(chat.title)}:</b>\n"

@@ -101,27 +101,19 @@ def gban(update: Update, context: CallbackContext):
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text(
-            "You don't seem to be referring to a user or the ID specified is incorrect.."
-        )
+        message.reply_text("You don't seem to be referring to a user or the ID specified is incorrect..")
         return
 
     if int(user_id) in SUDO_USERS:
-        message.reply_text(
-            "I spy, with my little eye... a sudo! Why are you guys turning on each other?"
-        )
+        message.reply_text("I spy, with my little eye... a sudo! Why are you guys turning on each other?")
         return
 
     if int(user_id) in SUPER_ADMINS:
-        message.reply_text(
-            "Aah, you are tryin to ban a super admin, tbh sounds like a joke!"
-        )
+        message.reply_text("Aah, you are tryin to ban a super admin, tbh sounds like a joke!")
         return
 
     if int(user_id) in SUPPORT_USERS:
-        message.reply_text(
-            "OOOH someone's trying to gban a gbanner! I need to watch this hehe."
-        )
+        message.reply_text("OOOH someone's trying to gban a gbanner! I need to watch this hehe.")
         return
 
     if int(user_id) in SARDEGNA_USERS:
