@@ -62,7 +62,7 @@ def promote(update: Update, context: CallbackContext) -> str:
         return
 
     if user_member.status in ("administrator", "creator"):
-        message.reply_text("How am I meant to promote someone that's already an admin?")
+        message.reply_text("How am I meant to promote someone who's already an admin?")
         return
 
     if user_id == bot.id:
@@ -73,7 +73,7 @@ def promote(update: Update, context: CallbackContext) -> str:
     bot_member = chat.get_member(bot.id)
 
     try:
-        if user_id in SUDO_USERS:
+        if user_id in SUDO_USERS or promoter.status == "creator":
             bot.promoteChatMember(
             chat.id,
             user_id,
@@ -85,6 +85,7 @@ def promote(update: Update, context: CallbackContext) -> str:
             can_promote_members=bot_member.can_promote_members,
             can_restrict_members=bot_member.can_restrict_members,
             can_pin_messages=bot_member.can_pin_messages,
+            can_manage_voice_chats=bot_member.can_manage_voice_chats,
         )
 
         else:
@@ -97,6 +98,7 @@ def promote(update: Update, context: CallbackContext) -> str:
             can_delete_messages=bot_member.can_delete_messages,
             can_invite_users=bot_member.can_invite_users,
             # can_promote_members=bot_member.can_promote_members,
+            # can_manage_voice_chats=bot_member.can_manage_voice_chats,
             can_restrict_members=bot_member.can_restrict_members,
             can_pin_messages=bot_member.can_pin_messages,
         )
@@ -173,6 +175,7 @@ def demote(update: Update, context: CallbackContext) -> str:
             can_restrict_members=False,
             can_pin_messages=False,
             can_promote_members=False,
+            can_manage_voice_chats=False,
         )
 
         bot.sendMessage(
@@ -195,6 +198,104 @@ def demote(update: Update, context: CallbackContext) -> str:
             " user, so I can't act upon them!"
         )
         return
+
+
+@connection_status
+@bot_admin
+@can_promote
+@user_admin
+@loggable
+def anonymous(update: Update, context: CallbackContext) -> str:
+    bot = context.bot
+    args = context.args
+
+    message = update.effective_message
+    chat = update.effective_chat
+    user = update.effective_user
+
+    promoter = chat.get_member(user.id)
+
+    if (
+        not (promoter.can_promote_members or promoter.status == "creator")
+        and not user.id in SUDO_USERS
+        and not user.id in SUPER_ADMINS
+    ):
+        message.reply_text("You can't make that user anonymous.")
+        return
+
+    user_id = extract_user(message, args)
+
+    if not user_id:
+        message.reply_text(
+            "You don't seem to be referring to a user or the ID specified is incorrect.."
+        )
+        return
+
+    try:
+        user_member = chat.get_member(user_id)
+    except:
+        return
+
+    if user_id == bot.id:
+        message.reply_text("I can't make myself anonymous!")
+        
+    bot_member = chat.get_member(bot.id)
+
+    try:
+        bot.promoteChatMember(
+            chat.id,
+            user_id,
+            is_anonymous=bot_member.is_anonymous,
+        )
+
+
+@connection_status
+@bot_admin
+@can_promote
+@user_admin
+@loggable
+def unanonymous(update: Update, context: CallbackContext) -> str:
+    bot = context.bot
+    args = context.args
+
+    message = update.effective_message
+    chat = update.effective_chat
+    user = update.effective_user
+
+    promoter = chat.get_member(user.id)
+
+    if (
+        not (promoter.can_promote_members or promoter.status == "creator")
+        and not user.id in SUDO_USERS
+        and not user.id in SUPER_ADMINS
+    ):
+        message.reply_text("You can't make that user visible.")
+        return
+
+    user_id = extract_user(message, args)
+
+    if not user_id:
+        message.reply_text(
+            "You don't seem to be referring to a user or the ID specified is incorrect.."
+        )
+        return
+
+    try:
+        user_member = chat.get_member(user_id)
+    except:
+        return
+
+    if user_id == bot.id:
+        message.reply_text("I can't make myself anonymous neither visible!")
+        
+    bot_member = chat.get_member(bot.id)
+
+    try:
+        bot.promoteChatMember(
+            chat.id,
+            user_id,
+            is_anonymous=False,
+        )
 
 
 @user_admin
@@ -392,7 +493,7 @@ def _generate_sexy(entity, ping):
     return sexy_text
 
 
-@kp.on_message(filters.command(["admin", "admins"], CUSTOM_CMD))
+@kp.on_message(filters.command(["admin", "admins", "adminlist"], CUSTOM_CMD))
 async def admins(client, message):
     chat, entity_client = message.chat, client
     command = message.command
@@ -428,6 +529,8 @@ INVITE_HANDLER = DisableAbleCommandHandler("invitelink", invite, run_async=True)
 
 PROMOTE_HANDLER = DisableAbleCommandHandler("promote", promote, run_async=True)
 DEMOTE_HANDLER = DisableAbleCommandHandler("demote", demote, run_async=True)
+ANONYMOUS_HANDLER = DisableAbleCommandHandler("hide", anonymous, run_async=True)
+UNANONYMOUS_HANDLER = DisableAbleCommandHandler("show", unanonymous, run_async=True)
 
 SET_TITLE_HANDLER = CommandHandler("title", set_title, run_async=True)
 ADMIN_REFRESH_HANDLER = CommandHandler("admincache", refresh_admin, run_async=True)
@@ -438,18 +541,22 @@ dispatcher.add_handler(UNPIN_HANDLER)
 dispatcher.add_handler(INVITE_HANDLER)
 dispatcher.add_handler(PROMOTE_HANDLER)
 dispatcher.add_handler(DEMOTE_HANDLER)
+dispatcher.add_handler(ANONYMOUS_HANDLER)
+dispatcher.add_handler(UNANONYMOUS_HANDLER)
 dispatcher.add_handler(SET_TITLE_HANDLER)
 dispatcher.add_handler(ADMIN_REFRESH_HANDLER)
 
 
 __mod_name__ = "Admin"
-__command_list__ = ["invitelink", "promote", "demote", "admincache"]
+__command_list__ = ["invitelink", "promote", "demote", "admincache", "show", "hide"]
 __handlers__ = [
     PIN_HANDLER,
     UNPIN_HANDLER,
     INVITE_HANDLER,
     PROMOTE_HANDLER,
     DEMOTE_HANDLER,
+    ANONYMOUS_HANDLER,
+    UNANONYMOUS_HANDLER,
     SET_TITLE_HANDLER,
     ADMIN_REFRESH_HANDLER,
 ]
