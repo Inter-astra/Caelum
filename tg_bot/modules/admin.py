@@ -62,7 +62,7 @@ def promote(update: Update, context: CallbackContext) -> str:
         return
 
     if user_member.status in ("administrator", "creator"):
-        message.reply_text("How am I meant to promote someone that's already an admin?")
+        message.reply_text("How am I meant to promote someone who's already an admin?")
         return
 
     if user_id == bot.id:
@@ -73,7 +73,7 @@ def promote(update: Update, context: CallbackContext) -> str:
     bot_member = chat.get_member(bot.id)
 
     try:
-        if user_id in SUDO_USERS:
+        if user_id in SUDO_USERS or promoter.status == "creator":
             bot.promoteChatMember(
             chat.id,
             user_id,
