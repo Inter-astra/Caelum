@@ -3,7 +3,7 @@ import time
 from datetime import datetime
 from io import BytesIO
 from tg_bot.modules.sql.users_sql import get_user_com_chats
-import tg_bot.modules.sql.global_bans_sql as sql
+import tg_bot.modules.sql.antispam_sql as sql
 from tg_bot import (
     GBAN_LOGS,
     OWNER_ID,

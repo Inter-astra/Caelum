@@ -167,11 +167,11 @@ def info(update: Update, context: CallbackContext):
     if user.id == OWNER_ID:
         text += f"\nThis person is my owner."
     elif user.id in SUDO_USERS:
-        text += f"\nThis user is my sudo."
+        text += f"\nThis user is a sudo."
     elif user.id in SUPER_ADMINS:
-        text += f"\nThis user is my super admin."
+        text += f"\nThis user is a super admin."
     elif user.id in SUPPORT_USERS:
-        text += f"\nThis user is my support."
+        text += f"\nThis user is a support."
     elif user.id in SARDEGNA_USERS:
         text += f"\nThis user is a sardegna."
     elif user.id in WHITELIST_USERS:
