@@ -192,12 +192,17 @@ def info(update: Update, context: CallbackContext):
         text += f"\n\n<b>Spam Protection Stats:</b>\n"
 
         if blc:
-             text += f"\n<b>This user is banned in Spam Protection with reason below:</b>\n<code>{blcres}</code>\n"
+             text += f"<b>Banned with reason:</b> <code>{blcres}</code>\n"
         else:
             pass
-        text += f"<b>Spam Prediction:</b> <code>{sp}</code>\n"
+        if sp:
+            text += f"<b>Spam Prediction:</b> <code>{sp}</code>\n"
+        else:
+            pass
         if ps:
             text += f"<b>This user is a potential spammer\n</b>"
+        else:
+            pass
 
     except HostDownError:
         text += f"\n\n<b>Spam Protection Stats:</b>"
