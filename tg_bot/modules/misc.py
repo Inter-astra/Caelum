@@ -185,6 +185,11 @@ def info(update: Update, context: CallbackContext):
         if ps:
             text += f"<b>This user is a potential spammer</b>"
 
+    except HostDownError:
+        text += f"\n<b>Spam Protection:</b>"
+        text += f"\nCan't connect to Spam Protection\n"
+
+
     if user.id == OWNER_ID:
         text += f"\nThis person is my owner."
     elif user.id in SUDO_USERS:
