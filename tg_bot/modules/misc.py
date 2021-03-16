@@ -187,7 +187,7 @@ def info(update: Update, context: CallbackContext):
         ps = status["results"]["attributes"]["is_potential_spammer"]
         sp = status["results"]["spam_prediction"]["spam_prediction"]
         blc = status["results"]["attributes"]["is_blacklisted"]
-        blres = status["results"]["attributes"]["blacklist_reason"]
+        blcres = status["results"]["attributes"]["blacklist_reason"]
 
         text += f"\n\n<b>Spam Protection Stats:</b>\n"
 
