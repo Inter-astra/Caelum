@@ -2,6 +2,9 @@ import html
 import re, os
 import time
 from typing import List
+from spamprotection.sync import SPBClient
+from spamprotection.errors import HostDownError
+client = SPBClient()
 
 import requests
 from telegram import Update, MessageEntity, ParseMode
@@ -164,6 +167,24 @@ def info(update: Update, context: CallbackContext):
     except:
         pass  # don't crash if api is down somehow...
 
+
+    try:
+        status = client.raw_output(int(user.id))
+        ps = status["results"]["attributes"]["is_potential_spammer"]
+        sp = status["results"]["spam_prediction"]["spam_prediction"]
+        blc = status["results"]["attributes"]["is_blacklisted"]
+
+        text += f"\n<b>Spam Protection:</b>"
+
+        if blc:
+             blres = status["results"]["attributes"]["blacklist_reason"]
+             text += f"<b>This user is banned in Spam Protection with reason below:</b>\n<code>{blcres}</code>"
+        else:
+            pass
+        text += f"<b>Spam Prediction:</b> <code>{sp}</code>\n"
+        if ps:
+            text += f"<b>This user is a potential spammer</b>"
+
     if user.id == OWNER_ID:
         text += f"\nThis person is my owner."
     elif user.id in SUDO_USERS:
@@ -192,12 +213,11 @@ def info(update: Update, context: CallbackContext):
     if user_id == 777000:
         text += f"\nThis is Telegram. It's everywhere or we'are in it, idk which one"
     elif user_id == 1087968824:
-        text += f"\nThis is anonymous, used in chats to show someone as group"
+        text += f"\nThis is anonymous, used in chats to show someone as group or to hide user"
     elif user_id == dispatcher.bot.id:
         text += f"\nIs it possible to be everywhere I'm in? Oh, ahaha it's is me"
     else:
-        num_chats = sql.get_user_num_chats(user.id)
-        text += f"\n\nWe have <code>{num_chats}</code> chats in common"
+        pass
 
     if INFOPIC:
         try:
