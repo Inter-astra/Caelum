@@ -182,22 +182,16 @@ def info(update: Update, context: CallbackContext):
         text += f"\nThis user is whitelisted."
 
 
-    text += "\n"
-    for mod in USER_INFO:
-        if mod.__mod_name__ == "Users":
-            continue
-
-
     try:
         status = client.raw_output(int(user.id))
         ps = status["results"]["attributes"]["is_potential_spammer"]
         sp = status["results"]["spam_prediction"]["spam_prediction"]
         blc = status["results"]["attributes"]["is_blacklisted"]
+        blres = status["results"]["attributes"]["blacklist_reason"]
 
         text += f"\n\n<b>Spam Protection Stats:</b>\n"
 
         if blc:
-             blres = status["results"]["attributes"]["blacklist_reason"]
              text += f"\n<b>This user is banned in Spam Protection with reason below:</b>\n<code>{blcres}</code>\n"
         else:
             pass
@@ -208,6 +202,12 @@ def info(update: Update, context: CallbackContext):
     except HostDownError:
         text += f"\n\n<b>Spam Protection Stats:</b>"
         text += f"\nCan't connect to Spam Protection\n"
+
+
+    text += "\n"
+    for mod in USER_INFO:
+        if mod.__mod_name__ == "Users":
+            continue
 
 
         try:
