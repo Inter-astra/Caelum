@@ -168,13 +168,33 @@ def info(update: Update, context: CallbackContext):
         pass  # don't crash if api is down somehow...
 
 
+    if user.id == OWNER_ID:
+        text += f"\nThis person is my owner."
+    elif user.id in SUDO_USERS:
+        text += f"\nThis user is a sudo."
+    elif user.id in SUPER_ADMINS:
+        text += f"\nThis user is a super admin."
+    elif user.id in SUPPORT_USERS:
+        text += f"\nThis user is a support."
+    elif user.id in SARDEGNA_USERS:
+        text += f"\nThis user is a sardegna."
+    elif user.id in WHITELIST_USERS:
+        text += f"\nThis user is whitelisted."
+
+
+    text += "\n"
+    for mod in USER_INFO:
+        if mod.__mod_name__ == "Users":
+            continue
+
+
     try:
         status = client.raw_output(int(user.id))
         ps = status["results"]["attributes"]["is_potential_spammer"]
         sp = status["results"]["spam_prediction"]["spam_prediction"]
         blc = status["results"]["attributes"]["is_blacklisted"]
 
-        text += f"\n\n<b>Spam Protection Stats:</b>"
+        text += f"\n\n<b>Spam Protection Stats:</b>\n"
 
         if blc:
              blres = status["results"]["attributes"]["blacklist_reason"]
@@ -189,24 +209,6 @@ def info(update: Update, context: CallbackContext):
         text += f"\n\n<b>Spam Protection Stats:</b>"
         text += f"\nCan't connect to Spam Protection\n"
 
-
-    if user.id == OWNER_ID:
-        text += f"\nThis person is my owner."
-    elif user.id in SUDO_USERS:
-        text += f"\nThis user is a sudo."
-    elif user.id in SUPER_ADMINS:
-        text += f"\nThis user is a super admin."
-    elif user.id in SUPPORT_USERS:
-        text += f"\nThis user is a support."
-    elif user.id in SARDEGNA_USERS:
-        text += f"\nThis user is a sardegna."
-    elif user.id in WHITELIST_USERS:
-        text += f"\nThis user is whitelisted."
-
-    text += "\n"
-    for mod in USER_INFO:
-        if mod.__mod_name__ == "Users":
-            continue
 
         try:
             mod_info = mod.__user_info__(user.id)
