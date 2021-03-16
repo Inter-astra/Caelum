@@ -174,19 +174,19 @@ def info(update: Update, context: CallbackContext):
         sp = status["results"]["spam_prediction"]["spam_prediction"]
         blc = status["results"]["attributes"]["is_blacklisted"]
 
-        text += f"\n<b>Spam Protection:</b>"
+        text += f"\n\n<b>Spam Protection Stats:</b>"
 
         if blc:
              blres = status["results"]["attributes"]["blacklist_reason"]
-             text += f"<b>This user is banned in Spam Protection with reason below:</b>\n<code>{blcres}</code>"
+             text += f"\n<b>This user is banned in Spam Protection with reason below:</b>\n<code>{blcres}</code>\n"
         else:
             pass
         text += f"<b>Spam Prediction:</b> <code>{sp}</code>\n"
         if ps:
-            text += f"<b>This user is a potential spammer</b>"
+            text += f"<b>This user is a potential spammer\n</b>"
 
     except HostDownError:
-        text += f"\n<b>Spam Protection:</b>"
+        text += f"\n\n<b>Spam Protection Stats:</b>"
         text += f"\nCan't connect to Spam Protection\n"
 
 
