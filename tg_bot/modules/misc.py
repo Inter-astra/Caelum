@@ -184,25 +184,17 @@ def info(update: Update, context: CallbackContext):
 
     try:
         status = client.raw_output(int(user.id))
-        ps = status["results"]["attributes"]["is_potential_spammer"]
         sp = status["results"]["spam_prediction"]["spam_prediction"]
         blc = status["results"]["attributes"]["is_blacklisted"]
         blcres = status["results"]["attributes"]["blacklist_reason"]
 
-        text += f"\n\n<b>Spam Protection Stats:</b>\n"
 
         if blc:
+             text += f"\n\n<b>Spam Protection Stats:</b>\n"
              text += f"<b>Banned with reason:</b> <code>{blcres}</code>\n"
-        else:
-            pass
         if sp:
+            text += f"\n\n<b>Spam Protection Stats:</b>\n"
             text += f"<b>Spam Prediction:</b> <code>{sp}</code>\n"
-        else:
-            pass
-        if ps:
-            text += f"<b>This user is a potential spammer\n</b>"
-        else:
-            pass
 
     except HostDownError:
         text += f"\n\n<b>Spam Protection Stats:</b>"
@@ -228,8 +220,6 @@ def info(update: Update, context: CallbackContext):
         text += f"\nThis is anonymous, used in chats to show someone as group or to hide user"
     elif user_id == dispatcher.bot.id:
         text += f"\nIs it possible to be everywhere I'm in? Oh, ahaha it's is me"
-    else:
-        pass
 
     if INFOPIC:
         try:

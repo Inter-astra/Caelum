@@ -262,7 +262,7 @@ def addsardegna(update: Update, context: CallbackContext) -> str:
         json.dump(data, outfile, indent=4)
 
     update.effective_message.reply_text(
-        rt + f"\nSuccessfully promoted {user_member.first_name} to a Sardegna Nation!")
+        rt + f"\nSuccessfully promoted {user_member.first_name} to a Sardegna!")
 
 
 
@@ -314,7 +314,7 @@ def removesuper(update: Update, context: CallbackContext) -> str:
     with open(ELEVATED_USERS_FILE, "r") as infile:
         data = json.load(infile)
 
-    if user_id in SUDO_USERS:
+    if user_id in SUPER_ADMINS:
         message.reply_text("Requested Starlight to demote this user to Civilian")
         SUPER_ADMINS.remove(user_id)
         data["supers"].remove(user_id)
@@ -323,7 +323,7 @@ def removesuper(update: Update, context: CallbackContext) -> str:
             json.dump(data, outfile, indent=4)
 
     else:
-        message.reply_text("This user is not a Super Amin!")
+        message.reply_text("This user is not a Super Admin!")
         return ""
 
 
