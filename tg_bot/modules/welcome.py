@@ -227,11 +227,6 @@ def new_member(update: Update, context: CallbackContext):
 
             # Welcome yourself
             elif new_mem.id == bot.id:
-                if chat.id in BLACKCHAT:
-                    with suppress(BadRequest):
-                        update.effective_message.reply_text(f"This group has been blacklisted.\nAppeal in @CaelumSupport for unblacklist.")
-                        bot.leave_chat(update.effective_chat.id)    
-                else:
                     update.effective_message.reply_text(
                     "Thanks for adding me!",
                     reply_to_message_id=reply,
