@@ -14,7 +14,6 @@ from tg_bot import (
     WHITELIST_USERS,
     sw,
     dispatcher,
-    BLACKCHAT,
 )
 from tg_bot.modules.helper_funcs.chat_status import (
     is_user_ban_protected,
