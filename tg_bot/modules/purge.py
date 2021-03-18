@@ -3,7 +3,7 @@ from asyncio import sleep
 import time
 from telethon import events
 
-from tg_bot import telethn
+from tg_bot import telethn, SUPER_ADMINS
 from tg_bot.modules.helper_funcs.telethn.chatstatus import (
     can_delete_messages, user_is_admin)
 
