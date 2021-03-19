@@ -79,8 +79,7 @@ def inlineinfo(update: Update, context: CallbackContext) -> None:
             text += f"<b>Spam Prediction:</b> <code>{sp}</code>\n"
 
     except HostDownError:
-        text += "\n\n<b>SpamProtection:</b>"
-        text += "\nCan't connect to Intellivoid SpamProtection API\n"
+        pass
 
     if user_id == 777000:
         text += f"\nThis is Telegram. It's everywhere or we'are in it, idk which one"
@@ -121,7 +120,7 @@ def about(update: Update, context: CallbackContext) -> None:
     sql.update_user(user.id, user.username)
     about_text = f"""
     Caelum (@{context.bot.username})
-    Base by [Dank-del](t.me/dank_as_fuck) and maintained by [Stella](tg://user?id=1659080755)
+    Maintained by [Dank-del](t.me/dank_as_fuck) and [Stella](tg://user?id=1659080755)
     Built with ❤️ using python-telegram-bot v{str(__version__)}
     Running on Python {python_version()}
     """

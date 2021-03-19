@@ -195,8 +195,7 @@ def info(update: Update, context: CallbackContext):
             text += f"<b>Spam Prediction:</b> <code>{sp}</code>\n"
 
     except HostDownError:
-        text += f"\n\n<b>Spam Protection Stats:</b>"
-        text += f"\nCan't connect to Spam Protection\n"
+        pass # to reduce and minimalistic info
 
 
     text += "\n"
@@ -327,7 +326,7 @@ def stats(update, context):
             "Built with ❤️ using python-telegram-bot\n\n" + status +
             "\n*Bot statistics*:\n"
             + "\n".join([mod.__stats__() for mod in STATS]) +
-            "\n\n*SRC*: [GitHub](https://github.com/inter-astra/Caelum)",
+            "\n\n*SRC*: [GitHub](https://github.com/Stella-Lucem/Caelum)",
         parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
     except BaseException:
         update.effective_message.reply_text(
@@ -337,7 +336,7 @@ def stats(update, context):
             "Built with ❤️ using python-telegram-bot\n" +
             "\n*Bot statistics*:\n"
             + "\n".join([mod.__stats__() for mod in STATS]) +
-            "\n\n*SRC*: [GitHub](https://github.com/inter-astra/Caelum)",
+            "\n\n*SRC*: [GitHub](https://github.com/Stella-Lucem/Caelum)",
         parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
 
