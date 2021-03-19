@@ -16,6 +16,7 @@ from tg_bot import (
     dispatcher,
     OWNER_ID,
     SUDO_USERS,
+    SUPER_ADMINS,
     SUPPORT_USERS,
     SARDEGNA_USERS,
     WHITELIST_USERS,
