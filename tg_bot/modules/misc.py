@@ -162,8 +162,7 @@ def info(update: Update, context: CallbackContext):
             text += "\n\n<b>This person is banned in Spamwatch!</b>"
             text += f"\nReason: <pre>{spamwtc.reason}</pre>"
             text += "\nAppeal at @SpamWatchSupport"
-        else:
-            pass
+
     except:
         pass  # don't crash if api is down somehow...
 
@@ -187,7 +186,6 @@ def info(update: Update, context: CallbackContext):
         sp = status["results"]["spam_prediction"]["spam_prediction"]
         blc = status["results"]["attributes"]["is_blacklisted"]
         blcres = status["results"]["attributes"]["blacklist_reason"]
-
 
         if blc:
              text += f"\n\n<b>Spam Protection Stats:</b>\n"
