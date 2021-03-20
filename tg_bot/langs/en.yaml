@@ -12,7 +12,8 @@ pm_start_text: |
    Hi {}, my name is {}!
    I am an Anime themed group management bot with some fun extras ;)
 
-   You can find the list of available commands with /help.
+   Try the buttons below to know me better.
+
 grp_start_text: "Hi, I'm Caelum."
 
 pm_help_text: |
