@@ -1,3 +1,4 @@
+from typing import Dict, List
 from uuid import uuid4
 
 from tg_bot import NO_LOAD
