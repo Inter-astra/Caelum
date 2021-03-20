@@ -41,13 +41,6 @@ def inlinequery(update: Update, _) -> None:
     results: List = []
     inline_help_dicts = [
         {
-            "title": "Spam Protection INFO",
-            "description": "Look up a person on @Intellivoid SpamProtection",
-            "message_text":"Click the button below to look up a person on @Intellivoid SpamProtection API using username or telegram id",
-            "thumb_urL": "https://telegra.ph/file/c1cbf81674a6ebd44fde0.jpg",
-            "keyboard": ".spb ",
-        },
-        {
             "title": "User info on Caelum",
             "description": "Look up a person in Caelum database",
             "message_text": "Click the button below to look up a person in Caelum database using their Telegram ID",
