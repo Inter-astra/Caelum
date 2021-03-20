@@ -185,7 +185,7 @@ def inlineinfo(query: str, update: Update, context: CallbackContext) -> None:
 
     update.inline_query.answer(results, cache_time=5)
 
-def about(query: str, update context: CallbackContext) -> None:
+def about(query: str, update: Update, context: CallbackContext) -> None:
     """Handle the inline query."""
     query = update.inline_query.query
     user_id = update.effective_user.id
