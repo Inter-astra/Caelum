@@ -685,7 +685,7 @@ VOICE_HANDLER = DisableAbleCommandHandler("voice", vchat, run_async=True)
 ANONYMOUS_HANDLER = DisableAbleCommandHandler("hide", anonymous, run_async=True)
 DEMOTE_HANDLER = DisableAbleCommandHandler("demote", demote, run_async=True)
 NOVOICE_HANDLER = DisableAbleCommandHandler("novoice", novchat, run_async=True)
-UNONYMOUS_HANDLER = DisableAbleCommandHandler("show", unanonymous, run_async=True)
+ANONYMOUS_HANDLER = DisableAbleCommandHandler("show", unanoynmous, run_async=True)
 
 SET_TITLE_HANDLER = CommandHandler("title", set_title, run_async=True)
 ADMIN_REFRESH_HANDLER = CommandHandler("admincache", refresh_admin, run_async=True)
