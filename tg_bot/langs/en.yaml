@@ -36,7 +36,8 @@ src_btn: "Source code"
 admin_help: |
    • `/admins`*:* list of admins in the chat
 
-   *Admins only:*
+   *Admin only:*
+
    • `/pin`*:* silently pins the message replied to - add `'loud'` or `'notify'` to give notifs to users.
    • `/unpin`*:* unpins the currently pinned message
    • `/invitelink`*:* gets invitelink
@@ -53,6 +54,7 @@ anilist_help: |
     *AniList*
     Get information about anime, manga or characters with the help of this module! All data is fetched from [AniList](anilist.co).
     *Available commands:*
+
      - `/anime <anime>`*:* returns information about the anime.
      - `/character <character>`*:* returns information about the character.
      - `/manga <manga>`*:* returns information about the manga.
@@ -62,7 +64,8 @@ antiflood_help: |
     will result in restricting that user.
      This will mute users if they send more than 10 messages in a row, bots are ignored.
      • `/flood`*:* Get the current flood control setting
-    • *Admins only:*
+    • *Admin only:*
+
      • `/setflood <int/'no'/'off'>`*:* enables or disables flood control
      *Example:* `/setflood 10`
      • `/setfloodmode <ban/kick/mute/tban/tmute> <value>`*:* Action to perform when user have exceeded flood limit. ban/kick/mute/tmute/tban
@@ -79,6 +82,7 @@ approve_help: |
      Maybe not enough to make them admin, but you might be ok with locks, blacklists, and antiflood not applying to them.
      That's what approvals are for - approve of trustworthy users to allow them to send
      *Admin commands:*
+
      • `/approval`*:* Check a user's approval status in current chat.
      • `/approve`*:* Approve of a user. Locks, blacklists, and antiflood won't apply to them anymore.
      • `/unapprove`*:* Unapprove of a user. They will now be subject to locks, blacklists, and antiflood again.
@@ -87,6 +91,7 @@ approve_help: |
 
 backup_help: |
     *Admin only:*
+
      - `/import`*:* reply to a group butler backup file to import as much as possible, making the transfer super simple! Note \
        that files/photos can't be imported due to telegram restrictions.
      - `/export`*:* !!! This isn't a command yet, but should be coming soon!
@@ -95,6 +100,7 @@ bans_help: |
     - `/kickme`*:* kicks the user who issued the command
 
      *Admin only:*
+
     - /ban <userhandle>: bans a user. (via handle, or reply)
     - /tban <userhandle> x(m/h/d): bans a user for x time. (via handle, or reply). m = minutes, h = hours, d = days.
     - /unban <userhandle>: unbans a user. (via handle, or reply)
@@ -108,6 +114,7 @@ blacklist_help: |
      • `/blacklist`*:* View the current blacklisted words.
 
     Admin only:
+
      • `/addblacklist <triggers>`*:* Add a trigger to the blacklist. Each line is considered one trigger, so using different lines will allow you to add multiple triggers.
      • `/unblacklist <triggers>`*:* Remove triggers from the blacklist. Same newline logic applies here, so you can remove multiple triggers at once.
      • `/blacklistmode <off/del/warn/ban/kick/mute/tban/tmute>`*:* Action to perform when someone sends blacklisted words.
@@ -127,12 +134,14 @@ connections_help: |
     - /helpconnect: list available commands that can be done remotely
 
      *Admin only:*
+
     - /allowconnect <yes/no>: allow a user to connect to a chat
 
 cust_filters_help: |
     • `/filters`*:* List all active filters saved in the chat.
 
      *Admin only:*
+
     • `/filter <keyword> <reply message>`*:* Add a filter to this chat. The bot will now reply that message whenever 'keyword'
       is mentioned. If you reply to a sticker with a keyword, the bot will reply with that sticker. NOTE: all filter
       keywords are in lowercase. If you want your keyword to be a sentence, use quotes. eg: /filter "hey there" How you
@@ -155,6 +164,7 @@ disable_help: |
      • `/cmds`*:* Check the current status of disabled commands
 
      *Admin only:*
+
      • `/enable <cmd name>`*:* Enable that command
      • `/disable <cmd name>`*:* Disable that command
      • `/listcmds`*:* List all possible disablable commands
@@ -204,7 +214,8 @@ fun_help: |
      • `/stickers`*:* search stickers in combot sticker finder.
 
 antispam_help: |
-     *Admins only:*
+     *Admin only:*
+
       • `/antispam <on/off/yes/no>`*:* Will toggle our antispam tech or return your current settings.
 
      Anti-Spam, used by bot devs to ban spammers across all groups. This helps protect
@@ -224,6 +235,7 @@ antispam_help: |
 gtranslate_help: |
      Use this module to translate stuff... duh!
      *Commands:*
+
      • `/tl` (or `/tr`): as a reply to a message, translates it to English.
      • `/tl <lang>`: translates to <lang>
      eg: `/tl en`: translates to English.
@@ -239,7 +251,8 @@ locks_help: |
 
       • `/locktypes`*:* Lists all possible locktypes
 
-     *Admins only:*
+     *Admin only:*
+
       • `/lock <type>`*:* Lock items of a certain type (not available in private)
       • `/unlock <type>`*:* Unlock items of a certain type (not available in private)
       • `/locks`*:* The current list of locks in this chat.
@@ -255,7 +268,8 @@ locks_help: |
       • Unlocking permission *pin* will allow members (non-admins) to pinned a message in a group
 
 log_help: |
-      *Admins only:*
+      *Admin only:*
+
       • `/logchannel`*:* get log channel info
       • `/setlog`*:* set the log channel.
       • `/unsetlog`*:* unset the log channel.
@@ -314,7 +328,8 @@ misc_help: |
       • /lastfm: returns what you're scrobbling on last.fm.
 
 muting_help: |
-      *Admins only:*
+      *Admin only:*
+
        • `/mute <userhandle>`*:* silences a user. Can also be used as a reply, muting the replied to user.
        • `/tmute <userhandle> x(m/h/d)`*:* mutes a user for x time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
        • `/unmute <userhandle>`*:* unmutes a user. Can also be used as a reply, muting the replied to user.
@@ -327,7 +342,8 @@ notes_help: |
         If you would like to retrieve the contents of a note without any formatting, use `/get <notename> noformat`. This can
         be useful when updating a current note.
 
-        *Admins only:*
+        *Admin only:*
+
        • `/save <notename> <notedata>`*:* saves notedata as a note with name notename
         A button can be added to a note by using standard markdown link syntax - the link should just be prepended with a
          `buttonurl:` section, as such: `[somelink](buttonurl:example.com)`. Check `/markdownhelp` for more info.
@@ -338,6 +354,7 @@ notes_help: |
 
        purge_help: |
        *Admin only:*
+
         • /del: deletes the message you replied to
         • /purge: deletes all messages between this and the replied to message.
         • /purge <integer X>: deletes the replied message, and X messages following it if replied to a message.
@@ -347,14 +364,15 @@ reports_help: |
         • `@admin`*:* reply to a message to report it to admins.
          *NOTE:* Neither of these will get triggered if used by admins.
 
-         *Admins only:*
+         *Admin only:*
+
           • `/reports <on/off>`*:* change report setting, or view current status.
           • If done in pm, toggles your status.
           • If in group, toggles that groups's status.
 
 rules_help: |
       • `/rules`*:* get the rules for this chat.
-       *Admins only:*
+       *Admin only:*
       • `/setrules <your rules here>`*:* set the rules for this chat.
       • `/clearrules`*:* clear the rules for this chat.
 
@@ -368,7 +386,7 @@ warns_help: |
       • `/warns <userhandle>`*:* get a user's number, and reason, of warns.
       • `/warnlist`*:* list of all current warning filters
 
-      *Admins only:*
+      *Admin only:*
       • `/warn <userhandle>`*:* warn a user. After 3 warns, the user will be banned from the group. Can also be used as a reply.
       • `/resetwarn <userhandle>`*:* reset the warns for a user. Can also be used as a reply.
       • `/addwarn <keyword> <reply message>`*:* set a warning filter on a certain keyword. If you want your keyword to
@@ -378,18 +396,19 @@ warns_help: |
       • `/strongwarn <on/yes/off/no>`*:* If set to on, exceeding the warn limit will result in a ban. Else, will just kick.
 
 greetings_help: |
-      *Admins only:*
-       • `/welcome <on/off>`*:* enable/disable welcome messages.
-       • `/welcome`*:* shows current welcome settings.
-       • `/welcome noformat`*:* shows current welcome settings, without the formatting - useful to recycle your welcome messages!
-       • `/goodbye`*:* same usage and args as `/welcome`.
-       • `/setwelcome <sometext>`*:* set a custom welcome message. If used replying to media, uses that media.
-       • `/setgoodbye <sometext>`*:* set a custom goodbye message. If used replying to media, uses that media.
-       • `/resetwelcome`*:* reset to the default welcome message.
-       • `/resetgoodbye`*:* reset to the default goodbye message.
+      *Admin only:*
+
+       • `/welcome <on/off>`*:* Enable/disable welcome messages.
+       • `/welcome`*:* Shows current welcome settings.
+       • `/welcome noformat`*:* Shows current welcome settings, without the formatting - useful to recycle your welcome messages!
+       • `/goodbye`*:* Same usage and args as `/welcome`.
+       • `/setwelcome <sometext>`*:* Set a custom welcome message. If used replying to media, uses that media.
+       • `/setgoodbye <sometext>`*:* Set a custom goodbye message. If used replying to media, uses that media.
+       • `/resetwelcome`*:* Reset to the default welcome message.
+       • `/resetgoodbye`*:* Reset to the default goodbye message.
        • `/cleanwelcome <on/off>`*:* On new member, try to delete the previous welcome message to avoid spamming the chat.
-       • `/welcomemutehelp`*:* gives information about welcome mutes.
-       • `/cleanservice <on/off`*:* deletes telegrams welcome/left service messages.
+       • `/welcomemutehelp`*:* Gives information about welcome mutes.
+       • `/cleanservice <on/off`*:* Deletes telegrams welcome/left service messages.
        *Example:*
       user joined chat, user left chat.
 
@@ -400,7 +419,8 @@ stickers_help: |
        If you don't want users to send specific stickers then this module will be useful.
        
        *Admin only*
-       • `/banpack`*:* blacklists the replied sticker
+
+       • `/banpack`*:* Blacklists the replied sticker
        • `/unbanpack`*:* Removes the blacklist of replied sticker
        • `/banpmode`*:* Decide what Caelum will do when a blacklisted sticker sent
        Available modes are ban, tban, mute, tmute, delete and nothing
@@ -417,13 +437,13 @@ lydia_help: |
        Powered by [Coffeehouse](https://coffeehouse.intellivoid.net), @Intellivoid
 
 nlp_help: |
-      *Chatroom Spam Prediction*
+      *Spam Prediction*
        This feature uses @Intellivoid's Coffeehouse AI to
        process chat messages and detect spam.
        This comes under Coffehouse' NLP. Learn more about
        it [here](https://docs.intellivoid.net/coffeehouse/v1/nlp/spam_prediction/chatroom)
        *Command:*
-        • `/nlpstat <on/off/yes/no>`*:* toggle NLP in your chat.
+        • `/nlpstat <on/off/yes/no>`*:* Toggle NLP in your chat.
 
 delacc_help: |
       • `/delacc`*:* Check chat if has deleted accounts.

@@ -196,13 +196,15 @@ def start(update: Update, context: CallbackContext):
                                 url="t.me/{}?startgroup=true".format(
                                     context.bot.username
                                 ),
-
                             ),
 
-                             InlineKeyboardButton(
-                                 text="Try inline mode",
-                                 switch_inline_query_current_chat="",
-                             ),
+                            InlineKeyboardButton(
+                                text="Help",
+                                url="t.me/{}?start=help".format(
+                                    context.bot.username
+                                ),
+
+                            ),
 
                         ],
                         [
@@ -210,9 +212,10 @@ def start(update: Update, context: CallbackContext):
                                 text=gs(chat.id, "support_chat_link_btn"),
                                 url=f"https://t.me/{SCHAT}",
                             ),
+
                             InlineKeyboardButton(
                                 text=gs(chat.id, "src_btn"),
-                                url="https://github.com/Inter-Astra/Caelum",
+                                url="https://github.com/Stella-lucem/Caelum",
                             ),
 
                              InlineKeyboardButton(

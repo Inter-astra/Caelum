@@ -392,7 +392,7 @@ def _generate_sexy(entity, ping):
     return sexy_text
 
 
-@kp.on_message(filters.command(["admin", "admins"], CUSTOM_CMD))
+@kp.on_message(filters.command(["admin", "admins", "adminlist", "adminslist"], CUSTOM_CMD))
 async def admins(client, message):
     chat, entity_client = message.chat, client
     command = message.command
