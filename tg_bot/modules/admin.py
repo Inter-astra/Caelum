@@ -173,11 +173,11 @@ def vchat(update: Update, context: CallbackContext) -> str:
             can_manage_voice_chats=bot_member.can_manage_voice_chats,
         )
     
-        bot.sendMessage(
-            chat.id,
-            f"<b>{user_member.user.first_name or user_id}</b> is able to manage voice chats now!",
-            parse_mode=ParseMode.HTML,
-            )
+    bot.sendMessage(
+        chat.id,
+        f"<b>{user_member.user.first_name or user_id}</b> is able to manage voice chats now!",
+        parse_mode=ParseMode.HTML,
+        )
 
     except BadRequest:
         message.reply_text(
@@ -237,11 +237,11 @@ def novchat(update: Update, context: CallbackContext) -> str:
             can_manage_voice_chats=None,
         )
     
-        bot.sendMessage(
-            chat.id,
-            f"<b>{user_member.user.first_name or user_id}</b> can no longer manage voice chats!",
-            parse_mode=ParseMode.HTML,
-            )
+    bot.sendMessage(
+        chat.id,
+        f"<b>{user_member.user.first_name or user_id}</b> can no longer manage voice chats!",
+        parse_mode=ParseMode.HTML,
+        )
 
     except BadRequest:
         message.reply_text(
@@ -301,9 +301,9 @@ def anoynmous(update: Update, context: CallbackContext) -> str:
             is_anonymous=bot_member.is_anonymous,
         )
     
-        bot.sendMessage(
-            chat.id,
-            f"This user is anonymous now.")
+    bot.sendMessage(
+        chat.id,
+        f"This user is anonymous now.")
 
     except BadRequest:
         message.reply_text(
@@ -362,10 +362,10 @@ def unanoynmous(update: Update, context: CallbackContext) -> str:
             user_id,
             is_anonymous=None,
         )
-
-        bot.sendMessage(
-            chat.id,
-            f"This user visible now.")
+    
+    bot.sendMessage(
+        chat.id,
+        f"This user visible now.")
 
     except BadRequest:
         message.reply_text(
