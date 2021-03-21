@@ -43,6 +43,8 @@ admin_help: |
    • `/invitelink`*:* gets invitelink
    • `/promote`*:* promotes the user replied to
    • `/demote`*:* demotes the user replied to
+   • `/hide`*:* anonymizes the user replied to
+   • `/show`*:* shows the user replied to
    • `/title <title here>`*:* sets a custom title for an admin that the bot promoted
 
 afk_help: |

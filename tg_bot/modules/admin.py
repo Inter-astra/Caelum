@@ -123,6 +123,255 @@ def promote(update: Update, context: CallbackContext) -> str:
 
     return log_message
 
+@connection_status
+@bot_admin
+@can_promote
+@user_admin
+@loggable
+def vchat(update: Update, context: CallbackContext) -> str:
+    bot = context.bot
+    args = context.args
+
+    message = update.effective_message
+    chat = update.effective_chat
+    user = update.effective_user
+
+    promoter = chat.get_member(user.id)
+
+    if (
+        not (promoter.can_promote_members or promoter.status == "creator")
+        and not user.id in SUDO_USERS
+        and not user.id in SUPER_ADMINS
+    ):
+        message.reply_text("You don't have the necessary rights to do that!")
+        return
+
+    user_id = extract_user(message, args)
+
+    if not user_id:
+        message.reply_text(
+            "You don't seem to be referring to a user or the ID specified is incorrect.."
+        )
+        return
+
+    try:
+        user_member = chat.get_member(user_id)
+    except:
+        return
+
+    if user_id == bot.id:
+        message.reply_text("I can't edit my own rights, tell another admin to do it for me.")
+        return
+
+    # set same perms as bot - bot can't assign higher perms than itself!
+    bot_member = chat.get_member(bot.id)
+
+    try:
+        bot.promoteChatMember(
+            chat.id,
+            user_id,
+            can_manage_voice_chats=bot_member.can_manage_voice_chats
+        )
+    
+            bot.sendMessage(
+            chat.id,
+            f"<b>{user_member.user.first_name or user_id}</b> is able to manage voice chats now!",
+            parse_mode=ParseMode.HTML,
+        )
+
+    except BadRequest:
+        message.reply_text(
+            "Could not demote. I might not be admin, or the admin status was appointed by another"
+            " user, so I can't act upon them!"
+        )
+        return
+
+
+@connection_status
+@bot_admin
+@can_promote
+@user_admin
+@loggable
+def novchat(update: Update, context: CallbackContext) -> str:
+    bot = context.bot
+    args = context.args
+
+    message = update.effective_message
+    chat = update.effective_chat
+    user = update.effective_user
+
+    promoter = chat.get_member(user.id)
+
+    if (
+        not (promoter.can_promote_members or promoter.status == "creator")
+        and not user.id in SUDO_USERS
+        and not user.id in SUPER_ADMINS
+    ):
+        message.reply_text("You don't have the necessary rights to do that!")
+        return
+
+    user_id = extract_user(message, args)
+
+    if not user_id:
+        message.reply_text(
+            "You don't seem to be referring to a user or the ID specified is incorrect.."
+        )
+        return
+
+    try:
+        user_member = chat.get_member(user_id)
+    except:
+        return
+
+    if user_id == bot.id:
+        message.reply_text("I can't edit my own rights, tell another admin to do it for me.")
+        return
+
+    # set same perms as bot - bot can't assign higher perms than itself!
+    bot_member = chat.get_member(bot.id)
+
+    try:
+        bot.promoteChatMember(
+            chat.id,
+            user_id,
+            can_manage_voice_chats=None
+        )
+    
+            bot.sendMessage(
+            chat.id,
+            f"<b>{user_member.user.first_name or user_id}</b> can no longer manage voice chats!",
+            parse_mode=ParseMode.HTML,
+        )
+
+    except BadRequest:
+        message.reply_text(
+            "Could not demote. I might not be admin, or the admin status was appointed by another"
+            " user, so I can't act upon them!"
+        )
+        return
+
+
+@connection_status
+@bot_admin
+@can_promote
+@user_admin
+@loggable
+def anoynmous(update: Update, context: CallbackContext) -> str:
+    bot = context.bot
+    args = context.args
+
+    message = update.effective_message
+    chat = update.effective_chat
+    user = update.effective_user
+
+    promoter = chat.get_member(user.id)
+
+    if (
+        not (promoter.can_promote_members or promoter.status == "creator")
+        and not user.id in SUDO_USERS
+        and not user.id in SUPER_ADMINS
+    ):
+        message.reply_text("You don't have the necessary rights to do that!")
+        return
+
+    user_id = extract_user(message, args)
+
+    if not user_id:
+        message.reply_text(
+            "You don't seem to be referring to a user or the ID specified is incorrect.."
+        )
+        return
+
+    try:
+        user_member = chat.get_member(user_id)
+    except:
+        return
+
+    if user_id == bot.id:
+        message.reply_text("I can't edit my own rights, tell another admin to do it for me.")
+        return
+
+    # set same perms as bot - bot can't assign higher perms than itself!
+    bot_member = chat.get_member(bot.id)
+
+    try:
+        bot.promoteChatMember(
+            chat.id,
+            user_id,
+            is_anonymous=bot_member.is_anonymous,
+        )
+    
+            bot.sendMessage(
+            chat.id, f"This user is anonymous now.")
+
+    except BadRequest:
+        message.reply_text(
+            "Could not demote. I might not be admin, or the admin status was appointed by another"
+            " user, so I can't act upon them!"
+        )
+        return
+
+
+@connection_status
+@bot_admin
+@can_promote
+@user_admin
+@loggable
+def unanoynmous(update: Update, context: CallbackContext) -> str:
+    bot = context.bot
+    args = context.args
+
+    message = update.effective_message
+    chat = update.effective_chat
+    user = update.effective_user
+
+    promoter = chat.get_member(user.id)
+
+    if (
+        not (promoter.can_promote_members or promoter.status == "creator")
+        and not user.id in SUDO_USERS
+        and not user.id in SUPER_ADMINS
+    ):
+        message.reply_text("You don't have the necessary rights to do that!")
+        return
+
+    user_id = extract_user(message, args)
+
+    if not user_id:
+        message.reply_text(
+            "You don't seem to be referring to a user or the ID specified is incorrect.."
+        )
+        return
+
+    try:
+        user_member = chat.get_member(user_id)
+    except:
+        return
+
+    if user_id == bot.id:
+        message.reply_text("I can't edit my own rights, tell another admin to do it for me.")
+        return
+
+    # set same perms as bot - bot can't assign higher perms than itself!
+    bot_member = chat.get_member(bot.id)
+
+    try:
+        bot.promoteChatMember(
+            chat.id,
+            user_id,
+            is_anonymous=None,
+        )
+    
+            bot.sendMessage(
+            chat.id, f"This user visible now.")
+
+    except BadRequest:
+        message.reply_text(
+            "Could not demote. I might not be admin, or the admin status was appointed by another"
+            " user, so I can't act upon them!"
+        )
+        return
+
 
 @connection_status
 @bot_admin
@@ -173,6 +422,8 @@ def demote(update: Update, context: CallbackContext) -> str:
             can_restrict_members=False,
             can_pin_messages=False,
             can_promote_members=False,
+            can_manage_voice_chats=None,
+            is_anonymous=None,
         )
 
         bot.sendMessage(
@@ -427,7 +678,11 @@ UNPIN_HANDLER = CommandHandler(
 INVITE_HANDLER = DisableAbleCommandHandler("invitelink", invite, run_async=True)
 
 PROMOTE_HANDLER = DisableAbleCommandHandler("promote", promote, run_async=True)
+VOICE_HANDLER = DisableAbleCommandHandler("voice" vchat, run_async=True)
+ANONYMOUS_HANDLER = DisableAbleCommandHandler("hide", anonymous, run_async=True)
 DEMOTE_HANDLER = DisableAbleCommandHandler("demote", demote, run_async=True)
+NOVOICE_HANDLER = DisableAbleCommandHandler("novoice" novchat, run_async=True)
+ANONYMOUS_HANDLER = DisableAbleCommandHandler("show", unanoynmous, run_async=True)
 
 SET_TITLE_HANDLER = CommandHandler("title", set_title, run_async=True)
 ADMIN_REFRESH_HANDLER = CommandHandler("admincache", refresh_admin, run_async=True)
@@ -437,19 +692,27 @@ dispatcher.add_handler(PIN_HANDLER)
 dispatcher.add_handler(UNPIN_HANDLER)
 dispatcher.add_handler(INVITE_HANDLER)
 dispatcher.add_handler(PROMOTE_HANDLER)
+dispatcher.add_handler(VOICE_HANDLER)
+dispatcher.add_handler(ANONYMOUS_HANDLER)
 dispatcher.add_handler(DEMOTE_HANDLER)
+dispatcher.add_handler(NOVOICE_HANDLER)
+dispatcher.add_handler(UNANONYMOUS_HANDLER)
 dispatcher.add_handler(SET_TITLE_HANDLER)
 dispatcher.add_handler(ADMIN_REFRESH_HANDLER)
 
 
 __mod_name__ = "Admin"
-__command_list__ = ["invitelink", "promote", "demote", "admincache"]
+__command_list__ = ["invitelink", "promote", "demote", "admincache", "voice", "novoice", "show", "hide"]
 __handlers__ = [
     PIN_HANDLER,
     UNPIN_HANDLER,
     INVITE_HANDLER,
     PROMOTE_HANDLER,
+    VOICE_HANDLER,
+    ANONYMOUS_HANDLER,
     DEMOTE_HANDLER,
+    NOVOICE_HANDLER,
+    UNANONYMOUS_HANDLER,
     SET_TITLE_HANDLER,
     ADMIN_REFRESH_HANDLER,
 ]
