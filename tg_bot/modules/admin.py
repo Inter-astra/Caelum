@@ -681,10 +681,10 @@ UNPIN_HANDLER = CommandHandler(
 INVITE_HANDLER = DisableAbleCommandHandler("invitelink", invite, run_async=True)
 
 PROMOTE_HANDLER = DisableAbleCommandHandler("promote", promote, run_async=True)
-VOICE_HANDLER = DisableAbleCommandHandler("voice" vchat, run_async=True)
+VOICE_HANDLER = DisableAbleCommandHandler("voice", vchat, run_async=True)
 ANONYMOUS_HANDLER = DisableAbleCommandHandler("hide", anonymous, run_async=True)
 DEMOTE_HANDLER = DisableAbleCommandHandler("demote", demote, run_async=True)
-NOVOICE_HANDLER = DisableAbleCommandHandler("novoice" novchat, run_async=True)
+NOVOICE_HANDLER = DisableAbleCommandHandler("novoice", novchat, run_async=True)
 ANONYMOUS_HANDLER = DisableAbleCommandHandler("show", unanoynmous, run_async=True)
 
 SET_TITLE_HANDLER = CommandHandler("title", set_title, run_async=True)
