@@ -139,7 +139,7 @@ def vchat(update: Update, context: CallbackContext) -> str:
     promoter = chat.get_member(user.id)
 
     if (
-        not promoter.status == "creator"
+        not (promoter.can_promote_members or promoter.status == "creator")
         and not user.id in SUDO_USERS
         and not user.id in SUPER_ADMINS
     ):
@@ -170,7 +170,7 @@ def vchat(update: Update, context: CallbackContext) -> str:
         bot.promoteChatMember(
             chat.id,
             user_id,
-            can_manage_voice_chats=bot_member.can_manage_voice_chats,
+            can_manage_voice_chats=bot_member.can_manage_voice_chats
         )
     
     bot.sendMessage(
@@ -203,7 +203,7 @@ def novchat(update: Update, context: CallbackContext) -> str:
     promoter = chat.get_member(user.id)
 
     if (
-        not promoter.status == "creator"
+        not (promoter.can_promote_members or promoter.status == "creator")
         and not user.id in SUDO_USERS
         and not user.id in SUPER_ADMINS
     ):
@@ -234,7 +234,7 @@ def novchat(update: Update, context: CallbackContext) -> str:
         bot.promoteChatMember(
             chat.id,
             user_id,
-            can_manage_voice_chats=None,
+            can_manage_voice_chats=None
         )
     
     bot.sendMessage(
@@ -267,7 +267,7 @@ def anoynmous(update: Update, context: CallbackContext) -> str:
     promoter = chat.get_member(user.id)
 
     if (
-        not promoter.status == "creator"
+        not (promoter.can_promote_members or promoter.status == "creator")
         and not user.id in SUDO_USERS
         and not user.id in SUPER_ADMINS
     ):
@@ -329,7 +329,7 @@ def unanoynmous(update: Update, context: CallbackContext) -> str:
     promoter = chat.get_member(user.id)
 
     if (
-        not promoter.status == "creator"
+        not (promoter.can_promote_members or promoter.status == "creator")
         and not user.id in SUDO_USERS
         and not user.id in SUPER_ADMINS
     ):
@@ -442,7 +442,6 @@ def demote(update: Update, context: CallbackContext) -> str:
         )
 
         return log_message
-
     except BadRequest:
         message.reply_text(
             "Could not demote. I might not be admin, or the admin status was appointed by another"
