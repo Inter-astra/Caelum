@@ -256,7 +256,7 @@ def novchat(update: Update, context: CallbackContext) -> str:
 @can_promote
 @user_admin
 @loggable
-def anonymous(update: Update, context: CallbackContext) -> str:
+def anoynmous(update: Update, context: CallbackContext) -> str:
     bot = context.bot
     args = context.args
 
@@ -318,7 +318,7 @@ def anonymous(update: Update, context: CallbackContext) -> str:
 @can_promote
 @user_admin
 @loggable
-def unanonymous(update: Update, context: CallbackContext) -> str:
+def unanoynmous(update: Update, context: CallbackContext) -> str:
     bot = context.bot
     args = context.args
 
