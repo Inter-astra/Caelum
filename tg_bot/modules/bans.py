@@ -10,6 +10,7 @@ from tg_bot import (
     dispatcher,
     log,
     SUDO_USERS,
+    SUPER_ADMINS,
     SARDEGNA_USERS,
     SUPPORT_USERS,
     OWNER_ID,
@@ -59,27 +60,29 @@ def ban(update, context):
             raise
 
     if user_id == context.bot.id:
-        message.reply_text("I'm not gonna cut my own rope, are you crazy?")
+        message.reply_text("Haha how I'm gonna ban myself, you clod!")
         return log_message
 
     if is_user_ban_protected(chat, user_id, member):
         if user_id == OWNER_ID:
-            message.reply_text("I'd never cut my owner's rope.")
+            message.reply_text("I'd never ban my owner.")
             return log_message
         elif user_id in SUDO_USERS:
-            message.reply_text("I can't cut a sudo's rope, try another one")
+            message.reply_text("My sudos are ban immune")
             return log_message
+        elif user_id in SUPER_ADMINS:
+            message.reply_text("I can't ban your hidden twin.")
         elif user_id in SUPPORT_USERS:
-            message.reply_text("Whaa tryna cut a gbanner's rope? That won't happen!")
+            message.reply_text("My support users are ban immune")
             return log_message
         elif user_id in SARDEGNA_USERS:
-            message.reply_text("Hmm tryna cut a unbanner's rope, nice try haha")
+            message.reply_text("I can't ban a sardegna, I go away...")
             return log_message
         elif user_id in WHITELIST_USERS:
-            message.reply_text("You can't cut a whitelisted user's rope, that's their purpose!")
+            message.reply_text("Whitelisteds are ban immune!")
             return log_message
         else:
-            message.reply_text("Looks like this user is not punishable, so sad :(.")
+            message.reply_text("This user is not punishable, so sad :(")
             return log_message
 
     log = (
@@ -95,7 +98,8 @@ def ban(update, context):
         chat.kick_member(user_id)
         # context.bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
         context.bot.sendMessage(
-            chat.id, "I've cut the rope of {} 'till you decide to tie!".format(
+            chat.id,
+            "{} has been banned.".format(
                 mention_html(member.user.id, member.user.first_name)
             ),
             parse_mode=ParseMode.HTML,
@@ -105,7 +109,7 @@ def ban(update, context):
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text("Banned", quote=False)
+            message.reply_text("Banned!", quote=False)
             return log
         else:
             log.warning(update)
@@ -142,13 +146,13 @@ def temp_ban(update: Update, context: CallbackContext) -> str:
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text("Can't seem to find this person.")
+            message.reply_text("I can't seem to find this user.")
             return log_message
         else:
             raise
 
     if user_id == bot.id:
-        message.reply_text("I'm not gonna cut my own rope, are you crazy?")
+        message.reply_text("I'm not gonna BAN myself, are you crazy?")
         return log_message
 
     if is_user_ban_protected(chat, user_id, member):
@@ -156,7 +160,7 @@ def temp_ban(update: Update, context: CallbackContext) -> str:
         return log_message
 
     if not reason:
-        message.reply_text("You haven't specified a time to cut the rope!")
+        message.reply_text("You haven't specified a time to ban this user for!")
         return log_message
 
     split_reason = reason.split(None, 1)
@@ -186,20 +190,23 @@ def temp_ban(update: Update, context: CallbackContext) -> str:
         chat.kick_member(user_id, until_date=bantime)
         # bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
         bot.sendMessage(
-            chat.id, "I've cut the rope of {}".format(
-                mention_html(member.user.id, member.user.first_name)
-            ))
+            chat.id,
+            f"{mention_html(member.user.id, member.user.first_name)} is banned for {time_val}.",
+            parse_mode=ParseMode.HTML,
+        )
         return log
 
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text("I've cut this user's rope for {}").format(time_val)
+            message.reply_text(
+                f"User has been banned for {time_val}.", quote=False
+            )
             return log
         else:
             log.warning(update)
             log.exception(
-                "ERROR cut rope of user %s in chat %s (%s) due to %s",
+                "ERROR banning user %s in chat %s (%s) due to %s",
                 user_id,
                 chat.title,
                 chat.id,
@@ -231,7 +238,7 @@ def kick(update: Update, context: CallbackContext) -> str:
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text("Can't seem to find this person.")
+            message.reply_text("I can't seem to find this user.")
             return log_message
         else:
             raise
@@ -241,19 +248,20 @@ def kick(update: Update, context: CallbackContext) -> str:
         return log_message
 
     if is_user_ban_protected(chat, user_id):
-        message.reply_text("Well damn, I can't cut the rope of that user.")
+        message.reply_text("I really wish I could kick this user....")
         return log_message
 
     res = chat.unban_member(user_id)  # unban on current user = kick
     if res:
         # bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
         bot.sendMessage(
-            chat.id, "Quickly cut the rope of {} and tied back.".format(
-                mention_html(member.user.id, member.user.first_name))
+            chat.id,
+            f"Kicked {mention_html(member.user.id, member.user.first_name)} out from the chat.",
+            parse_mode=ParseMode.HTML,
         )
         log = (
             f"<b>{html.escape(chat.title)}:</b>\n"
-            f"#CUTTHEROPE\n"
+            f"#KICKED\n"
             f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
             f"<b>User:</b> {mention_html(member.user.id, member.user.first_name)}"
         )
@@ -262,9 +270,8 @@ def kick(update: Update, context: CallbackContext) -> str:
 
         return log
 
-
     else:
-        message.reply_text("I can't quickly cut and tie back this user's rope.")
+        message.reply_text("Well damn, I can't kick that user.")
 
     return log_message
 
@@ -279,7 +286,7 @@ def kickme(update: Update, context: CallbackContext):
 
     res = update.effective_chat.unban_member(user_id)  # unban on current user = kick
     if res:
-        update.effective_message.reply_text("*Your rope is cut and tied back in seconds*")
+        update.effective_message.reply_text("*kicks you out of the group*")
     else:
         update.effective_message.reply_text("Huh? I can't :/")
 
@@ -305,13 +312,13 @@ def unban(update: Update, context: CallbackContext) -> str:
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text("Can't seem to find this person.")
+            message.reply_text("I can't seem to find this user.")
             return log_message
         else:
             raise
 
     if user_id == bot.id:
-        message.reply_text("How would I tie my own rope myself if I wasn't here...?")
+        message.reply_text("How would I unban myself if I wasn't here...?")
         return log_message
 
     if is_user_in_chat(chat, user_id):
@@ -319,7 +326,7 @@ def unban(update: Update, context: CallbackContext) -> str:
         return log_message
 
     chat.unban_member(user_id)
-    message.reply_text("Lemme tie this rope for you!")
+    message.reply_text("Yep, this user can join!")
 
     log = (
         f"<b>{html.escape(chat.title)}:</b>\n"
@@ -366,11 +373,11 @@ def selfunban(context: CallbackContext, update: Update) -> str:
         return
 
     chat.unban_member(user.id)
-    message.reply_text("Done, your rope is tied back.")
+    message.reply_text("Yep, I have unbanned you.")
 
     log = (
         f"<b>{html.escape(chat.title)}:</b>\n"
-        f"#TIEDTHEROPE\n"
+        f"#UNBANNED\n"
         f"<b>User:</b> {mention_html(member.user.id, member.user.first_name)}"
     )
 
@@ -386,14 +393,14 @@ TEMPBAN_HANDLER = CommandHandler(
     ["tban", "tempban"], temp_ban, pass_args=True, run_async=True
 )
 PUNCH_HANDLER = CommandHandler(
-    ["kick", "gtfo"], kick, pass_args=True, run_async=True
+    "kick", kick, pass_args=True, run_async=True
 )
 UNBAN_HANDLER = CommandHandler("unban", unban, pass_args=True, run_async=True)
 ROAR_HANDLER = CommandHandler(
-    ["roar", "selfunban"], selfunban, pass_args=True, run_async=True
+    ["sunban", "selfunban"], selfunban, pass_args=True, run_async=True
 )
 PUNCHME_HANDLER = DisableAbleCommandHandler(
-    ["kickme"], kickme, filters=Filters.chat_type.groups, run_async=True
+    "kickme", kickme, filters=Filters.chat_type.groups, run_async=True
 )
 
 dispatcher.add_handler(BAN_HANDLER)
