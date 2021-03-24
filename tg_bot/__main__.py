@@ -632,7 +632,7 @@ def main():
             updater.bot.set_webhook(url=URL + TOKEN)
 
     else:
-        log.info("Caelum started, Using long polling.")
+        log.info(f"Caelum started, Using long polling. | Bot: [@{dispatcher.bot.username}]")
         updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True)
     if len(argv) not in (1, 3, 4):
         telethn.disconnect()
