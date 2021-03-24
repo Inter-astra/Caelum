@@ -303,21 +303,21 @@ markdown_help_text: |
       Keep in mind that your message <b>MUST</b> contain some text other than just a button!
 
 misc_help: |
-      • /id: get the current group id. If used by replying to a message, gets that user's id.
+      • `/id`*:* get the current group id. If used by replying to a message, gets that user's id.
+      • `/info`*:* get information about a user.
+      • `/tr <language code>`*:* as reply to a long message.
+      • `/getid`*:* get IDs of chat, user and chat message.
+      • `/markdownhelp`*:* quick summary of how markdown works in telegram - can only be called in private chats.
       • /gifid: reply to a gif to me to tell you its file ID.
-      • /info: get information about a user.
-      • /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
       • /ud <word>: Type the word or expression you want to search use.
       • /urban <word>: Same as /ud
       • /paste: Do a paste at `nekobin.com`
       • /react: Reacts with a random reaction
       • /weebify <text>: returns a weebified text
-      • /tr (language code) as reply to a long message.
-      • /time <query>: Gives information about a timezone.
+      • /time <query>`: Gives information about a timezone.
       • /cash: currency converter
         example syntax: /cash 1 USD INR
       • /cinfo: get info about a user or a chat (uses @Pyrogram methods)
-      • /getid: get IDs of chat, user and chat message.
       • /spbinfo: get info about a user from @Intellivoid's SpamProtection API
       ───────────────────────────────
       *Last.FM*
@@ -352,7 +352,7 @@ notes_help: |
        • `/removeallnotes`*:* removes all notes from the group
        *Note:* Note names are case-insensitive, and they are automatically converted to lowercase before getting saved.
 
-       purge_help: |
+purge_help: |
        *Admin only:*
 
         • /del: deletes the message you replied to
