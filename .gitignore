@@ -1,4 +1,5 @@
 tg_bot/config.py
+tg_bot/elevated_users.json
 tg_bot/*.session
 tg_bot/*.session-journal
 tg_bot/config.ini
