@@ -4,7 +4,7 @@ import sys
 import platform
 from time import sleep
 from threading import Thread
-from tg_bot import OWNER_ID, dispatcher, updater
+from tg_bot import OWNER_ID, dispatcher, updater, telethn
 from tg_bot.modules.helper_funcs.chat_status import dev_plus
 from telegram import TelegramError, Update
 from telegram.ext import CallbackContext, Filters, CommandHandler
