@@ -1,8 +1,8 @@
 import html
 from tg_bot.modules.disable import DisableAbleCommandHandler
-from tg_bot import dispatcher, SUDO_USERS, SUPER_ADMINS
+from tg_bot import dispatcher, SUDO_USERS
 from tg_bot.modules.helper_funcs.extraction import extract_user
-from telegram.ext import CallbackContext, CallbackQueryHandler, Filters
+from telegram.ext import CallbackContext, CallbackQueryHandler, Filters, CommandHandler
 import tg_bot.modules.sql.approve_sql as sql
 from tg_bot.modules.helper_funcs.chat_status import user_admin
 from tg_bot.modules.log_channel import loggable
@@ -30,11 +30,6 @@ def approve(update, context):
     except BadRequest:
         return ""
     if member.status == "administrator" or member.status == "creator":
-        message.reply_text(
-            "User is already admin - They're not punishable already."
-        )
-        return ""
-    if user_id in SUPER_ADMINS:
         message.reply_text(
             "User is already admin - They're not punishable already."
         )
@@ -80,10 +75,6 @@ def disapprove(update, context):
         return ""
     if member.status == "administrator" or member.status == "creator":
         message.reply_text("This user is an admin, they can't be unapproved.")
-    if user_id in SUPER_ADMINS:
-        message.reply_text("User is already admin, they can't be unapproved.")
-        return ""
-        return ""
     if not sql.is_approved(message.chat_id, user_id):
         message.reply_text(f"{member.user['first_name']} isn't approved yet!")
         return ""
