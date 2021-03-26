@@ -196,8 +196,8 @@ def info(update: Update, context: CallbackContext):
                 text += f"\n\n<b>Spam Protection Stats:</b>\n"
                 text += f"<b>Spam Prediction:</b> <code>{sp}</code>\n"
 
-    except HostDownError:
-        pass # to reduce and minimalistic info
+        except HostDownError:
+            pass # to reduce and minimalistic info
 
     else:
         text += "\n\n<b>Spam Protection Stats:</b>"
