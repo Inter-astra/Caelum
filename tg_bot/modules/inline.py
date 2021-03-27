@@ -47,18 +47,18 @@ def inlinequery(update: Update, _) -> None:
             "thumb_urL": "https://telegra.ph/file/c1cbf81674a6ebd44fde0.jpg",
             "keyboard": ".info ",
         },
-        {
-            "title": "About",
-            "description": "Know about Caelum",
-            "message_text": "Click the button below to get to know about Caelum.",
-            "thumb_urL": "https://telegra.ph/file/c1cbf81674a6ebd44fde0.jpg",
-            "keyboard": ".about ",
-        },
+    #    {
+    #        "title": "About",
+    #        "description": "Know about Caelum",
+    #        "message_text": "Click the button below to get to know about Caelum.",
+    #        "thumb_urL": "https://telegra.ph/file/c1cbf81674a6ebd44fde0.jpg",
+    #        "keyboard": ".about ",
+    #    },
     ]
 
     inline_funcs = {
         ".info": inlineinfo,
-        ".about": about,
+    #    ".about": about,
     }
 
     if (f := query.split(" ", 1)[0]) in inline_funcs:
