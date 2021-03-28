@@ -3,7 +3,7 @@ from platform import python_version
 from uuid import uuid4
 
 from spamprotection.errors import HostDownError
-#  spamprotection.sync import SPBClient
+# spamprotection.sync import SPBClient
 from telegram import InlineQueryResultArticle, ParseMode, InputTextMessageContent, Update, InlineKeyboardMarkup, \
     InlineKeyboardButton
 from telegram import __version__
@@ -23,7 +23,7 @@ from tg_bot import (
     sw, log
 )
 
-client = SPBClient()
+# client = SPBClient()
 
 
 def remove_prefix(text, prefix):
