@@ -74,7 +74,7 @@ TIME_API_KEY = Caelconfig.get("TIME_API_KEY")
 WALL_API = Caelconfig.get("WALL_API")
 LASTFM_API_KEY = Caelconfig.get("LASTFM_API_KEY")
 BL_CHATS = Caelconfig.get("BL_Chats").split()
-BL_CHATS = list(map(int, BL_Chats))
+BL_CHATS = list(map(int, BL_CHATS))
 
 try:
     CF_API_KEY = Caelconfig.get("CF_API_KEY")
