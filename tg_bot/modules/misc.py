@@ -2,9 +2,9 @@ import html
 import re, os
 import time
 from typing import List
-from spamprotection.sync import SPBClient
-from spamprotection.errors import HostDownError
-client = SPBClient()
+# from spamprotection.sync import SPBClient
+# from spamprotection.errors import HostDownError
+# client = SPBClient()
 
 import requests
 from telegram import Update, MessageEntity, ParseMode
@@ -180,28 +180,28 @@ def info(update: Update, context: CallbackContext):
     elif user.id in WHITELIST_USERS:
         text += f"\nThis user is whitelisted."
 
-    apst = requests.get(f'https://api.intellivoid.net/spamprotection/v1/lookup?query={context.bot.username}')
-    api_status = apst.status_code
-    if (api_status == 200):
-        try:
-            status = client.raw_output(int(user.id))
-            sp = status["results"]["spam_prediction"]["spam_prediction"]
-            blc = status["results"]["attributes"]["is_blacklisted"]
-            blcres = status["results"]["attributes"]["blacklist_reason"]
+   # apst = requests.get(f'https://api.intellivoid.net/spamprotection/v1/lookup?query={context.bot.username}')
+   # api_status = apst.status_code
+   # if (api_status == 200):
+    #    try:
+    #        status = client.raw_output(int(user.id))
+    #        sp = status["results"]["spam_prediction"]["spam_prediction"]
+    #        blc = status["results"]["attributes"]["is_blacklisted"]
+    #        blcres = status["results"]["attributes"]["blacklist_reason"]
 
-            if blc:
-                text += f"\n\n<b>Spam Protection Stats:</b>\n"
-                text += f"<b>Banned with reason:</b> <code>{blcres}</code>\n"
-            if sp:
-                text += f"\n\n<b>Spam Protection Stats:</b>\n"
-                text += f"<b>Spam Prediction:</b> <code>{sp}</code>\n"
+    #        if blc:
+    #            text += f"\n\n<b>Spam Protection Stats:</b>\n"
+    #            text += f"<b>Banned with reason:</b> <code>{blcres}</code>\n"
+    #        if sp:
+    #            text += f"\n\n<b>Spam Protection Stats:</b>\n"
+    #            text += f"<b>Spam Prediction:</b> <code>{sp}</code>\n"
 
-        except HostDownError:
-            pass # to reduce and minimalistic info
+    #    except HostDownError:
+    #        pass # to reduce and minimalistic info
 
-    else:
-        text += "\n\n<b>Spam Protection Stats:</b>"
-        text += f"\n<code>API RETURNED: {api_status}</code>\n"
+    # else:
+    #    text += "\n\n<b>Spam Protection Stats:</b>"
+    #    text += f"\n<code>API RETURNED: {api_status}</code>\n"
 
 
     text += "\n"

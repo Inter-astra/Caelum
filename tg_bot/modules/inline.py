@@ -3,7 +3,7 @@ from platform import python_version
 from uuid import uuid4
 
 from spamprotection.errors import HostDownError
-from spamprotection.sync import SPBClient
+#  spamprotection.sync import SPBClient
 from telegram import InlineQueryResultArticle, ParseMode, InputTextMessageContent, Update, InlineKeyboardMarkup, \
     InlineKeyboardButton
 from telegram import __version__
@@ -131,21 +131,21 @@ def inlineinfo(query: str, update: Update, context: CallbackContext) -> None:
     except:
         pass  # don't crash if api is down somehow...
 
-    try:
-        status = client.raw_output(int(user.id))
-        sp = status["results"]["spam_prediction"]["spam_prediction"]
-        blc = status["results"]["attributes"]["is_blacklisted"]
-        blcres = status["results"]["attributes"]["blacklist_reason"]
+    # try:
+    #    status = client.raw_output(int(user.id))
+    #    sp = status["results"]["spam_prediction"]["spam_prediction"]
+    #    blc = status["results"]["attributes"]["is_blacklisted"]
+    #    blcres = status["results"]["attributes"]["blacklist_reason"]
 
-        if blc:
-             text += f"\n\n<b>Spam Protection Stats:</b>\n"
-             text += f"<b>Banned with reason:</b> <code>{blcres}</code>\n"
-        if sp:
-            text += f"\n\n<b>Spam Protection Stats:</b>\n"
-            text += f"<b>Spam Prediction:</b> <code>{sp}</code>\n"
+    #    if blc:
+    #         text += f"\n\n<b>Spam Protection Stats:</b>\n"
+    #         text += f"<b>Banned with reason:</b> <code>{blcres}</code>\n"
+    #    if sp:
+    #        text += f"\n\n<b>Spam Protection Stats:</b>\n"
+    #        text += f"<b>Spam Prediction:</b> <code>{sp}</code>\n"
 
-    except HostDownError:
-        pass
+    # except HostDownError:
+    #     pass
 
     if user_id == 777000:
         text += f"\nThis is Telegram. It's everywhere or we'are in it, idk which one"
