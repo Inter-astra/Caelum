@@ -231,7 +231,7 @@ def new_member(update: Update, context: CallbackContext):
             elif new_mem.id == bot.id:
                 if chat.id in BL_CHATS:
                     with suppress(BadRequest):
-                        update.effective_message.reply_text(f"This group is blacklisted for Caelum\nJoin {SCHAT} to appeal.")
+                        update.effective_message.reply_text(f"This group is blacklisted for Caelum\nJoin @{SCHAT} to appeal.")
                         bot.leave_chat(update.effective_chat.id)
                         return
                 else:
