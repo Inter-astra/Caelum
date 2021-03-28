@@ -73,6 +73,9 @@ CASH_API_KEY = Caelconfig.get("CASH_API_KEY")
 TIME_API_KEY = Caelconfig.get("TIME_API_KEY")
 WALL_API = Caelconfig.get("WALL_API")
 LASTFM_API_KEY = Caelconfig.get("LASTFM_API_KEY")
+BL_CHATS = Caelconfig.get("BL_Chats").split()
+BL_CHATS = list(map(int, BL_Chats))
+
 try:
     CF_API_KEY = Caelconfig.get("CF_API_KEY")
     log.info("AI antispam powered by Intellivoid.")

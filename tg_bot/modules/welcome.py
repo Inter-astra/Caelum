@@ -3,6 +3,7 @@ import random
 import re
 import time
 from functools import partial
+from contextlib import suppress
 
 import tg_bot.modules.sql.welcome_sql as sql
 from tg_bot import (
@@ -14,6 +15,8 @@ from tg_bot import (
     WHITELIST_USERS,
     sw,
     dispatcher,
+    BL_CHATS,
+    SCHAT,
 )
 from tg_bot.modules.helper_funcs.chat_status import (
     is_user_ban_protected,
@@ -226,11 +229,17 @@ def new_member(update: Update, context: CallbackContext):
 
             # Welcome yourself
             elif new_mem.id == bot.id:
-                update.effective_message.reply_text(
-                    "Thanks for adding me!",
-                    reply_to_message_id=reply,
-                )
-                continue
+                if chat_id in BL_CHATS:
+                    with suppress(BadRequest):
+                        update.effective_message.reply_text(f"This group is blacklisted for Caelum\nJoin {SCHAT} to appeal.")
+                        bot.leave_chat(update.effective_chat.id)
+                        return
+                else:
+                    update.effective_message.reply_text(
+                        "Thanks for adding me!",
+                        reply_to_message_id=reply,
+                    )
+                    continue
 
             else:
                 buttons = sql.get_welc_buttons(chat.id)
