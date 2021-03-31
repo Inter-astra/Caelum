@@ -2,9 +2,6 @@ import html
 import re, os
 import time
 from typing import List
-# from spamprotection.sync import SPBClient
-# from spamprotection.errors import HostDownError
-# client = SPBClient()
 
 import requests
 from telegram import Update, MessageEntity, ParseMode
@@ -154,7 +151,7 @@ def info(update: Update, context: CallbackContext):
     if user.username:
         text += f"\nUsername: @{html.escape(user.username)}"
 
-    text += f"\nPermanent User Link: {mention_html(user.id, 'link')}"
+    text += f"\nUser Link: {mention_html(user.id, 'link')}"
 
     try:
         spamwtc = sw.get_ban(int(user.id))
@@ -168,41 +165,17 @@ def info(update: Update, context: CallbackContext):
 
 
     if user.id == OWNER_ID:
-        text += f"\nThis person is my owner."
+        text += f"\n\nThis person is my owner."
     elif user.id in SUDO_USERS:
-        text += f"\nThis user is a sudo."
+        text += f"\n\nThis user is a sudo."
     elif user.id in SUPER_ADMINS:
-        text += f"\nThis user is a super admin."
+        text += f"\n\nThis user is a super admin."
     elif user.id in SUPPORT_USERS:
-        text += f"\nThis user is a support."
+        text += f"\n\nThis user is a support."
     elif user.id in SARDEGNA_USERS:
-        text += f"\nThis user is a sardegna."
+        text += f"\n\nThis user is a sardegna."
     elif user.id in WHITELIST_USERS:
-        text += f"\nThis user is whitelisted."
-
-   # apst = requests.get(f'https://api.intellivoid.net/spamprotection/v1/lookup?query={context.bot.username}')
-   # api_status = apst.status_code
-   # if (api_status == 200):
-    #    try:
-    #        status = client.raw_output(int(user.id))
-    #        sp = status["results"]["spam_prediction"]["spam_prediction"]
-    #        blc = status["results"]["attributes"]["is_blacklisted"]
-    #        blcres = status["results"]["attributes"]["blacklist_reason"]
-
-    #        if blc:
-    #            text += f"\n\n<b>Spam Protection Stats:</b>\n"
-    #            text += f"<b>Banned with reason:</b> <code>{blcres}</code>\n"
-    #        if sp:
-    #            text += f"\n\n<b>Spam Protection Stats:</b>\n"
-    #            text += f"<b>Spam Prediction:</b> <code>{sp}</code>\n"
-
-    #    except HostDownError:
-    #        pass # to reduce and minimalistic info
-
-    # else:
-    #    text += "\n\n<b>Spam Protection Stats:</b>"
-    #    text += f"\n<code>API RETURNED: {api_status}</code>\n"
-
+        text += f"\n\nThis user is whitelisted."
 
     text += "\n"
     for mod in USER_INFO:
@@ -216,13 +189,6 @@ def info(update: Update, context: CallbackContext):
             mod_info = mod.__user_info__(user.id, chat.id)
         if mod_info:
             text += "" + mod_info
-
-    if user_id == 777000:
-        text += f"\nThis is Telegram. It's everywhere or we'are in it, idk which one"
-    elif user_id == 1087968824:
-        text += f"\nThis is anonymous, used in chats to show someone as group or to hide user"
-    elif user_id == dispatcher.bot.id:
-        text += f"\nIs it possible to be everywhere I'm in? Oh, ahaha it's is me"
 
     if INFOPIC:
         try:
