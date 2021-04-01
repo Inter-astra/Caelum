@@ -552,8 +552,7 @@ def __user_info__(user_id):
         user = sql.get_gbanned_user(user_id)
         if user.reason:
             text += f" <b>with reason:</b>\n<code>{html.escape(user.reason)}</code>"
-
-        return text
+    return text
 
 
 def __migrate__(old_chat_id, new_chat_id):
