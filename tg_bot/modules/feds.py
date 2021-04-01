@@ -2201,7 +2201,7 @@ def get_myfeds_list(update, context):
 
     fedowner = sql.get_user_owner_fed_full(user.id)
     if fedowner:
-        text = "*You are owner of feds:\n*"
+        text = "*You are admin of the feds below:\n*"
         for f in fedowner:
             text += "- `{}`: *{}*\n".format(f["fed_id"], f["fed"]["fname"])
     else:
@@ -2241,7 +2241,7 @@ def welcome_fed(update, context):
     fban, fbanreason, fbantime = sql.get_fban_user(fed_id, user.id)
     if fban:
         update.effective_message.reply_text(
-            "This user is banned in current federation! I will remove him."
+            "This user is banned in current fed, so removed."
         )
         context.bot.kick_chat_member(chat.id, user.id)
         return True
@@ -2266,22 +2266,22 @@ def __user_info__(user_id, chat_id):
 
         if int(info["owner"]) == user_id:
             text = (
-                "\nThis user is the owner of the current Federation: <b>{}</b>.".format(
+                "\nThis user is the owner of <b>{}</b> fed.".format(
                     infoname
                 )
             )
         elif is_user_fed_admin(fed_id, user_id):
             text = (
-                "\nThis user is the admin of the current Federation: <b>{}</b>.".format(
+                "\nThis user is an admin of <b>{}</b> fed.".format(
                     infoname
                 )
             )
 
         elif fban:
-            text = "<b>\nBanned in current Fed</b>: Yes"
-            text += "\n<b>Reason</b>: {}".format(fbanreason)
-        else:
-            text = "<b>\nBanned in current Fed</b>: No"
+            if fbanreason:
+                text = "Fbanned with reason:\n{}".format(fbanreason)
+            else:
+                text = "Fbanned in this fed."
     else:
         text = ""
     return text
