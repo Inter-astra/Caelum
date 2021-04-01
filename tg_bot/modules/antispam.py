@@ -541,7 +541,6 @@ def __user_info__(user_id):
         return ""
 
     is_gbanned = sql.is_user_gbanned(user_id)
-    text = "\nGlobally Banned: <b>{}</b>"
     if user_id in [777000, 1087968824]:
         return ""
     if user_id == dispatcher.bot.id:
@@ -549,13 +548,10 @@ def __user_info__(user_id):
     if int(user_id) in SUDO_USERS + SARDEGNA_USERS + WHITELIST_USERS + SUPER_ADMINS + SUPPORT_USERS:
         return ""
     if is_gbanned:
-        text = text.format("Yes")
+        text = "<b>User is globally Banned</b>"
         user = sql.get_gbanned_user(user_id)
         if user.reason:
-            text += f"\n<b>Reason:</b> <code>{html.escape(user.reason)}</code>"
-        text += f"\n<b>Appeal Chat:</b> @{SCHAT}"
-    else:
-        text = text.format("No")
+            text += f" <b>with reason:</b>\n<code>{html.escape(user.reason)}</code>"
     return text
 
 

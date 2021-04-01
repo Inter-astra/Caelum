@@ -2201,11 +2201,11 @@ def get_myfeds_list(update, context):
 
     fedowner = sql.get_user_owner_fed_full(user.id)
     if fedowner:
-        text = "*You are owner of feds:\n*"
+        text = "*You are owner of feds below:\n*"
         for f in fedowner:
             text += "- `{}`: *{}*\n".format(f["fed_id"], f["fed"]["fname"])
     else:
-        text = "*You are not have any feds!*"
+        text = "*You don't own any feds!*"
     send_message(update.effective_message, text, parse_mode="markdown")
 
 
@@ -2278,10 +2278,10 @@ def __user_info__(user_id, chat_id):
             )
 
         elif fban:
-            text = "<b>\nBanned in current Fed</b>: Yes"
-            text += "\n<b>Reason</b>: {}".format(fbanreason)
-        else:
-            text = "<b>\nBanned in current Fed</b>: No"
+            if fbanreason:
+                text = "<b>\nBanned in current Fed with reason</b>:\n{}".format(fbanreason)
+            else:
+                text = "<b>\nBanned in current Fed.</b>"
     else:
         text = ""
     return text
