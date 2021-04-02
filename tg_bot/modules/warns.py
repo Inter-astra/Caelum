@@ -119,14 +119,14 @@ def warn(
             [
                 [
                     InlineKeyboardButton(
-                        "🔘 Repair the damage", callback_data="rm_warn({})".format(user.id)
+                        "🔘 Remove warn", callback_data="rm_warn({})".format(user.id)
                     )
                 ]
             ]
         )
 
         reply = (
-            f"<code>❕</code><b>Someone's rope is damaged!</b>\n"
+            f"<code>❕</code><b>Warn Event</b>\n"
             f"<code> </code><b>•  User:</b> {mention_html(user.id, user.first_name)}\n"
             f"<code> </code><b>•  Count:</b> {num_warns}/{limit}"
         )
@@ -168,7 +168,7 @@ def button(update: Update, context: CallbackContext) -> str:
         res = sql.remove_warn(user_id, chat.id)
         if res:
             update.effective_message.edit_text(
-                "This damage is repaired by {}.".format(mention_html(user.id, user.first_name)),
+                "Warn removed by {}.".format(mention_html(user.id, user.first_name)),
                 parse_mode=ParseMode.HTML,
             )
             user_member = chat.get_member(user_id)
@@ -180,7 +180,7 @@ def button(update: Update, context: CallbackContext) -> str:
             )
         else:
             update.effective_message.edit_text(
-                "User's rope is strong.", parse_mode=ParseMode.HTML
+                "User already has no warns.", parse_mode=ParseMode.HTML
             )
 
     return ""
@@ -229,7 +229,7 @@ def reset_warns(update: Update, context: CallbackContext) -> str:
 
     if user_id:
         sql.reset_warns(user_id, chat.id)
-        message.reply_text("All the damages of ropes has been repaired")
+        message.reply_text("Warns have been reset!")
         warned = chat.get_member(user_id).user
         return (
             f"<b>{html.escape(chat.title)}:</b>\n"
@@ -255,7 +255,7 @@ def warns(update: Update, context: CallbackContext):
 
         if reasons:
             text = (
-                f"This user's rope has lost {num_warns}/{limit} health, for the following reasons:"
+                f"This user has {num_warns}/{limit} warns, for the following reasons:"
             )
             for reason in reasons:
                 text += f"\n • {reason}"
@@ -265,10 +265,10 @@ def warns(update: Update, context: CallbackContext):
                 update.effective_message.reply_text(msg)
         else:
             update.effective_message.reply_text(
-                f"User's rope has lost {num_warns}/{limit} health, but no reasons for any of them."
+                f"User has {num_warns}/{limit} warns, but no reasons for any of them."
             )
     else:
-        update.effective_message.reply_text("This user's rope has no damage!")
+        update.effective_message.reply_text("This user doesn't have any warns!")
 
 
 # Dispatcher handler stop - do not async
@@ -301,7 +301,7 @@ def add_warn_filter(update: Update, context: CallbackContext):
 
     sql.add_warn_filter(chat.id, keyword, content)
 
-    update.effective_message.reply_text(f"'{keyword}' added to rope damager!")
+    update.effective_message.reply_text(f"Warn handler added for '{keyword}'!")
     raise DispatcherHandlerStop
 
 
@@ -327,17 +327,17 @@ def remove_warn_filter(update: Update, context: CallbackContext):
     chat_filters = sql.get_chat_warn_triggers(chat.id)
 
     if not chat_filters:
-        msg.reply_text("No rope damager filters are active here!")
+        msg.reply_text("No warning filters are active here!")
         return
 
     for filt in chat_filters:
         if filt == to_remove:
             sql.remove_warn_filter(chat.id, to_remove)
-            msg.reply_text("Okay, I'll damaging users' rope people for that.")
+            msg.reply_text("Okay, I'll stop warning people for that.")
             raise DispatcherHandlerStop
 
     msg.reply_text(
-        "That's not a current rope damage filter - run /warnlist for all active warning filters."
+        "That's not a current warning filter - run /warnlist for all active warning filters."
     )
 
 
@@ -346,7 +346,7 @@ def list_warn_filters(update: Update, context: CallbackContext):
     all_handlers = sql.get_chat_warn_triggers(chat.id)
 
     if not all_handlers:
-        update.effective_message.reply_text("No rope damager filters are active here!")
+        update.effective_message.reply_text("No warning filters are active here!")
         return
 
     filter_list = CURRENT_WARNING_FILTER_STRING
@@ -401,10 +401,10 @@ def set_warn_limit(update: Update, context: CallbackContext) -> str:
     if args:
         if args[0].isdigit():
             if int(args[0]) < 3:
-                msg.reply_text("The minimum rope damager limit is 3!")
+                msg.reply_text("The minimum warn limit is 3!")
             else:
                 sql.set_warn_limit(chat.id, int(args[0]))
-                msg.reply_text("Updated the rope damager limit to {}".format(args[0]))
+                msg.reply_text("Updated the warn limit to {}".format(args[0]))
                 return (
                     f"<b>{html.escape(chat.title)}:</b>\n"
                     f"#SET_WARN_LIMIT\n"
@@ -416,7 +416,7 @@ def set_warn_limit(update: Update, context: CallbackContext) -> str:
     else:
         limit, soft_warn = sql.get_warn_setting(chat.id)
 
-        msg.reply_text("The current rope damager limit is {}".format(limit))
+        msg.reply_text("The current warn limit is {}".format(limit))
     return ""
 
 
@@ -430,11 +430,11 @@ def set_warn_strength(update: Update, context: CallbackContext):
     if args:
         if args[0].lower() in ("on", "yes"):
             sql.set_warn_strength(chat.id, False)
-            msg.reply_text("If rope has no health, It'll get cut")
+            msg.reply_text("Too many warns will now result in a Ban!")
             return (
                 f"<b>{html.escape(chat.title)}:</b>\n"
                 f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
-                f"Has enabled strong rope damager. Ropes will get cut"
+                f"Has enabled strong warns. Users will be banned"
             )
 
         elif args[0].lower() in ("off", "no"):
