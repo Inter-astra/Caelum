@@ -3,7 +3,6 @@ from platform import python_version
 from uuid import uuid4
 
 from spamprotection.errors import HostDownError
-# spamprotection.sync import SPBClient
 from telegram import InlineQueryResultArticle, ParseMode, InputTextMessageContent, Update, InlineKeyboardMarkup, \
     InlineKeyboardButton
 from telegram import __version__
@@ -22,8 +21,6 @@ from tg_bot import (
     WHITELIST_USERS,
     sw, log
 )
-
-# client = SPBClient()
 
 
 def remove_prefix(text, prefix):
@@ -47,18 +44,10 @@ def inlinequery(update: Update, _) -> None:
             "thumb_urL": "https://telegra.ph/file/c1cbf81674a6ebd44fde0.jpg",
             "keyboard": ".info ",
         },
-    #    {
-    #        "title": "About",
-    #        "description": "Know about Caelum",
-    #        "message_text": "Click the button below to get to know about Caelum.",
-    #        "thumb_urL": "https://telegra.ph/file/c1cbf81674a6ebd44fde0.jpg",
-    #        "keyboard": ".about ",
-    #    },
     ]
 
     inline_funcs = {
         ".info": inlineinfo,
-    #    ".about": about,
     }
 
     if (f := query.split(" ", 1)[0]) in inline_funcs:
@@ -131,28 +120,6 @@ def inlineinfo(query: str, update: Update, context: CallbackContext) -> None:
     except:
         pass  # don't crash if api is down somehow...
 
-    # try:
-    #    status = client.raw_output(int(user.id))
-    #    sp = status["results"]["spam_prediction"]["spam_prediction"]
-    #    blc = status["results"]["attributes"]["is_blacklisted"]
-    #    blcres = status["results"]["attributes"]["blacklist_reason"]
-
-    #    if blc:
-    #         text += f"\n\n<b>Spam Protection Stats:</b>\n"
-    #         text += f"<b>Banned with reason:</b> <code>{blcres}</code>\n"
-    #    if sp:
-    #        text += f"\n\n<b>Spam Protection Stats:</b>\n"
-    #        text += f"<b>Spam Prediction:</b> <code>{sp}</code>\n"
-
-    # except HostDownError:
-    #     pass
-
-    if user_id == 777000:
-        text += f"\nThis is Telegram. It's everywhere or we'are in it, idk which one"
-    elif user_id == 1087968824:
-        text += f"\nThis is anonymous, used in chats to show someone as group or to hide user"
-    elif user_id == dispatcher.bot.id:
-        text += f"\nIs it possible to be everywhere I'm in? Oh, ahaha it's is me"
 
     if user.id == OWNER_ID:
         text += f"\nThis person is my owner."
