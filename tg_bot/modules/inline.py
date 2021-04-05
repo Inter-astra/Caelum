@@ -122,17 +122,17 @@ def inlineinfo(query: str, update: Update, context: CallbackContext) -> None:
 
 
     if user.id == OWNER_ID:
-        text += f"\nThis person is my owner."
+        text += f"\n\nThis person is my owner."
     elif user.id in SUDO_USERS:
-        text += f"\nThis user is a sudo."
+        text += f"\n\nThis user is a sudo."
     elif user.id in SUPER_ADMINS:
-        text += f"\nThis user is a super admin."
+        text += f"\n\nThis user is a super admin."
     elif user.id in SUPPORT_USERS:
-        text += f"\nThis user is a support."
+        text += f"\n\nThis user is a support."
     elif user.id in SARDEGNA_USERS:
-        text += f"\nThis user is a sardegna."
+        text += f"\n\nThis user is a sardegna."
     elif user.id in WHITELIST_USERS:
-        text += f"\nThis user is whitelisted."
+        text += f"\n\nThis user is whitelisted."
 
     results = [
         InlineQueryResultArticle(
