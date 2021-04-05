@@ -49,7 +49,7 @@ async def is_administrator(user_id: int, message):
     return admin
 
 
-@telethn.on(events.NewMessage(pattern=f"^[!/,]delacc ?(.*)"))
+@telethn.on(events.NewMessage(pattern=f"^[!/]delacc ?(.*)"))
 async def zombies(event):
     """ For .zombies command, list all the deleted accounts in a chat. """
 
