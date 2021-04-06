@@ -6,7 +6,7 @@ import random
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext, CommandHandler
 
-from tg_bot import dispatcher, OWNER_ID
+from tg_bot import dispatcher, OWNER_ID, SUDO_USERS
 
 
 class ErrorsDict(dict):
