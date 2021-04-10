@@ -304,22 +304,22 @@ markdown_help_text: |
 
 misc_help: |
       • /id: get the current group id. If used by replying to a message, gets that user's id.
-      • /info: get information about a user.
-      • /tr <language code>: as reply to a long message.
-      • /getid: get IDs of chat, user and chat message.
-      • /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
       • /gifid: reply to a gif to me to tell you its file ID.
+      • /info: get information about a user.
+      • /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
       • /ud <word>: Type the word or expression you want to search use.
       • /urban <word>: Same as /ud
-      • /paste: Do a paste at `nekobin.com`
+      • /paste - Do a paste at `nekobin.com`
       • /react: Reacts with a random reaction
       • /weebify <text>: returns a weebified text
-      • /time <query>`: Gives information about a timezone.
-      • /cash: currency converter
+      • /tr (language code) as reply to a long message.
+      • /time <query> : Gives information about a timezone.
+      • /cash : currency converter
         example syntax: /cash 1 USD INR
-      • /cinfo: get info about a user or a chat (uses @Pyrogram methods)
-      • /spbinfo: get info about a user from @Intellivoid's SpamProtection API
-
+      • /cinfo : get info about a user or a chat (uses @Pyrogram methods)
+      • /getid : get IDs of chat, user and chat message.
+      • /spbinfo : get info about a user from @Intellivoid's SpamProtection API
+      ───────────────────────────────
       *Last.FM*
       Share what you're what listening to with the help of this module!
       *Available commands:*
