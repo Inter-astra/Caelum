@@ -3,6 +3,7 @@ import re, os
 import time
 from typing import List
 
+import git
 import requests
 from telegram import Update, MessageEntity, ParseMode
 from telegram.error import BadRequest
@@ -20,6 +21,7 @@ from tg_bot import (
     WHITELIST_USERS,
     INFOPIC,
     sw,
+    StartTime
 )
 from tg_bot.__main__ import STATS, USER_INFO, TOKEN
 from tg_bot.modules.disable import DisableAbleCommandHandler
@@ -269,32 +271,59 @@ def markdown_help(update: Update, _):
         "[button2](buttonurl://google.com:same)"
     )
 
+def get_readable_time(seconds: int) -> str:
+    count = 0
+    ping_time = ""
+    time_list = []
+    time_suffix_list = ["s", "m", "h", "days"]
+
+    while count < 4:
+        count += 1
+        if count < 3:
+            remainder, result = divmod(seconds, 60)
+        else:
+            remainder, result = divmod(seconds, 24)
+        if seconds == 0 and remainder == 0:
+            break
+        time_list.append(int(result))
+        seconds = int(remainder)
+
+    for x in range(len(time_list)):
+        time_list[x] = str(time_list[x]) + time_suffix_list[x]
+    if len(time_list) == 4:
+        ping_time += time_list.pop() + ", "
+
+    time_list.reverse()
+    ping_time += ":".join(time_list)
+
+    return ping_time
 
 @sudo_plus
 def stats(update, context):
     uptime = datetime.datetime.fromtimestamp(boot_time()).strftime("%Y-%m-%d %H:%M:%S")
-    status = "*>-------< System >-------<*\n"
-    status += "*System uptime:* " + str(uptime) + "\n"
+    botuptime = get_readable_time((time.time() - StartTime))
+    status = "*System statistics*\n"
+    status += "*• System uptime:* " + str(uptime) + "\n"
 
     uname = platform.uname()
-    status += "*System:* " + str(uname.system) + "\n"
-    status += "*Node name:* " + str(uname.node) + "\n"
-    status += "*Release:* " + str(uname.release) + "\n"
-    status += "*Machine:* " + str(uname.machine) + "\n"
+    status += "*• System:* " + str(uname.system) + "\n"
+    status += "*• Node name:* " + str(uname.node) + "\n"
+    status += "*• Release:* " + str(uname.release) + "\n"
+    status += "*• Machine:* " + str(uname.machine) + "\n"
 
     mem = virtual_memory()
     cpu = cpu_percent()
     disk = disk_usage("/")
-    status += "*CPU usage:* " + str(cpu) + " %\n"
-    status += "*Ram usage:* " + str(mem[2]) + " %\n"
-    status += "*Storage used:* " + str(disk[3]) + " %\n\n"
-    status += "*Python version:* " + python_version() + "\n"
-    status += "*Library version:* " + str(__version__) + "\n"
+    status += "*• CPU usage:* " + str(cpu) + " %\n"
+    status += "*• Ram usage:* " + str(mem[2]) + " %\n"
+    status += "*• Storage used:* " + str(disk[3]) + " %\n\n"
+    status += "*• Python version:* " + python_version() + "\n"
+    status += "*• Library version:* " + str(__version__) + "\n"
     try:
         update.effective_message.reply_text(
 
             f"*Caelum (@{context.bot.username}), *\n" +
-            "Maintained by [Dank-del](t.me/dank_as_fuck) and [Stella](tg://user?id=1659080755)\n" +
+            "Maintained by [Dank-del](t.me/dank_as_fuck) and [Kisuto](tg://user?id=1659080755)\n" +
             "Built with ❤️ using python-telegram-bot\n\n" + status +
             "\n*Bot statistics*:\n"
             + "\n".join([mod.__stats__() for mod in STATS]) +
@@ -304,7 +333,7 @@ def stats(update, context):
         update.effective_message.reply_text(
 
             f"*Caelum (@{context.bot.username}), *\n" +
-            "Maintained by [Dank-del](t.me/dank_as_fuck) and [Stella](tg://user?id=1659080755)\n" +
+            "Maintained by [Dank-del](t.me/dank_as_fuck) and [Kisuto](tg://user?id=1659080755)\n" +
             "Built with ❤️ using python-telegram-bot\n" +
             "\n*Bot statistics*:\n"
             + "\n".join([mod.__stats__() for mod in STATS]) +

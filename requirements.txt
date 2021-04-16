@@ -26,9 +26,11 @@ alphabet_detector
 pyrate-limiter
 bleach
 cachetools
-loguru
 PyYAML>=5.1.2
 Intellivoid-SPB
 coffeehouse
 rich
+ujson
 psutil
+git+https://github.com/python-telegram-bot/ptbcontrib.git
+gitpython
