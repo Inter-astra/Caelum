@@ -300,14 +300,15 @@ def get_readable_time(seconds: int) -> str:
 
     return ping_time
 
+stats_str = '''
+'''
 @sudo_plus
 def stats(update, context):
     db_size = SESSION.execute("SELECT pg_size_pretty(pg_database_size(current_database()))").scalar_one_or_none()
     uptime = datetime.datetime.fromtimestamp(boot_time()).strftime("%Y-%m-%d %H:%M:%S")
     botuptime = get_readable_time((time.time() - StartTime))
-    status = "*System statistics*\n"
-    status += "*• System Uptime:* " + str(uptime) + "\n"
-
+    status = "*╒═══「 System statistics: 」*\n\n"
+    status += "*• System Start time:* " + str(uptime) + "\n"
     uname = platform.uname()
     status += "*• System:* " + str(uname.system) + "\n"
     status += "*• Node name:* " + escape_markdown(str(uname.node)) + "\n"
@@ -317,11 +318,13 @@ def stats(update, context):
     mem = virtual_memory()
     cpu = cpu_percent()
     disk = disk_usage("/")
-    status += "*• CPU usage:* " + str(cpu) + " %\n"
-    status += "*• Ram usage:* " + str(mem[2]) + " %\n"
-    status += "*• Storage used:* " + str(disk[3]) + " %\n\n"
+    status += "*• CPU:* " + str(cpu) + " %\n"
+    status += "*• RAM:* " + str(mem[2]) + " %\n"
+    status += "*• Storage:* " + str(disk[3]) + " %\n\n"
     status += "*• Python version:* " + python_version() + "\n"
-    status += "*• Library version:* " + str(__version__) + "\n"
+    status += "*• python-telegram-bot:* " + str(ptbver) + "\n"
+    status += "*• Pyrogram:* " + str(pyrover) + "\n"
+    status += "*• Uptime:* " + str(botuptime) + "\n"
     status += "*• Database size:* " + str(db_size) + "\n"
     try:
         update.effective_message.reply_text(
