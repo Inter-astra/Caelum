@@ -322,6 +322,7 @@ def stats(update, context):
     status += "*• Storage used:* " + str(disk[3]) + " %\n\n"
     status += "*• Python version:* " + python_version() + "\n"
     status += "*• Library version:* " + str(__version__) + "\n"
+    status += "*• Database size:* " + str(db_size) + "\n"
     try:
         update.effective_message.reply_text(
 
