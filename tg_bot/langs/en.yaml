@@ -442,5 +442,5 @@ delacc_help: |
 
       *Admin only*
 
-      • `/delacc`*:*
-      • `/delacc clean`*:* Kick deleted accounts out!
+      • `/delacc`*:* Check if the chat has deleted account(s).
+      • `/delacc clean`*:* Kick deleted account(s) out!
