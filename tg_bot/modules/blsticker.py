@@ -484,28 +484,28 @@ def __chat_settings__(chat_id, user_id):
 
 
 def __stats__():
-    return "• {} blacklisted stickers, across {} chats.".format(
+    return "• {} blacklisted packs, across {} chats.".format(
         sql.num_stickers_filters(), sql.num_stickers_filter_chats()
     )
 
 
-__mod_name__ = "Sticker Blacklists"
+__mod_name__ = "Stickers Blacklist"
 
 from tg_bot.modules.language import gs
 
 def get_help(chat):
-    return gs(chat, "stickers_help")
+    return gs(chat, "stickerp_help")
 
 BLACKLIST_STICKER_HANDLER = DisableAbleCommandHandler([
-    "bpacks", "blsticker"], blackliststicker, admin_ok=True
+    "bpacks"], blackliststicker, admin_ok=True
 )
 ADDBLACKLIST_STICKER_HANDLER = DisableAbleCommandHandler([
-    "banpack", "addblsticker"], add_blackliststicker
+    "banpack", "addblpack"], add_blackliststicker
 )
 UNBLACKLIST_STICKER_HANDLER = CommandHandler([
-    "unbanpack", "unblsticker", "rmblsticker"], unblackliststicker
+    "unbanpack", "unblpack", "rmblsticker"], unblackliststicker
 )
-BLACKLISTMODE_HANDLER = CommandHandler(["blstickermode", "bansmode"], blacklist_mode)
+BLACKLISTMODE_HANDLER = CommandHandler(["blpackmode", "banpmode"], blacklist_mode)
 BLACKLIST_STICKER_DEL_HANDLER = MessageHandler(
     Filters.sticker & Filters.group, del_blackliststicker
 )

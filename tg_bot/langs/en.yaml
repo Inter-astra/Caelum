@@ -415,26 +415,17 @@ greetings_help: |
       *Welcome markdown:*
        • `/welcomehelp`*:* view more formatting information for custom welcome/goodbye messages.
 
-stickers_help: |
-       If you don't want users to send specific stickers then this module will be useful.
+stickerp_help: |
+       If you don't want users to send specific sticker packs then this module will be useful.
        
        *Admin only*
 
-       • `/banpack`*:* Blacklists the replied sticker
-       • `/unbanpack`*:* Removes the blacklist of replied sticker
-       • `/banpmode`*:* Decide what Caelum will do when a blacklisted sticker sent
+       • `/banpack`*:* Blacklists the replied pack
+       • `/unbanpack`*:* Removes the blacklist of replied pack
+       • `/banpmode`*:* Decide what Caelum will do when a blacklisted pack sent
+
        Available modes are ban, tban, mute, tmute, delete and nothing
-       You can (un)ban using <packlink> too.
-
-lydia_help: |
-       Lydia is an artificial intelligence can talk with you like a human.
-       You can have fun with Lydia 😃
-       
-       *Commands are (admin only):*
-       • `/addchat`*:* Enables Lydia in your chat
-       • `/rmchat`*:* Disables Lydia in your chat
-
-       Powered by [Coffeehouse](https://coffeehouse.intellivoid.net), @Intellivoid
+       You can (un)ban using <packlink> either.
 
 nlp_help: |
       *Spam Prediction*
@@ -443,8 +434,13 @@ nlp_help: |
        This comes under Coffehouse' NLP. Learn more about
        it [here](https://docs.intellivoid.net/coffeehouse/v1/nlp/spam_prediction/chatroom)
        *Command:*
+
         • `/nlpstat <on/off/yes/no>`*:* Toggle NLP in your chat.
 
 delacc_help: |
-      • `/delacc`*:* Check chat if has deleted accounts.
+      Do deleted accounts annoy you? You can get rid of them using this module :3
+
+      *Admin only*
+
+      • `/delacc`*:*
       • `/delacc clean`*:* Kick deleted accounts out!
