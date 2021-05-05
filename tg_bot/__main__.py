@@ -138,6 +138,7 @@ def start(update: Update, context: CallbackContext):
     '''
     chat = update.effective_chat
     args = context.args
+    query = update.callback_query
     back_match = re.match(r"help_back", query.data)
 
     if update.effective_chat.type == "private":
