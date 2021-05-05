@@ -48,19 +48,6 @@ from tg_bot.modules.helper_funcs.misc import paginate_modules
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from tg_bot.modules.language import gs
 
-HELP_STRINGS = f"""
-Hello there! My name is *Caelum*.
-I'm a modular group management bot with a few fun extras! Have a look at the following for an idea of some of \
-the things I can help you with.
-*Main* commands available:
- • /start: Starts me, can be used to check I'm alive or not.
- • /help: PM's you this message.
- • /settings:
-   - in PM: will send you your settings for all supported modules.
-   - in a group: will redirect you to pm, with all that chat's settings.
- \nClick on the buttons below to get documentation about specific modules!
- """
-
 
 CAELUM_IMG = "https://telegra.ph/file/0d71e6aac5368db1a0c0b.png"
 
@@ -193,9 +180,7 @@ def start(update: Update, context: CallbackContext):
 
                             InlineKeyboardButton(
                                 text="Help",
-                                url="t.me/{}?start=help".format(
-                                    context.bot.username
-                                ),
+                                callback_data="help_back"),
 
                             ),
 
@@ -208,7 +193,7 @@ def start(update: Update, context: CallbackContext):
 
                             InlineKeyboardButton(
                                 text=gs(chat.id, "src_btn"),
-                                url="https://github.com/Stella-lucem/Caelum",
+                                url="https://github.com/Eclipswf/Caelum",
                             ),
 
                              InlineKeyboardButton(
