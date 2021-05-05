@@ -186,6 +186,7 @@ def start(update: Update, context: CallbackContext):
                                 url="t.me/{}?start=help".format(
                                     context.bot.username
                                 ),
+                            ),
 
                         ],
                         [
