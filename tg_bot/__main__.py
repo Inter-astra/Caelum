@@ -138,6 +138,8 @@ def start(update: Update, context: CallbackContext):
     '''
     chat = update.effective_chat
     args = context.args
+    back_match = re.match(r"help_back", query.data)
+
     if update.effective_chat.type == "private":
         if len(args) >= 1:
             if args[0].lower() == "help":
@@ -181,8 +183,7 @@ def start(update: Update, context: CallbackContext):
                             InlineKeyboardButton(
                                 text="Help",
                                 callback_data="help_back",
-
-                            ),
+                                ),
 
                         ],
                         [
